@@ -1,7 +1,9 @@
 ---
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import { gameInfo, heroArtFor, sentiment, critic, fmtDate } from "../../lib/data";
+import SiteNav from "../../components/SiteNav.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import { gameInfo, wideFor, sentiment, critic, fmtDate } from "../../lib/data";
 
 export async function getStaticPaths() {
   const reviews = await getCollection("reviews", ({ data }) => !data.draft);
@@ -12,49 +14,63 @@ const { review } = Astro.props;
 const { Content } = await render(review);
 const { game, score, date } = review.data;
 const g = gameInfo(game);
-const art = heroArtFor(game);
+const pic = wideFor(game);
 const c = critic(g);
+const shots = (g.screens ?? []).slice(0, 3);
 ---
-<Base title={`${game} review — Awad`} description={review.data.excerpt}>
-  <article>
-    <header class="banner">
-      {art && <img src={art} alt="" />}
-      <div class="bars" aria-hidden="true"></div>
-      <div class="t">
-        <span class="label">Review · {fmtDate(date)}</span>
-        <h1>{game}</h1>
+<Base title={`${game} review · koala.rip`} description={review.data.excerpt}>
+  <div class="page">
+    <SiteNav />
+    <article>
+      <header class="top" data-enter>
+        <h1 class="head" data-part>{game}</h1>
+        <p class="lead" data-part>My review, {fmtDate(date)}</p>
+      </header>
+      {pic && <figure class="pic" data-enter><img data-part src={pic} alt={game} width="1920" height="620" /></figure>}
+      <div class="body" data-enter>
+        <dl class="facts" data-part>
+          <div><dt class="small muted">My score</dt><dd class="score num">{score}/10</dd></div>
+          {g.reviewDesc && <div><dt class="small muted">Steam players</dt><dd class:list={["steam", sentiment(g.reviewDesc)]}>{g.reviewDesc}</dd></div>}
+          {c && <div><dt class="small muted">{c.source}</dt><dd class="num">{c.score}</dd></div>}
+        </dl>
+        <div class="prose" data-part><Content /></div>
       </div>
-    </header>
-
-    <div class="body">
-      <aside class="facts">
-        <div><span class="label">My score</span><span class="score">{score}<small>/10</small></span></div>
-        {g.reviewDesc && <div><span class="label">Steam users</span><span class:list={["steam", sentiment(g.reviewDesc)]}>{g.reviewDesc}</span></div>}
-        {c && <div><span class="label">{c.source}</span><span>{c.score}</span></div>}
-      </aside>
-      <div class="prose"><Content /></div>
-    </div>
-  </article>
+      {shots.length > 0 && (
+        <section class="shots" aria-labelledby="shots-h" data-enter>
+          <h2 id="shots-h" class="lead" data-part>From the game</h2>
+          <div class="grid">
+            {shots.map((s, i) => <img data-part class={`s${i}`} src={s} alt={`${game} screenshot ${i + 1}`} loading="lazy" width="1920" height="1080" />)}
+          </div>
+          <p class="small muted" data-part>Screenshots from the Steam store page.</p>
+        </section>
+      )}
+    </article>
+  </div>
+  <SiteFooter />
 </Base>
 
 <style>
-  .banner { position: relative; aspect-ratio: 2.39 / 1; overflow: hidden; background: linear-gradient(160deg, #1b2148, var(--bg) 72%); }
-  .banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; }
-  .bars::before, .bars::after { content: ""; position: absolute; left: 0; right: 0; height: 9%; background: #000; }
-  .bars::before { top: 0; } .bars::after { bottom: 0; }
-  .t { position: absolute; left: clamp(16px, 3vw, 32px); right: clamp(16px, 3vw, 32px); bottom: calc(9% + 20px); display: grid; gap: 10px; }
-  h1 { margin: 0; font-family: var(--display); font-weight: 800; font-size: clamp(36px, 7vw, 100px); line-height: .88; letter-spacing: -.045em; text-wrap: balance; }
-  .body { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; margin-top: 40px; }
-  .facts { display: grid; gap: 16px; align-content: start; }
-  .facts div { display: grid; gap: 2px; border-top: 1px solid var(--line-strong); padding-top: 8px; font-size: 14px; }
-  .score { font-family: var(--display); font-weight: 800; font-size: 48px; line-height: 1; color: var(--star); }
-  .score small { font-family: var(--mono); font-weight: 400; font-size: 13px; color: var(--dim); }
-  .prose { font-family: var(--display); font-weight: 300; font-size: 19px; line-height: 1.6; max-width: 65ch; }
-  .prose :global(h2) { font-weight: 800; letter-spacing: -.02em; font-size: 28px; line-height: 1.1; margin: 1.6em 0 .4em; }
-  .prose :global(strong) { font-weight: 500; }
-  .prose :global(a) { color: var(--star); }
+  .page { padding: 24px max(var(--margin), env(safe-area-inset-right, 0px)) 160px max(var(--margin), env(safe-area-inset-left, 0px)); display: grid; gap: 64px; }
+  article { display: grid; gap: 48px; }
+  .top { display: grid; gap: 16px; margin-top: 48px; }
+  .pic { margin: 0; aspect-ratio: 21 / 9; overflow: hidden; background: var(--surface); }
+  .pic img { width: 100%; height: 100%; object-fit: cover; }
+  .body { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; }
+  .facts { margin: 0; display: grid; gap: 24px; align-content: start; }
+  .facts dd { margin: 4px 0 0; font-size: var(--step-lead); }
+  .score { font-weight: 600; color: var(--gold); }
+  .prose { max-width: 65ch; font-size: var(--step-body); line-height: 1.6; }
+  .prose :global(p + p), .prose :global(ul), .prose :global(h2) { margin-top: 1.2em; }
+  .prose :global(h2) { font-size: var(--step-lead); font-weight: 600; }
+  .prose :global(strong) { font-weight: 600; }
+  .shots { display: grid; gap: 24px; margin-top: 72px; }
+  .shots h2 { font-weight: 600; }
+  .shots .grid { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; gap: 20px; }
+  .shots img { width: 100%; height: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface); }
+  .shots .s0 { grid-row: span 2; }
   @media (max-width: 820px) {
-    .banner { aspect-ratio: 4 / 5; }
     .body { grid-template-columns: 1fr; }
+    .shots .grid { grid-template-columns: 1fr; }
+    .shots .s0 { grid-row: auto; }
   }
 </style>

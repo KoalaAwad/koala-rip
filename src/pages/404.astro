@@ -1,17 +1,20 @@
 ---
 import Base from "../layouts/Base.astro";
+import SiteNav from "../components/SiteNav.astro";
 ---
-<Base title="404 — koala.rip">
-  <section class="nf">
-    <span class="label">Error 404</span>
-    <h1 class="section-title">You clipped out of bounds.</h1>
-    <p>This page doesn't exist. <a href="/">Respawn at the homepage →</a></p>
-  </section>
+<Base title="Not found · koala.rip">
+  <div class="page">
+    <SiteNav />
+    <main class="nf">
+      <h1 class="head">You clipped out of bounds.</h1>
+      <p class="lead">This page doesn't exist. <a href="/">Respawn at the homepage</a>.</p>
+    </main>
+  </div>
 </Base>
 
 <style>
-  .nf { display: grid; gap: 16px; padding-block: 12vh; }
-  .nf h1 { font-size: clamp(40px, 8vw, 110px); max-width: 12ch; }
-  .nf p { margin: 0; color: var(--dim); }
-  .nf a { color: var(--star); }
+  .page { min-height: 100svh; padding: 24px max(var(--margin), env(safe-area-inset-right, 0px)) 48px max(var(--margin), env(safe-area-inset-left, 0px)); display: grid; grid-template-rows: auto 1fr; }
+  .nf { align-self: center; display: grid; gap: 24px; max-width: 18ch; }
+  .nf .lead { max-width: 40ch; }
+  .nf a { text-underline-offset: 4px; }
 </style>

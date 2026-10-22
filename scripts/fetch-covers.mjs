@@ -33,7 +33,9 @@ const exists = (base) => ["jpg", "jpeg", "png", "webp"].some((e) => fs.existsSyn
 const rankings = JSON.parse(fs.readFileSync("data/rankings.json", "utf8"));
 const games = JSON.parse(fs.readFileSync("data/games.json", "utf8"));
 const titles = [...new Set(Object.values(rankings).flat().map((e) => e.title))];
-const missing = titles.filter((t) => !games[t]?.cover && !games[t]?.header);
+// Extra titles can be passed on the command line (e.g. PlayStation games with only square art).
+const extra = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+const missing = [...titles.filter((t) => !games[t]?.cover && !games[t]?.header), ...extra];
 
 fs.mkdirSync(OUT, { recursive: true });
 console.log(`${missing.length} game(s) without Steam art: ${missing.join(", ") || "none"}`);

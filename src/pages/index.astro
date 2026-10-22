@@ -1,13 +1,285 @@
 ---
+import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
-import Hero from "../components/Hero.astro";
-import Stats from "../components/Stats.astro";
-import Rankings from "../components/Rankings.astro";
-import LatestReviews from "../components/LatestReviews.astro";
+import Stage from "../components/Stage.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import {
+  profile, rankings, years, gameInfo, sentiment, critic, portraitFor, coverFor,
+  latestCompletion, completionPortrait, displayTitle, scoreFor, fmtDate, steamProgress, steamPlayedCount, wideFor,
+} from "../lib/data";
+
+const raw = latestCompletion();
+const c = raw && { ...raw, title: displayTitle(raw.title) };
+const cScore = c ? scoreFor(c.title) : null;
+const cPortrait = c ? completionPortrait(raw!) : null;
+const unit = c?.platform === "Steam" ? "achievements" : "trophies";
+const how = c?.platform === "Steam" ? "100% on Steam" : "Platinum on PlayStation";
+const captionHow = c?.platform === "Steam" ? "100% on Steam" : "platinum on PlayStation";
+
+const s = profile.stats as typeof profile.stats & { latestPlatinum: { title: string; date: string } | null };
+const platPic = s.latestPlatinum ? portraitFor(s.latestPlatinum.title) : null;
+const perfect = steamProgress().filter((r) => r.complete).map((r) => displayTitle(r.title));
+const playedSteam = steamPlayedCount();
+const listNames = (names: string[]) => (names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`);
+
+const reviews = (await getCollection("reviews", ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const reviewFor = (title: string) => reviews.find((r) => r.data.game === title);
 ---
 <Base>
-  <Hero />
-  <Stats />
-  <Rankings />
-  <LatestReviews />
+  <div class="split">
+    <div class="mnav"><SiteNav /></div>
+    <Stage src={cPortrait} title={c ? `${c.title}, ${captionHow}` : "koala.rip"} />
+
+    <main class="read">
+      <!-- First screen -->
+      <header class="hero" data-enter>
+        <div class="dnav" data-part><SiteNav /></div>
+        <div class="hero-body">
+          <p class="lead" data-part>Awad's gaming log. Every trophy I've earned, the games I play each year ranked out of ten, and the odd review.</p>
+          {c && (
+            <p class="epitaph" data-part data-stage={cPortrait ?? undefined} data-stage-title={`${c.title}, ${captionHow}`}>
+              <strong>Here lies {c.title}.</strong> {how}, {c.earned} of {c.total} {unit}{c.hours !== null && <> in {c.hours} hours</>}.
+              Laid to rest on {fmtDate(c.date)}.{cScore !== null && <> My score: {cScore}/10.</>}
+            </p>
+          )}
+        </div>
+      </header>
+
+      <!-- Intro -->
+      <section class="intro" aria-labelledby="intro-h" data-enter>
+        <h2 id="intro-h" class="lead" data-part>What this is</h2>
+        <div class="paras">
+          <p class="first" data-part>Just a place to keep my achievements, rank the games I play each year, and every now and then ramble about one in a review.</p>
+          <p data-part>Everything here syncs from my Steam and PlayStation accounts every six hours. The picture on the left follows along and shows whichever game you're reading about.</p>
+          <p data-part>The rankings go by the year I played a game, not the year it came out. Scores are mine, out of ten, and when I've written about a game its score links to the review.</p>
+          <p data-part>The name is a joke about finishing games. Once I hit 100% or a platinum, the game is done, and it rests here.</p>
+        </div>
+      </section>
+
+      <!-- Figures -->
+      <section class="figures" aria-labelledby="fig-h" data-enter>
+        <h2 id="fig-h" class="lead" data-part>So far</h2>
+        <dl>
+          <div data-part data-stage={platPic ?? undefined} data-stage-title={s.latestPlatinum ? `${s.latestPlatinum.title}, my latest platinum` : undefined}>
+            <dt class="num"><a href="/achievements/">{s.platinums}</a></dt>
+            <dd>PlayStation platinums{s.latestPlatinum && <>, the latest {s.latestPlatinum.title} in {new Date(s.latestPlatinum.date).toLocaleDateString("en-GB", { month: "long", year: "numeric" })}</>}.</dd>
+          </div>
+          <div data-part>
+            <dt class="num"><a href="/achievements/">{s.steamAchievements.toLocaleString("en-US")}</a></dt>
+            <dd>Steam achievements across {playedSteam} games I've played.</dd>
+          </div>
+          <div data-part>
+            <dt class="num gold">{perfect.length}</dt>
+            <dd>Steam games at 100%: {listNames(perfect)}.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- Rankings -->
+      <section class="ranked" id="ranked" aria-labelledby="rank-h" data-enter>
+        <h2 id="rank-h" class="giant" data-part>Ranked</h2>
+        <p class="note" data-part>Everything I played through each year, ranked (irrelevant to release date).</p>
+        <div class="years">
+          {years.map((y, i) => (
+            <details open={i === 0} data-part>
+              <summary><span>{y}</span><span class="count">{rankings[y].length} games <span class="plus" aria-hidden="true"></span></span></summary>
+              <ol>
+                {rankings[y].map((e) => {
+                  const g = gameInfo(e.title);
+                  const crit = critic(g);
+                  const steam = g.appid && g.reviewDesc ? g.reviewDesc : null;
+                  const r = e.review ? { href: e.review } : reviewFor(e.title) ? { href: `/reviews/${reviewFor(e.title)!.id}/` } : null;
+                  const pic = portraitFor(e.title);
+                  const thumb = coverFor(e.title);
+                  return (
+                    <li data-stage={pic ?? undefined} data-stage-title={e.title} tabindex="0">
+                      {thumb && <img class="thumb" src={thumb} alt="" loading="lazy" width="40" height="60" />}
+                      <span class="game">
+                        <span class="name">{e.title}</span>
+                        {(steam || crit || r) && (
+                          <span class="facts small">
+                            {steam && <span class:list={["steam", sentiment(steam)]}>{steam} on Steam</span>}
+                            {crit && <span>{crit.source} {crit.score}</span>}
+                            {r && <a href={r.href}>Read my review</a>}
+                          </span>
+                        )}
+                      </span>
+                      <span class="score num">{e.score}<span class="muted">/10</span></span>
+                    </li>
+                  );
+                })}
+              </ol>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Reviews -->
+      <section class="reviews" id="reviews" aria-labelledby="rev-h" data-enter>
+        <h2 id="rev-h" class="lead" data-part>Reviews I wrote</h2>
+        {reviews.length ? (
+          <ul class="ledger">
+            {reviews.map((r) => (
+              <li data-part data-stage={portraitFor(r.data.game) ?? undefined} data-stage-title={r.data.game}>
+                <a href={`/reviews/${r.id}/`}>
+                  <span class="name">{r.data.game}</span>
+                  <span class="kind muted">Review, {r.data.score}/10</span>
+                  <span class="year num">{r.data.date.getFullYear()}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p data-part>No written reviews yet.</p>
+        )}
+      </section>
+    </main>
+
+    <h1 class="wordmark" aria-label="koala.rip">koala.rip</h1>
+  </div>
+
+  <!-- The one section that breaks the split: this year's top three, large -->
+  <section class="podium" aria-labelledby="pod-h" data-enter>
+    <h2 id="pod-h" class="head" data-part>Best of {years[0]} so far</h2>
+    <ol>
+      {rankings[years[0]].slice(0, 3).map((e, i) => {
+        const pic = wideFor(e.title);
+        return (
+          <li class={`p${i + 1}`} data-part>
+            <figure>
+              {pic && <img src={pic} alt={e.title} width="1920" height="620" decoding="async" />}
+              <figcaption><span class="lead">{e.title}</span><span class="num">{e.score}/10</span></figcaption>
+            </figure>
+          </li>
+        );
+      })}
+    </ol>
+  </section>
+
+  <SiteFooter />
 </Base>
+
+<style>
+  .split { position: relative; display: grid; grid-template-columns: 47% 1fr; }
+  .mnav { display: none; }
+  .read { padding: 32px max(var(--margin), env(safe-area-inset-right, 0px)) 160px clamp(40px, 5vw, 72px); min-width: 0; }
+
+  /* First screen */
+  .hero { min-height: 100svh; display: grid; grid-template-rows: auto 1fr; }
+  .hero-body { align-self: start; margin-top: 26svh; display: grid; gap: 32px; max-width: 30ch; }
+  .hero-body .lead { font-size: var(--step-lead); }
+  .epitaph { max-width: 40ch; }
+  .epitaph strong { font-weight: 600; color: var(--gold); }
+
+  .wordmark {
+    position: absolute; z-index: 2; right: max(var(--margin), env(safe-area-inset-right, 0px));
+    top: calc(100svh - 40px); translate: 0 -100%;
+    font-size: var(--step-display); font-weight: 400; letter-spacing: -0.04em; line-height: .8;
+    white-space: nowrap; pointer-events: none; transform-origin: 100% 100%;
+  }
+  @supports (animation-timeline: scroll()) {
+    .wordmark { animation: settle linear both; animation-timeline: scroll(root); animation-range: 0 100svh; }
+    @keyframes settle { to { scale: .93; } }
+  }
+
+  section { margin-top: clamp(120px, 16vh, 200px); max-width: 46ch; }
+  section > h2.lead { font-size: var(--step-lead); font-weight: 600; margin-bottom: 32px; }
+
+  /* Intro */
+  .paras { display: grid; gap: 1.2em; }
+  .paras .first { font-weight: 600; }
+
+  /* Figures: quiet lines, figures on one right edge, sentences on one left edge */
+  dl { margin: 0; display: grid; gap: 28px; }
+  dl div { display: grid; grid-template-columns: 132px 1fr; gap: 24px; align-items: baseline; }
+  dt { font-size: var(--step-head); font-weight: 500; text-align: right; line-height: 1; letter-spacing: -0.02em; }
+  dt a { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; text-decoration-color: var(--muted); transition: text-decoration-color .2s; }
+  dt a:hover { text-decoration-color: var(--ink); }
+  dt.gold { color: var(--gold); }
+  dd { margin: 0; }
+
+  /* Rankings */
+  .ranked { max-width: 640px; container-type: inline-size; }
+  .giant { font-size: 31cqw; font-weight: 500; line-height: .8; letter-spacing: -0.04em; margin-left: -0.04em; }
+  .note { margin: 20px 0 24px; }
+  .years { display: grid; gap: 6px; }
+  details { background: var(--surface); }
+  summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    min-height: 56px; padding: 0 18px; font-weight: 600;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .count { display: inline-flex; align-items: center; gap: 14px; font-weight: 400; }
+  .plus { position: relative; width: 12px; height: 12px; }
+  .plus::before, .plus::after { content: ""; position: absolute; background: currentColor; transition: transform .25s var(--ease-out); }
+  .plus::before { left: 0; right: 0; top: 5px; height: 2px; }
+  .plus::after { top: 0; bottom: 0; left: 5px; width: 2px; }
+  details[open] .plus::after { transform: scaleY(0); }
+  details:not([open]) > ol { display: none; } /* collapsed years take no layout at all */
+  summary:hover { background: var(--surface-2); }
+
+  .years ol { margin: 0; padding: 4px 20px 20px 52px; display: grid; gap: 6px; }
+  .years li { padding: 10px 0; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; outline-offset: 4px; transition: color .2s; }
+  .years li::marker { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .years ol:hover li { color: var(--muted); }
+  .years li:hover, .years li:focus-visible { color: var(--ink); }
+  .thumb { display: none; }
+  .game { display: grid; gap: 2px; min-width: 0; }
+  .name { overflow-wrap: anywhere; }
+  .facts { display: flex; flex-wrap: wrap; gap: 2px 14px; color: var(--muted); }
+  .facts a { color: var(--ink); text-underline-offset: 3px; }
+  .score { font-weight: 600; white-space: nowrap; }
+
+  /* Reviews ledger */
+  .ledger { list-style: none; margin: 0; padding: 0; }
+  .ledger a { display: grid; grid-template-columns: 1fr 1fr auto; align-items: baseline; min-height: 44px; text-decoration: none; gap: 12px; transition: color .2s; }
+  .ledger:hover a { color: var(--muted); }
+  .ledger a:hover, .ledger a:focus-visible { color: var(--ink); }
+  .ledger a:hover .kind, .ledger a:focus-visible .kind { color: var(--ink); }
+  .kind { font-size: var(--step-small); }
+
+  /* Podium band: full width, three stepped sizes, captions under the pictures */
+  .podium {
+    max-width: none; margin: 0;
+    padding: clamp(120px, 16vh, 200px) max(var(--margin), env(safe-area-inset-right, 0px)) clamp(120px, 16vh, 200px) max(var(--margin), env(safe-area-inset-left, 0px));
+    display: grid; gap: 48px;
+  }
+  .podium ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 6fr 3.4fr 2.6fr; gap: 20px; align-items: end; }
+  .podium figure { margin: 0; display: grid; gap: 14px; }
+  .podium img { width: 100%; object-fit: cover; background: var(--surface); transition: transform .8s var(--ease-out); }
+  .podium .p1 img { aspect-ratio: 4 / 3; }
+  .podium .p2 img { aspect-ratio: 3 / 4; }
+  .podium .p3 img { aspect-ratio: 3 / 4; }
+  .podium figure:hover img { transform: scale(1.02); }
+  .podium figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; }
+  .podium .p1 .lead { font-size: var(--step-lead); font-weight: 600; }
+  .podium .p2 .lead, .podium .p3 .lead { font-size: var(--step-body); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    .podium ol { grid-template-columns: 1fr; gap: 40px; }
+    .podium .p2 img, .podium .p3 img { aspect-ratio: 4 / 3; }
+    .split { display: flex; flex-direction: column; }
+    .hero-body { max-width: none; }
+    .hero-body .lead { max-width: 30ch; }
+    .read { padding: 0 20px 120px; }
+    .hero { min-height: 0; }
+    .dnav { display: none; }
+    .mnav { display: block; padding: 16px 20px 8px; }
+    .hero-body { margin-top: 40px; }
+    @media (min-width: 600px) {
+      .hero-body { grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+      .hero-body .lead { max-width: none; }
+    }
+    .wordmark { position: static; order: 2; translate: none; margin: 8px 20px 0; font-size: 21vw; animation: none; }
+    .read { order: 3; }
+    section { margin-top: 96px; max-width: none; }
+    .paras p, .figures dd, .note { max-width: 60ch; }
+    .ranked { max-width: none; }
+    .years ol { padding-left: 40px; padding-right: 14px; }
+    .years li { grid-template-columns: 40px 1fr auto; align-items: center; }
+    .thumb { display: block; width: 40px; height: 60px; object-fit: cover; }
+    dl div { grid-template-columns: 88px 1fr; }
+    dt { font-size: 1.5rem; }
+  }
+</style>

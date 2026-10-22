@@ -1,0 +1,26 @@
+---
+// Wordmark, a few plain links, one action. No bar chrome.
+import KoalaMark from "./KoalaMark.astro";
+import { profile } from "../lib/data";
+---
+<nav class="nav" aria-label="Main">
+  <KoalaMark />
+  <ul>
+    <li><a href="/#ranked">Rankings</a></li>
+    <li><a href="/reviews/">Reviews</a></li>
+    <li><a href={profile.links.steam} target="_blank" rel="noopener">Steam</a></li>
+    <li><a href={profile.links.psn} target="_blank" rel="noopener">PlayStation</a></li>
+  </ul>
+  <a class="button" href="/achievements/">Achievements</a>
+</nav>
+
+<style>
+  .nav { display: flex; align-items: center; gap: 12px 28px; flex-wrap: wrap; }
+  ul { display: flex; gap: 6px 22px; flex-wrap: wrap; margin: 0 0 0 auto; padding: 0; list-style: none; }
+  ul a { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 5px; transition: text-decoration-color .2s; }
+  ul a:hover, ul a:focus-visible { text-decoration-color: currentColor; }
+  @media (max-width: 640px) {
+    ul { order: 3; margin: 0; width: 100%; }
+    .button { margin-left: auto; }
+  }
+</style>

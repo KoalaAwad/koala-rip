@@ -7,7 +7,13 @@
     "reviewTotal": 132227,
     "metacritic": 97,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/816ea59d6d8ac525f79a07c3a7afa94eddb3437c/header.jpg?t=1780913406"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/816ea59d6d8ac525f79a07c3a7afa94eddb3437c/header.jpg?t=1780913406",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/ss_b3694e99ffdb686d1bbbbe16a540d3d2ccd509c4.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/ss_9125a718ee9ba85386ae5d4eb820f3266073fc97.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/ss_4f5fdc3cf42feca8dafb1f7d2910ef96e62708a2.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/ss_fc6969799ebf19fd2a2c8a986c9419e053606a17.1920x1080.jpg"
+    ]
   },
   "Kingdom Come: Deliverance II": {
     "title": "Kingdom Come: Deliverance II",
@@ -17,7 +23,13 @@
     "reviewTotal": 198951,
     "metacritic": 89,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/header.jpg?t=1777975568"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/header.jpg?t=1777975568",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/ss_935ddb59f90bc2c21c706132cb9b446fe7851c19.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/ss_709f3329562cd2cfe6db70bac908b3e72eaef83b.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/ss_bd668f4d12300c019fa3fa73108aa62929fbf862.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/ss_5580d672302cdc5f8b7161dc94f266341e61a182.1920x1080.jpg"
+    ]
   },
   "Balatro": {
     "title": "Balatro",
@@ -27,7 +39,13 @@
     "reviewTotal": 200248,
     "metacritic": 90,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/7a85430784e4d613cdb0547414d8cf16ffa45747/header.jpg?t=1790693638"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/7a85430784e4d613cdb0547414d8cf16ffa45747/header.jpg?t=1790693638",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/96208723dbedef49d71bf1b0a74aee1689018c50/ss_96208723dbedef49d71bf1b0a74aee1689018c50.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/ss_4862112e5030f74a5818cd4c31347d699ac5adf3.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/ss_3be65a7dd3be072d567e11883d208861a7e959fa.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/ss_e32ac94d7d1d6be7dd015d78f2b52aeb4cc282ed.1920x1080.jpg"
+    ]
   },
   "Deltarune: Chapters 3 & 4": {
     "title": "Deltarune: Chapters 3 & 4",
@@ -37,7 +55,13 @@
     "reviewPct": 98,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/7ccda5b1631d2e60cc756a3271e845dbb9168821/header.jpg?t=1782314340"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/7ccda5b1631d2e60cc756a3271e845dbb9168821/header.jpg?t=1782314340",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/ss_b19eda9efcabf0fe27741eb126427048541780f0.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/ss_3fb0a253a8fa2f08a49f982d8c1e93c283e27f6d.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/ss_0d6b9f18eb6af166ae23a2c6b3148865eedb362d.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/ss_373f7aa9cd0f38423fadc4de77dece8e488bb7b1.1920x1080.jpg"
+    ]
   },
   "Hollow Knight": {
     "title": "Hollow Knight",
@@ -47,7 +71,13 @@
     "reviewTotal": 565941,
     "metacritic": 87,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/3c3489495136b26b34f8a9543c7f5645b99d388c/header.jpg?t=1776125684"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/3c3489495136b26b34f8a9543c7f5645b99d388c/header.jpg?t=1776125684",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/ss_5384f9f8b96a0b9934b2bc35a4058376211636d2.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/ss_d5b6edd94e77ba6db31c44d8a3c09d807ab27751.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/ss_a81e4231cc8d55f58b51a4a938898af46503cae5.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/ss_62e10cf506d461e11e050457b08aa0e2a1c078d0.1920x1080.jpg"
+    ]
   },
   "Hades": {
     "title": "Hades",
@@ -57,7 +87,13 @@
     "reviewTotal": 310238,
     "metacritic": 93,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg?t=1758127023"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg?t=1758127023",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/ss_c0fed447426b69981cf1721756acf75369801b31.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/ss_8a9f0953e8a014bd3df2789c2835cb787cd3764d.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/ss_68300459a8c3daacb2ec687adcdbf4442fcc4f47.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/ss_bcb499a0dd001f4101823f99ec5094d2872ba6ee.1920x1080.jpg"
+    ]
   },
   "Omori": {
     "title": "Omori",
@@ -67,7 +103,13 @@
     "reviewTotal": 89128,
     "metacritic": 88,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/header.jpg?t=1671584768"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/header.jpg?t=1671584768",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/ss_219463835487a7205f0af93fb02d2c84855c667b.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/ss_4bb5647e9094a13078d23f2a9daa4a9bd160841e.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/ss_72e19b9ca001c03084b9eb7f5665514e60a6a6dd.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/ss_14bd4cd7c2be96cdffa112d991ce755600c8ad72.1920x1080.jpg"
+    ]
   },
   "Blasphemous": {
     "title": "Blasphemous",
@@ -77,7 +119,13 @@
     "reviewTotal": 68020,
     "metacritic": 77,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/header.jpg?t=1780479368"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/header.jpg?t=1780479368",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/ss_770720a3db9408ae7ae6625ba157bfb9195a3a68.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/ss_b74f57919e88283fac75389e76ead2fed73997e5.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/ss_bd57bcb1e9183cbea61339727a97bcc5206677b2.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/ss_933510ac0fd13c6bd4ecc4c187e0506d520f2e70.1920x1080.jpg"
+    ]
   },
   "Celeste": {
     "title": "Celeste",
@@ -87,7 +135,13 @@
     "reviewTotal": 149094,
     "metacritic": 88,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/header.jpg?t=1714089525"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/header.jpg?t=1714089525",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/ss_1ad297c2044cdcf450ee83e56350cafb590da755.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/ss_03bfe6bd5ddac7f747c8d2aa1a4f82cfd53c6dcb.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/ss_4b0f0222341b64a37114033aca9994551f27c161.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/ss_1012b11ad364ad6c138a25a654108de28de56c5f.1920x1080.jpg"
+    ]
   },
   "Outlast": {
     "title": "Outlast",
@@ -97,7 +151,13 @@
     "reviewTotal": 139880,
     "metacritic": 80,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/header.jpg?t=1666817106"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/header.jpg?t=1666817106",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/ss_de19e8b1f41d9594bf64d02424a0ec5046c733f5.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/ss_1b4cc24b78f404c69fa18d42e5d5b00873c8852f.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/ss_c629aed2b6d7751222acb9bef1022338f9bc6b03.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/ss_bb9dffa1b9be7b4b4e27ac810f49ea62bf98f907.1920x1080.jpg"
+    ]
   },
   "Poco": {
     "title": "Poco",
@@ -107,7 +167,13 @@
     "reviewTotal": 10211,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/header.jpg?t=1773943099"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/header.jpg?t=1773943099",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/ss_1fea85e63af8a7e120a22b48b857929f58aebdb5.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/ss_186f285339adc59db61d83b89c638af00f525029.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/ss_a285e254a8a086fa6b51dbb55921581f507fc8f7.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/ss_db3f733c516ebfcefc417ad22cff88b370916540.1920x1080.jpg"
+    ]
   },
   "Inscryption": {
     "title": "Inscryption",
@@ -117,7 +183,13 @@
     "reviewTotal": 149456,
     "metacritic": 85,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/header.jpg?t=1777572925"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/header.jpg?t=1777572925",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/ss_0191a69b0e94a9a7784f5b81e27f06379910645a.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/ss_3b714682e9e0a214df1630a234e9f6764528eece.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/ss_7bfe728822807d232398df1cb1a5d64addd3d8fb.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/ss_79a146c36a3f0b728a8e0085327cec8c7fba82d6.1920x1080.jpg"
+    ]
   },
   "Dead Space (2008)": {
     "title": "Dead Space (2008)",
@@ -127,7 +199,13 @@
     "reviewTotal": 29363,
     "metacritic": 87,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/header.jpg?t=1777495169"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/header.jpg?t=1777495169",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/0000006481.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/0000006482.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/0000006483.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/0000006484.1920x1080.jpg"
+    ]
   },
   "Clair Obscur: Expedition 33": {
     "title": "Clair Obscur: Expedition 33",
@@ -137,7 +215,13 @@
     "reviewTotal": 281335,
     "metacritic": 91,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/be3305b02d4db0dffa3458537118423bf2792d7e/header.jpg?t=1782830877"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/be3305b02d4db0dffa3458537118423bf2792d7e/header.jpg?t=1782830877",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/ss_483a27df5072beb3a4650634a764bda750fbcb82.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/ss_e49800e906e8a0f00707458c836567c933603bac.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/ss_b8089016095e6a16e324a59c45b2f24a439bd0b3.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/ss_8439c07d7b1f2fcfc6449db5f051f8d0867f4785.1920x1080.jpg"
+    ]
   },
   "Elden Ring Nightreign": {
     "title": "Elden Ring Nightreign",
@@ -147,7 +231,13 @@
     "reviewTotal": 192586,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/header.jpg?t=1791488960"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/header.jpg?t=1791488960",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/ss_0b9594934db8a1457c915e200f9d0d9b447a3df4.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/ss_1deefb0b7ea597f4227777239910b4990aa0cc77.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/ss_802cd66236d951fba204fb9980e2c0c9213a264c.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/ss_b3ed8ab522f5965e46bc7c090cad9d018f937ae2.1920x1080.jpg"
+    ]
   },
   "MiSide": {
     "title": "MiSide",
@@ -157,7 +247,13 @@
     "reviewTotal": 143512,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/header.jpg?t=1792204652"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/header.jpg?t=1792204652",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/ss_7d0dff5dd742b106889cde15fff3be6c4d521bb1.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/ss_bbcfb91713fd45ebf7e8f8d9c5c6c2a194ef00a8.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/ss_4887e0489485c5ed91ff192fe927a3d7470a29f0.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/ss_f56c830c4c670a0607d6d9cfe6e2199943b4b96a.1920x1080.jpg"
+    ]
   },
   "Outlast 2": {
     "title": "Outlast 2",
@@ -167,7 +263,13 @@
     "reviewTotal": 64994,
     "metacritic": 75,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/header.jpg?t=1618944453"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/header.jpg?t=1618944453",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/ss_391bfd739898fd31ec7fa0c0b7658f18b7202286.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/ss_69427df3942114a8e0c598e03fc88112f65f7fdc.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/ss_0b3a895b08f4a77e89cb970911c0b0fd213afa4e.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/ss_e4790456e152b9db2aa1b8e4918a83748a68e3a0.1920x1080.jpg"
+    ]
   },
   "Esoteric Ebb": {
     "title": "Esoteric Ebb",
@@ -177,7 +279,13 @@
     "reviewTotal": 10093,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/3fc3e737678a0d5db6816609bec2c9c6f2c11a88/header.jpg?t=1790693554"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/3fc3e737678a0d5db6816609bec2c9c6f2c11a88/header.jpg?t=1790693554",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/e7cf33cdd748fb8a3aa81e4c25b5c4acd25fb001/ss_e7cf33cdd748fb8a3aa81e4c25b5c4acd25fb001.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/2c8972f5b441c17686a87bc5bdcf35027bb32df3/ss_2c8972f5b441c17686a87bc5bdcf35027bb32df3.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/9697b9aa1a281b3c6f9dee2f64a461240df9eebd/ss_9697b9aa1a281b3c6f9dee2f64a461240df9eebd.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/770828968429ab3c55286da73df33c06afa83f66/ss_770828968429ab3c55286da73df33c06afa83f66.1920x1080.jpg"
+    ]
   },
   "Donkey Kong Bananza": {
     "title": "Donkey Kong Bananza",
@@ -193,7 +301,13 @@
     "reviewTotal": 124417,
     "metacritic": 94,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/91ac334a2c137d08968ccc0bc474a02579602100/header.jpg?t=1779901265"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/91ac334a2c137d08968ccc0bc474a02579602100/header.jpg?t=1779901265",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/ss_ef0f63061d0a0a9a7e46f3b84f125d25330e8f19.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/ss_f28befd916e59b8bf0a8a801b8a498b8adaa01eb.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/ss_b88cb7b48a86f07a7288bf37141f6558279f9bfc.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/ss_c8d2b18451a2cc4d5b4fdd78ed84a5e64e051eac.1920x1080.jpg"
+    ]
   },
   "Slay the Spire 2": {
     "title": "Slay the Spire 2",
@@ -203,7 +317,13 @@
     "reviewTotal": 205867,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/b0958d387dc366211e0f353443710cfcf9fdb020/header.jpg?t=1787169309"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/b0958d387dc366211e0f353443710cfcf9fdb020/header.jpg?t=1787169309",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/1a373a95229aab0cfd97f553ecbe86092364bb9c/ss_1a373a95229aab0cfd97f553ecbe86092364bb9c.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/f3af7cb9693b9c4b6a7555227db3fef943db3992/ss_f3af7cb9693b9c4b6a7555227db3fef943db3992.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/c3db69efd984ef012ae85c5b426663720152f0a4/ss_c3db69efd984ef012ae85c5b426663720152f0a4.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/0fdb2940c0d367a40b2be6433daf12e3634089cf/ss_0fdb2940c0d367a40b2be6433daf12e3634089cf.1920x1080.jpg"
+    ]
   },
   "Sword of the Sea": {
     "title": "Sword of the Sea",
@@ -213,7 +333,13 @@
     "reviewTotal": 1771,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/0970ad83a138f75b1e48e41780ff2eb5f1d21379/header.jpg?t=1789223959"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/0970ad83a138f75b1e48e41780ff2eb5f1d21379/header.jpg?t=1789223959",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/c57e86e043ec6aa24f40fa9a541bd9b2d1826bec/ss_c57e86e043ec6aa24f40fa9a541bd9b2d1826bec.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/d76b271d574dd5ae711d252ba53bb134b9dcb1ff/ss_d76b271d574dd5ae711d252ba53bb134b9dcb1ff.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/c07caf15cce763b2a17e39137a2a2d57b60ebf42/ss_c07caf15cce763b2a17e39137a2a2d57b60ebf42.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/026b2b777dd03d60f93f841f756be911ca204066/ss_026b2b777dd03d60f93f841f756be911ca204066.1920x1080.jpg"
+    ]
   },
   "Another Crab's Treasure": {
     "title": "Another Crab's Treasure",
@@ -223,7 +349,13 @@
     "reviewTotal": 22119,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/header.jpg?t=1785949147"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/header.jpg?t=1785949147",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/ss_e1010f650543b2e53249ff3ab43f04dbdbfef7ea.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/ss_10836c42549d86386bdae21c997a58630137d603.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/ss_c29cfaabd50ec6bd33e1da10ff8a74ca7be3a9f4.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/ss_cd81b479b5c56b671376d13bbbf8d56dbb7d1f36.1920x1080.jpg"
+    ]
   },
   "Dave the Diver": {
     "title": "Dave the Diver",
@@ -233,7 +365,13 @@
     "reviewTotal": 164299,
     "metacritic": 90,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/81bdb3bce15d27ca1b4554a642d91096e89be229/header.jpg?t=1791478061"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/81bdb3bce15d27ca1b4554a642d91096e89be229/header.jpg?t=1791478061",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/ss_7c86a17d545b6260ecdcfdd62622e49dcc9011bd.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/ss_783e1f6c2d4c358fb494d055c47c0e888922abd5.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/ss_6eac5a3b59e181d1ffa26757b041be521bfe1779.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/ss_bc9150385c6fcd41ac7195be36597469f54a792c.1920x1080.jpg"
+    ]
   },
   "Cairn": {
     "title": "Cairn",
@@ -243,7 +381,13 @@
     "reviewTotal": 22426,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/header.jpg?t=1782391789"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/header.jpg?t=1782391789",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/bf1a0195af2a834226b5747bb0c304f36b55072c/ss_bf1a0195af2a834226b5747bb0c304f36b55072c.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/827a05c5af0d469f5e27bbd4e5b298be244f7fb4/ss_827a05c5af0d469f5e27bbd4e5b298be244f7fb4.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/bae00fc0710749179c1f87d41aa4c1733f5fa9a0/ss_bae00fc0710749179c1f87d41aa4c1733f5fa9a0.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/c5bcd1ca562b791b8191771af3917cc852634639/ss_c5bcd1ca562b791b8191771af3917cc852634639.1920x1080.jpg"
+    ]
   },
   "Life is Strange: Double Exposure": {
     "title": "Life is Strange: Double Exposure",
@@ -253,7 +397,8 @@
     "reviewTotal": 10939,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1874000/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1874000/header.jpg?t=1773408764"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1874000/header.jpg?t=1773408764",
+    "screens": []
   },
   "Slay the Princess": {
     "title": "Slay the Princess",
@@ -263,7 +408,13 @@
     "reviewTotal": 34871,
     "metacritic": 90,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/74a54248cfec29144de5e867a333c30e6d62801d/header.jpg?t=1791026492"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/74a54248cfec29144de5e867a333c30e6d62801d/header.jpg?t=1791026492",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/ss_5262a1ed60b5f1f8419f0c0be3dafa92a7167eba.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/ss_d48a0403c8ce84a614120fa419109151f166fb40.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/ss_9d91e5ccfe3f0ee5484054d7b535d4a3209e3c0e.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/ss_a21403e66530a55daf306332893ce6cfa3c76948.1920x1080.jpg"
+    ]
   },
   "Overlooting": {
     "title": "Overlooting",
@@ -273,7 +424,13 @@
     "reviewTotal": 1820,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/76a9438ab182dec76d7518602f2c05ef62957c6f/header_alt_assets_1.jpg?t=1791486348"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/76a9438ab182dec76d7518602f2c05ef62957c6f/header_alt_assets_1.jpg?t=1791486348",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/77b2a973a408bb72ff8de9f07be62656891a685f/ss_77b2a973a408bb72ff8de9f07be62656891a685f.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/438211b7f5d57bf79f6c28c0a7b93256c39931f6/ss_438211b7f5d57bf79f6c28c0a7b93256c39931f6.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/755e68cb142636ab292f5ccd8bf085059f028968/ss_755e68cb142636ab292f5ccd8bf085059f028968.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/285a28d654c4d1658f80469628e64b228f0fc4c3/ss_285a28d654c4d1658f80469628e64b228f0fc4c3.1920x1080.jpg"
+    ]
   },
   "The Wolf Among Us": {
     "title": "The Wolf Among Us",
@@ -283,7 +440,13 @@
     "reviewTotal": 40385,
     "metacritic": 85,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/header.jpg?t=1734104991"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/header.jpg?t=1734104991",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/ss_97605e426c7bc76cd891cfe966da2c7979165b0f.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/ss_dedc5e68e74788af4d714392a231d090d2511af9.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/ss_1efe728df9f54a9663630e64370e6a43988ed1a3.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/ss_6936b061c105487ab9ba98fa3db8508dd237c7d4.1920x1080.jpg"
+    ]
   },
   "Owlboy": {
     "title": "Owlboy",
@@ -293,7 +456,13 @@
     "reviewTotal": 6136,
     "metacritic": 88,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/57dd50ebbcd0fe17b99a0c82b65961db0de14f01/header.jpg?t=1791834795"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/57dd50ebbcd0fe17b99a0c82b65961db0de14f01/header.jpg?t=1791834795",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/ss_9001e3af19a32a48e2b948d5050f626b3240c587.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/ss_bc3d33f0f888e90feb0d5c884b7e66b2a5685804.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/ss_4f712f38ab777676d092a0975e24c0cb37aea67e.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/ss_e49871a898aec8c8c30290eff66f421a792d3fc2.1920x1080.jpg"
+    ]
   },
   "Resident Evil 9": {
     "title": "Resident Evil 9",
@@ -303,7 +472,13 @@
     "reviewPct": 96,
     "metacritic": 92,
     "cover": null,
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/ce5437442768e38eb575f205ab9397d0264017b0/header.jpg?t=1779840172"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/ce5437442768e38eb575f205ab9397d0264017b0/header.jpg?t=1779840172",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/08af4e9398b8e45152bfbedce3bc24d22e2c0990/ss_08af4e9398b8e45152bfbedce3bc24d22e2c0990.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/4921eb5fb45f6b7a3b62195e47c6d7b4175935a8/ss_4921eb5fb45f6b7a3b62195e47c6d7b4175935a8.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/e7b791b703759aebe774b813eb29a364008552b8/ss_e7b791b703759aebe774b813eb29a364008552b8.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/bbe5c4e0ba4fc551d9389cf2411c2cefe413af1d/ss_bbe5c4e0ba4fc551d9389cf2411c2cefe413af1d.1920x1080.jpg"
+    ]
   },
   "Metro 2033": {
     "title": "Metro 2033",
@@ -313,7 +488,13 @@
     "reviewTotal": 143430,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/header.jpg?t=1741110084"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/header.jpg?t=1741110084",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/ss_b31b38d3d8208f30f49d94c84c73ae558006fbcd.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/ss_b369b06515dee04938b54808a6bfa2cd634d33c3.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/ss_6f2b3f3a7409bd649208924a5815e908731432bd.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/ss_6eb84a35c0f34841b5b1eef9be7d172c9bced5eb.1920x1080.jpg"
+    ]
   },
   "The Outlast Trials": {
     "title": "The Outlast Trials",
@@ -323,7 +504,13 @@
     "reviewTotal": 121648,
     "metacritic": null,
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/library_600x900.jpg",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/e3b17cf268afa51334b63124a2fe0aef3f1d136b/header_alt_assets_4.jpg?t=1792554994"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/e3b17cf268afa51334b63124a2fe0aef3f1d136b/header_alt_assets_4.jpg?t=1792554994",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/ss_dcf2a8284d687f9319ac91a02b534dc91971754c.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/ss_6efe75be88bdfe0100f4b67ffe7e1034f1cf0cfe.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/ss_0576920dd310fd71cf63ff3035ff46137634febf.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/ss_dc46aa1b812001788a915f9088148356a697b305.1920x1080.jpg"
+    ]
   },
   "Cat Named Mojave": {
     "title": "Cat Named Mojave",
@@ -333,6 +520,12 @@
     "reviewPct": 95,
     "metacritic": null,
     "cover": null,
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3597880/23f498b1045d3b02777cb5a61cc5f43f91484494/header.jpg?t=1773945448"
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3597880/23f498b1045d3b02777cb5a61cc5f43f91484494/header.jpg?t=1773945448",
+    "screens": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3597880/edd32b514ea31dc828d81224c5cdc0985d067305/ss_edd32b514ea31dc828d81224c5cdc0985d067305.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3597880/47a6b18bb9043702fbb219f490e8685a5eb90840/ss_47a6b18bb9043702fbb219f490e8685a5eb90840.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3597880/e132fa3d0c87c02aec93d63f6cf90f03a93dc0c4/ss_e132fa3d0c87c02aec93d63f6cf90f03a93dc0c4.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3597880/d6cefe385e82e1b7e759b6ce26809f67931f4bf6/ss_d6cefe385e82e1b7e759b6ce26809f67931f4bf6.1920x1080.jpg"
+    ]
   }
 }

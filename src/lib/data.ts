@@ -17,6 +17,7 @@ export type GameInfo = {
   opencriticTier?: string | null;
   cover?: string | null;
   header?: string | null;
+  screens?: string[];
 };
 
 export const rankings = rankingsJson as Record<string, RankEntry[]>;
@@ -28,8 +29,9 @@ export const years = Object.keys(rankings).sort((a, b) => Number(b) - Number(a))
 export const slugify = (s: string) =>
   s.toLowerCase().normalize("NFKD").replace(/[^\w\s-]/g, "").trim().replace(/[\s_]+/g, "-").replace(/-+/g, "-");
 
-export const steamArt = (appid: number, kind: "hero" | "cover") =>
-  `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${appid}/${kind === "hero" ? "library_hero.jpg" : "library_600x900.jpg"}`;
+// "cover" is 300x450 (fine for thumbnails); "cover2x" is 600x900 for large use.
+export const steamArt = (appid: number, kind: "hero" | "cover" | "cover2x") =>
+  `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${appid}/${{ hero: "library_hero.jpg", cover: "library_600x900.jpg", cover2x: "library_600x900_2x.jpg" }[kind]}`;
 
 // Manually added art: drop public/covers/<slug>.jpg|png|webp (portrait) or public/covers/<slug>-hero.* (wide).
 function localArt(title: string, suffix = "") {
@@ -146,5 +148,73 @@ export function latestCompletion(): Completion | null {
   return all.sort((a, b) => b.date.localeCompare(a.date))[0] ?? null;
 }
 
-export const fmtDate =(iso: string | Date) =>
+/** Every finished game (PlayStation platinums and Steam 100%s), newest first, with a large portrait cover. */
+export function finishedGames(): { title: string; platform: "PlayStation" | "Steam"; cover: string | null; when: string }[] {
+  const out: { title: string; platform: "PlayStation" | "Steam"; cover: string | null; when: string }[] = [];
+  const steamFile = path.join(process.cwd(), "data", "steam-cache.json");
+  if (fs.existsSync(steamFile)) {
+    const cache = JSON.parse(fs.readFileSync(steamFile, "utf8")) as Record<string, { name: string; total: number; earned: number; lastUnlock: number }>;
+    for (const [appid, g] of Object.entries(cache)) {
+      if (g.total > 0 && g.earned === g.total) {
+        const title = displayTitle(g.name);
+        out.push({ title, platform: "Steam", cover: localArt(title) ?? steamArt(Number(appid), "cover2x"), when: new Date(g.lastUnlock * 1000).toISOString() });
+      }
+    }
+  }
+  const psnFile = path.join(process.cwd(), "data", "psn.json");
+  if (fs.existsSync(psnFile)) {
+    const rows = JSON.parse(fs.readFileSync(psnFile, "utf8")) as { title: string; cover: string | null; platinum: boolean; lastUpdated: string }[];
+    for (const r of rows.filter((r) => r.platinum)) {
+      out.push({ title: r.title, platform: "PlayStation", cover: localArt(r.title) ?? resizePsnUrl(r.cover, 600), when: r.lastUpdated });
+    }
+  }
+  return out.sort((a, b) => b.when.localeCompare(a.when));
+}
+
+const resizePsnUrl = (url: string | null, w: number) => (url ? url.replace(/\?w=\d+$/, `?w=${w}`) : null);
+
+/** How many Steam games have any playtime (from the sync cache). */
+export function steamPlayedCount(): number {
+  const file = path.join(process.cwd(), "data", "steam-cache.json");
+  return fs.existsSync(file) ? Object.keys(JSON.parse(fs.readFileSync(file, "utf8"))).length : 0;
+}
+
+// ---- Stage pictures (the fixed half of the homepage) ----
+
+const psnRows = (() => {
+  const file = path.join(process.cwd(), "data", "psn.json");
+  return fs.existsSync(file) ? (JSON.parse(fs.readFileSync(file, "utf8")) as { title: string; cover: string | null; hero: string | null }[]) : [];
+})();
+
+const resizePsn = (url: string | null, w: number) => (url ? url.replace(/\?w=\d+$/, `?w=${w}`) : null);
+
+/** A large portrait picture of a game, for the stage: local art, Steam library art, or PlayStation portrait art. */
+export function portraitFor(title: string): string | null {
+  const local = localArt(title);
+  if (local) return local;
+  const g = gameInfo(title);
+  if (g.appid) return steamArt(g.appid, "cover2x");
+  const p = psnRows.find((r) => loose(r.title) === loose(title));
+  return p ? resizePsn(p.cover, 1200) : null;
+}
+
+/** A wide picture of a game (banners, footer crop). */
+export function wideFor(title: string, appid?: number, hero?: string | null): string | null {
+  if (hero) return hero;
+  if (appid) return steamArt(appid, "hero");
+  const local = localArt(title, "-hero");
+  if (local) return local;
+  const g = gameInfo(title);
+  if (g.appid) return steamArt(g.appid, "hero");
+  const p = psnRows.find((r) => loose(r.title) === loose(title));
+  return p?.hero ?? null;
+}
+
+/** Portrait for the latest completion (it may not be in the rankings). */
+export function completionPortrait(c: Completion): string | null {
+  if (c.appid) return localArt(displayTitle(c.title)) ?? steamArt(c.appid, "cover2x");
+  return portraitFor(c.title);
+}
+
+export const fmtDate = (iso: string | Date) =>
   new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });

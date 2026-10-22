@@ -1,0 +1,52 @@
+---
+// Photograph half, menu half: a close crop of the latest completion, and the site's menu set large.
+import KoalaMark from "./KoalaMark.astro";
+import { profile, latestCompletion, wideFor, displayTitle } from "../lib/data";
+
+const c = latestCompletion();
+const pic = c ? wideFor(c.title, c.appid, c.hero) : null;
+---
+<footer class="foot" data-enter>
+  <div class="pic">
+    {pic && <img src={pic} alt={c ? `${displayTitle(c.title)}, the latest game I finished` : ""} decoding="async" width="1920" height="620" />}
+  </div>
+  <div class="menu">
+    <div data-part><KoalaMark size={56} /></div>
+    <ul data-part>
+      <li><a href="/">Home</a></li>
+      <li><a href="/achievements/">Achievements</a></li>
+      <li><a href="/#ranked">Rankings</a></li>
+      <li><a href="/reviews/">Reviews</a></li>
+    </ul>
+    <div class="blocks" data-part>
+      <p><a href={profile.links.steam} target="_blank" rel="noopener">My Steam profile</a><br /><a href={profile.links.psn} target="_blank" rel="noopener">My PlayStation profile</a></p>
+      <p><a href="https://koalaawad.github.io/" target="_blank" rel="noopener">My portfolio</a><br /><a href="https://github.com/KoalaAwad" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+    <p class="legal">© {new Date().getFullYear()} Awad. Game art belongs to its publishers, shown via Steam, PlayStation and SteamGridDB.</p>
+  </div>
+</footer>
+
+<style>
+  .foot { display: grid; grid-template-columns: 1fr 1fr; min-height: 100svh; background: var(--surface); }
+  .pic { position: relative; overflow: hidden; background: var(--surface-2); }
+  .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 35% 50%; transform: scale(1.25); }
+  .menu {
+    display: grid; align-content: start; gap: 64px;
+    padding: 56px max(var(--margin), env(safe-area-inset-right, 0px)) 32px clamp(32px, 6vw, 96px);
+    grid-template-rows: auto auto auto 1fr;
+  }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+  ul a { font-size: var(--step-head); font-weight: 600; letter-spacing: -0.025em; line-height: 1; text-decoration: none; display: inline-block; transition: transform .25s var(--ease-out), color .2s; }
+  ul:hover a { color: var(--muted); }
+  ul a:hover, ul a:focus-visible { color: var(--ink); transform: translateX(12px); }
+  .blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; line-height: 1.7; }
+  .blocks a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .legal { align-self: end; max-width: 60ch; }
+
+  @media (max-width: 900px) {
+    .foot { grid-template-columns: 1fr; min-height: 0; }
+    .pic { height: 50svh; }
+    .menu { gap: 40px; padding: 32px 20px; }
+    ul a { font-size: 8vw; }
+  }
+</style>

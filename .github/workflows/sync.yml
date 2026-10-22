@@ -39,6 +39,10 @@ jobs:
         env:
           PSN_NPSSO: ${{ secrets.PSN_NPSSO }}
 
+      - name: Screenshots for newly ranked games
+        continue-on-error: true
+        run: node scripts/fetch-screens.mjs
+
       - name: Commit new data
         run: |
           # Skip the commit (and the redeploy) when the only change is the lastSynced timestamp.
