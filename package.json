@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "fetch:opencritic": "node scripts/fetch-opencritic.mjs"
+    "fetch:opencritic": "node scripts/fetch-opencritic.mjs",
+    "sync:steam": "node --env-file=.env scripts/sync-steam.mjs"
   },
   "dependencies": {
     "astro": "^5.18.2",

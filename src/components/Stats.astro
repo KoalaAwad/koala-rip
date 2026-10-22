@@ -1,7 +1,7 @@
 ---
 import { profile, rankings, years, fmtDate } from "../lib/data";
 
-const s = profile.stats;
+const s = profile.stats as typeof profile.stats & { rarestSteam?: { title: string; percent: number } | null };
 const thisYear = years[0];
 ---
 <section class="intro" id="trophies" data-reveal>
@@ -15,7 +15,7 @@ const thisYear = years[0];
     <div class="col">
       <span class="label">Steam achievements</span>
       <span class="v">{s.steamAchievements.toLocaleString("en-US")}</span>
-      <p>Across every game I own</p>
+      <p>{s.rarestSteam ? `Rarest: ${s.rarestSteam.percent}% of players, ${s.rarestSteam.title}` : "Across every game I own"}</p>
     </div>
     <div class="col">
       <span class="label">Games at 100%</span>

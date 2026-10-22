@@ -1,9 +1,9 @@
 ---
 // "Latest 100%" banner: a letterboxed 2.39:1 frame over the game's key art, with drifting light.
-import { profile, heroArtFor, scoreFor, fmtDate } from "../lib/data";
+import { profile, heroArtFor, steamArt, scoreFor, fmtDate } from "../lib/data";
 
-const c = profile.latestCompletion;
-const art = heroArtFor(c.title);
+const c = profile.latestCompletion as typeof profile.latestCompletion & { appid?: number; rarestPercent: number | null };
+const art = c.appid ? steamArt(c.appid, "hero") : heroArtFor(c.title);
 const score = scoreFor(c.title);
 const kind = c.platform === "Steam" ? "Latest 100%" : "Latest platinum";
 const unit = c.platform === "Steam" ? "achievements" : "trophies";
@@ -27,7 +27,7 @@ const unit = c.platform === "Steam" ? "achievements" : "trophies";
     <div class="meta">
       <span><b>{c.earned} / {c.total}</b> {unit}</span>
       <span><b>{c.hours}h</b> played</span>
-      <span>Rarest: <b>{c.rarestPercent}%</b> of players</span>
+      {c.rarestPercent !== null && <span>Rarest: <b>{c.rarestPercent}%</b> of players</span>}
       {score !== null && <span>My score <b>{score}/10</b></span>}
     </div>
   </div>

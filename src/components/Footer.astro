@@ -1,10 +1,13 @@
 ---
 import { profile } from "../lib/data";
+
+const sources = (profile as { sources?: { steam?: boolean; psn?: boolean } }).sources ?? {};
+const pending = [!sources.psn && "PlayStation trophy stats", !sources.steam && "Steam stats"].filter(Boolean);
 ---
 <footer>
   <span>© {new Date().getFullYear()} {profile.name}</span>
   <span>
-    Game data from Steam{profile.placeholder ? " · Trophy and banner stats are placeholders until the sync is set up" : ""}
+    Game data from Steam{pending.length ? ` · ${pending.join(" and ")} are placeholders for now` : ""}
   </span>
 </footer>
 

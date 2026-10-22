@@ -2,20 +2,31 @@
   "placeholder": true,
   "_note": "Hand-written placeholder until the Steam/PSN sync script generates this file.",
   "name": "Awad",
-  "lastSynced": "2026-10-21T12:00:00Z",
+  "lastSynced": "2026-10-22T07:32:25.069Z",
   "stats": {
     "platinums": 47,
-    "latestPlatinum": { "title": "Astro Bot", "date": "2026-10-14" },
-    "steamAchievements": 2318,
-    "perfectGames": 112
+    "latestPlatinum": {
+      "title": "Astro Bot",
+      "date": "2026-10-14"
+    },
+    "steamAchievements": 1895,
+    "perfectGames": 4,
+    "rarestSteam": {
+      "title": "Balatro",
+      "percent": 0.9
+    }
   },
   "latestCompletion": {
-    "title": "Hades II",
+    "title": "DAVE THE DIVER",
+    "appid": 1868140,
     "platform": "Steam",
-    "date": "2026-10-14",
-    "earned": 49,
-    "total": 49,
-    "hours": 62,
-    "rarestPercent": 2.1
+    "date": "2026-08-08",
+    "earned": 43,
+    "total": 43,
+    "hours": 117,
+    "rarestPercent": 3.6
+  },
+  "sources": {
+    "steam": true
   }
 }
