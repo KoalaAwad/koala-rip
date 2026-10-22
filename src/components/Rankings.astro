@@ -13,7 +13,7 @@ const reviewUrl = (title: string, explicit: string | null) => {
 <section class="rank" id="ranked">
   <div class="side" data-reveal>
     <h2 class="section-title">What I played,<br />ranked</h2>
-    <p class="legend">Everything I played through that year, whenever it came out.</p>
+    <p class="legend">Everything I played through that year (irrelevant to release date).</p>
     <div class="years" role="tablist" aria-label="Year played">
       {years.map((y, i) => (
         <button type="button" role="tab" id={`tab-${y}`} aria-controls={`list-${y}`} aria-selected={i === 0 ? "true" : "false"} data-year={y}>{y}</button>
