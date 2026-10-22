@@ -91,13 +91,15 @@ export type ProgressRow = {
 const byCompletion = (a: ProgressRow, b: ProgressRow) =>
   Number(b.complete) - Number(a.complete) || b.percent - a.percent || b.earned - a.earned || a.title.localeCompare(b.title);
 
-/** Steam games with at least one unlocked achievement, 100% games first. Built from data/steam-cache.json. */
+const MIN_STEAM_MINUTES = 180; // games played under 3 hours are left off the achievements board
+
+/** Steam games with 3h+ playtime and at least one unlocked achievement, 100% games first. Built from data/steam-cache.json. */
 export function steamProgress(): ProgressRow[] {
   const file = path.join(process.cwd(), "data", "steam-cache.json");
   if (!fs.existsSync(file)) return [];
-  const cache = JSON.parse(fs.readFileSync(file, "utf8")) as Record<string, { name: string; total: number; earned: number }>;
+  const cache = JSON.parse(fs.readFileSync(file, "utf8")) as Record<string, { name: string; total: number; earned: number; minutes: number }>;
   return Object.entries(cache)
-    .filter(([, g]) => g.total > 0 && g.earned > 0)
+    .filter(([, g]) => g.total > 0 && g.earned > 0 && g.minutes >= MIN_STEAM_MINUTES)
     .map(([appid, g]) => ({
       title: g.name,
       cover: localArt(g.name) ?? steamArt(Number(appid), "cover"),

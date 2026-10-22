@@ -6,10 +6,7 @@ import PlatformIcon from "./PlatformIcon.astro";
 const syncedLabel = new Date(profile.lastSynced).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 ---
 <nav class="top">
-  <span class="brand">
-    <KoalaMark />
-    <a class="name" href="/">{profile.name}</a>
-  </span>
+  <KoalaMark />
   <span class="links">
     <a href="/achievements/">Achievements</a>
     <a href="/#ranked">Rankings</a>
@@ -35,16 +32,6 @@ const syncedLabel = new Date(profile.lastSynced).toLocaleDateString("en-GB", { d
     color: var(--dim);
     border-bottom: 1px solid var(--line);
     padding-bottom: 10px;
-  }
-  .brand { display: flex; align-items: center; gap: 6px; }
-  .name {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: 20px;
-    letter-spacing: -.02em;
-    text-transform: none;
-    color: var(--fg);
-    text-decoration: none;
   }
   .links { display: flex; gap: 22px; flex-wrap: wrap; }
   .links a { text-decoration: none; transition: color .2s; }
