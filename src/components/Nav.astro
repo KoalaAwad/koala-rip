@@ -1,0 +1,46 @@
+---
+import { profile } from "../lib/data";
+
+const synced = new Date(profile.lastSynced);
+const syncedLabel = synced.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+---
+<nav class="top">
+  <a class="name" href="/">{profile.name}</a>
+  <span class="links">
+    <a href="/#trophies">Trophies</a>
+    <a href="/#ranked">Rankings</a>
+    <a href="/reviews/">Reviews</a>
+    <a href="/#clips">Clips</a>
+  </span>
+  <span class="sync">Steam + PSN · synced {syncedLabel}</span>
+</nav>
+
+<style>
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--dim);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+  }
+  .name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -.02em;
+    text-transform: none;
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .links a { text-decoration: none; transition: color .2s; }
+  .links a:hover { color: var(--fg); }
+  .sync { display: flex; align-items: center; gap: 6px; }
+  .sync::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--steam-pos); }
+</style>

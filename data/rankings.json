@@ -1,0 +1,40 @@
+{
+  "2026": [
+    { "rank": 1,  "title": "Esoteric Ebb", "score": 10, "review": null },
+    { "rank": 2,  "title": "Donkey Kong Bananza", "score": 10, "review": null },
+    { "rank": 3,  "title": "Hades II", "score": 10, "review": null },
+    { "rank": 4,  "title": "Slay the Spire 2", "score": 9, "review": null },
+    { "rank": 5,  "title": "Sword of the Sea", "score": 9, "review": null },
+    { "rank": 6,  "title": "Another Crab's Treasure", "score": 8, "review": null },
+    { "rank": 7,  "title": "Dave the Diver", "score": 8, "review": null },
+    { "rank": 8,  "title": "Cairn", "score": 8, "review": null },
+    { "rank": 9,  "title": "Life is Strange: Double Exposure", "score": 8, "review": null },
+    { "rank": 10, "title": "Slay the Princess", "score": 8, "review": null },
+    { "rank": 11, "title": "Overlooting", "score": 8, "review": null },
+    { "rank": 12, "title": "The Wolf Among Us", "score": 7, "review": null },
+    { "rank": 13, "title": "Owlboy", "score": 7, "review": null },
+    { "rank": 14, "title": "Resident Evil 9", "score": 7, "review": null },
+    { "rank": 15, "title": "Metro 2033", "score": 7, "review": null },
+    { "rank": 16, "title": "Cat Named Mojave", "score": 6, "review": null },
+    { "rank": 17, "title": "The Outlast Trials", "score": 5, "review": null }
+  ],
+  "2025": [
+    { "rank": 1,  "title": "Disco Elysium", "score": 10, "review": null },
+    { "rank": 2,  "title": "Kingdom Come: Deliverance II", "score": 10, "review": null },
+    { "rank": 3,  "title": "Balatro", "score": 10, "review": null },
+    { "rank": 4,  "title": "Deltarune: Chapters 3 & 4", "score": 9, "review": null },
+    { "rank": 5,  "title": "Hollow Knight", "score": 9, "review": null },
+    { "rank": 6,  "title": "Hades", "score": 9, "review": null },
+    { "rank": 7,  "title": "Omori", "score": 9, "review": null },
+    { "rank": 8,  "title": "Blasphemous", "score": 9, "review": null },
+    { "rank": 9,  "title": "Celeste", "score": 8, "review": null },
+    { "rank": 10, "title": "Outlast", "score": 8, "review": null },
+    { "rank": 11, "title": "Poco", "score": 8, "review": null },
+    { "rank": 12, "title": "Inscryption", "score": 8, "review": null },
+    { "rank": 13, "title": "Dead Space (2008)", "score": 7, "review": null },
+    { "rank": 14, "title": "Clair Obscur: Expedition 33", "score": 7, "review": null },
+    { "rank": 15, "title": "Elden Ring Nightreign", "score": 6, "review": null },
+    { "rank": 16, "title": "MiSide", "score": 6, "review": null },
+    { "rank": 17, "title": "Outlast 2", "score": 6, "review": null }
+  ]
+}

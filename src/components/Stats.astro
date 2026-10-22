@@ -1,0 +1,41 @@
+---
+import { profile, rankings, years, fmtDate } from "../lib/data";
+
+const s = profile.stats;
+const thisYear = years[0];
+---
+<section class="intro" id="trophies" data-reveal>
+  <p>Trophies, rankings and reviews from Steam and PlayStation, updated automatically.</p>
+  <div class="cols">
+    <div class="col">
+      <span class="label">Platinums</span>
+      <span class="v">{s.platinums}</span>
+      <p>Latest: {s.latestPlatinum.title}, {fmtDate(s.latestPlatinum.date)}</p>
+    </div>
+    <div class="col">
+      <span class="label">Steam achievements</span>
+      <span class="v">{s.steamAchievements.toLocaleString("en-US")}</span>
+      <p>Across every game I own</p>
+    </div>
+    <div class="col">
+      <span class="label">Games at 100%</span>
+      <span class="v">{s.perfectGames}</span>
+      <p>{rankings[thisYear].length} games ranked in {thisYear}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; align-items: start; }
+  .intro > p {
+    margin: 0; font-family: var(--display); font-weight: 300;
+    font-size: clamp(20px, 2.2vw, 26px); line-height: 1.2; letter-spacing: -.01em; max-width: 28ch;
+  }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .col { border-top: 1px solid var(--line-strong); padding-top: 10px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+  .v { font-family: var(--display); font-weight: 800; font-size: clamp(36px, 4vw, 52px); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .col p { margin: 0; color: var(--dim); font-size: 12px; }
+  @media (max-width: 820px) {
+    .intro, .cols { grid-template-columns: 1fr; }
+  }
+</style>

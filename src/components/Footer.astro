@@ -1,0 +1,22 @@
+---
+import { profile } from "../lib/data";
+---
+<footer>
+  <span>© {new Date().getFullYear()} {profile.name}</span>
+  <span>
+    Game data from Steam{profile.placeholder ? " · Trophy and banner stats are placeholders until the sync is set up" : ""}
+  </span>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    color: var(--dim);
+    font-size: 11px;
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+</style>

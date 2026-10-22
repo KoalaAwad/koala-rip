@@ -1,0 +1,56 @@
+---
+import "../styles/global.css";
+import Starfield from "../components/Starfield.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props { title?: string; description?: string }
+const {
+  title = "Awad — Played, Ranked, Reviewed",
+  description = "Trophies, yearly rankings and reviews from Steam and PlayStation.",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  </head>
+  <body>
+    <Starfield />
+    <div class="page">
+      <Nav />
+      <slot />
+      <Footer />
+    </div>
+
+    <script>
+      import Lenis from "lenis";
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      gsap.registerPlugin(ScrollTrigger);
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (!reduce) {
+        const lenis = new Lenis({ lerp: 0.09 });
+        lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.add((t) => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
+          gsap.from(el, {
+            y: 36, opacity: 0, duration: 1.1, ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 88%", once: true },
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

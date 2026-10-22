@@ -1,0 +1,338 @@
+{
+  "Disco Elysium": {
+    "title": "Disco Elysium",
+    "appid": 632470,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 93,
+    "reviewTotal": 132227,
+    "metacritic": 97,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/816ea59d6d8ac525f79a07c3a7afa94eddb3437c/header.jpg?t=1780913406"
+  },
+  "Kingdom Come: Deliverance II": {
+    "title": "Kingdom Come: Deliverance II",
+    "appid": 1771300,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 94,
+    "reviewTotal": 198951,
+    "metacritic": 89,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/header.jpg?t=1777975568"
+  },
+  "Balatro": {
+    "title": "Balatro",
+    "appid": 2379780,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 98,
+    "reviewTotal": 200248,
+    "metacritic": 90,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/7a85430784e4d613cdb0547414d8cf16ffa45747/header.jpg?t=1790693638"
+  },
+  "Deltarune: Chapters 3 & 4": {
+    "title": "Deltarune: Chapters 3 & 4",
+    "appid": 1671210,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewTotal": 140003,
+    "reviewPct": 98,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/7ccda5b1631d2e60cc756a3271e845dbb9168821/header.jpg?t=1782314340"
+  },
+  "Hollow Knight": {
+    "title": "Hollow Knight",
+    "appid": 367520,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 97,
+    "reviewTotal": 565941,
+    "metacritic": 87,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/3c3489495136b26b34f8a9543c7f5645b99d388c/header.jpg?t=1776125684"
+  },
+  "Hades": {
+    "title": "Hades",
+    "appid": 1145360,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 98,
+    "reviewTotal": 310238,
+    "metacritic": 93,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg?t=1758127023"
+  },
+  "Omori": {
+    "title": "Omori",
+    "appid": 1150690,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 97,
+    "reviewTotal": 89128,
+    "metacritic": 88,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/header.jpg?t=1671584768"
+  },
+  "Blasphemous": {
+    "title": "Blasphemous",
+    "appid": 774361,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 90,
+    "reviewTotal": 68020,
+    "metacritic": 77,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/header.jpg?t=1780479368"
+  },
+  "Celeste": {
+    "title": "Celeste",
+    "appid": 504230,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 97,
+    "reviewTotal": 149094,
+    "metacritic": 88,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/header.jpg?t=1714089525"
+  },
+  "Outlast": {
+    "title": "Outlast",
+    "appid": 238320,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 96,
+    "reviewTotal": 139880,
+    "metacritic": 80,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/header.jpg?t=1666817106"
+  },
+  "Poco": {
+    "title": "Poco",
+    "appid": 3454610,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 99,
+    "reviewTotal": 10211,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/header.jpg?t=1773943099"
+  },
+  "Inscryption": {
+    "title": "Inscryption",
+    "appid": 1092790,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 97,
+    "reviewTotal": 149456,
+    "metacritic": 85,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/header.jpg?t=1777572925"
+  },
+  "Dead Space (2008)": {
+    "title": "Dead Space (2008)",
+    "appid": 17470,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 92,
+    "reviewTotal": 29363,
+    "metacritic": 87,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/header.jpg?t=1777495169"
+  },
+  "Clair Obscur: Expedition 33": {
+    "title": "Clair Obscur: Expedition 33",
+    "appid": 1903340,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 95,
+    "reviewTotal": 281335,
+    "metacritic": 91,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/be3305b02d4db0dffa3458537118423bf2792d7e/header.jpg?t=1782830877"
+  },
+  "Elden Ring Nightreign": {
+    "title": "Elden Ring Nightreign",
+    "appid": 2622380,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 82,
+    "reviewTotal": 192586,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/header.jpg?t=1791488960"
+  },
+  "MiSide": {
+    "title": "MiSide",
+    "appid": 2527500,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 98,
+    "reviewTotal": 143512,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/header.jpg?t=1792204652"
+  },
+  "Outlast 2": {
+    "title": "Outlast 2",
+    "appid": 414700,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 91,
+    "reviewTotal": 64994,
+    "metacritic": 75,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/header.jpg?t=1618944453"
+  },
+  "Esoteric Ebb": {
+    "title": "Esoteric Ebb",
+    "appid": 2057760,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 95,
+    "reviewTotal": 10093,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/3fc3e737678a0d5db6816609bec2c9c6f2c11a88/header.jpg?t=1790693554"
+  },
+  "Donkey Kong Bananza": {
+    "title": "Donkey Kong Bananza",
+    "appid": null,
+    "cover": null,
+    "header": null
+  },
+  "Hades II": {
+    "title": "Hades II",
+    "appid": 1145350,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 96,
+    "reviewTotal": 124417,
+    "metacritic": 94,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/91ac334a2c137d08968ccc0bc474a02579602100/header.jpg?t=1779901265"
+  },
+  "Slay the Spire 2": {
+    "title": "Slay the Spire 2",
+    "appid": 2868840,
+    "reviewDesc": "Mixed",
+    "reviewPct": 61,
+    "reviewTotal": 205867,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/b0958d387dc366211e0f353443710cfcf9fdb020/header.jpg?t=1787169309"
+  },
+  "Sword of the Sea": {
+    "title": "Sword of the Sea",
+    "appid": 2453160,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 90,
+    "reviewTotal": 1771,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/0970ad83a138f75b1e48e41780ff2eb5f1d21379/header.jpg?t=1789223959"
+  },
+  "Another Crab's Treasure": {
+    "title": "Another Crab's Treasure",
+    "appid": 1887840,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 92,
+    "reviewTotal": 22119,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/header.jpg?t=1785949147"
+  },
+  "Dave the Diver": {
+    "title": "Dave the Diver",
+    "appid": 1868140,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 96,
+    "reviewTotal": 164299,
+    "metacritic": 90,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/81bdb3bce15d27ca1b4554a642d91096e89be229/header.jpg?t=1791478061"
+  },
+  "Cairn": {
+    "title": "Cairn",
+    "appid": 1588550,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 94,
+    "reviewTotal": 22426,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/header.jpg?t=1782391789"
+  },
+  "Life is Strange: Double Exposure": {
+    "title": "Life is Strange: Double Exposure",
+    "appid": 1874000,
+    "reviewDesc": "Mixed",
+    "reviewPct": 68,
+    "reviewTotal": 10939,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1874000/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1874000/header.jpg?t=1773408764"
+  },
+  "Slay the Princess": {
+    "title": "Slay the Princess",
+    "appid": 1989270,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 97,
+    "reviewTotal": 34871,
+    "metacritic": 90,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/74a54248cfec29144de5e867a333c30e6d62801d/header.jpg?t=1791026492"
+  },
+  "Overlooting": {
+    "title": "Overlooting",
+    "appid": 3410180,
+    "reviewDesc": "Mostly Positive",
+    "reviewPct": 79,
+    "reviewTotal": 1820,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/76a9438ab182dec76d7518602f2c05ef62957c6f/header_alt_assets_1.jpg?t=1791486348"
+  },
+  "The Wolf Among Us": {
+    "title": "The Wolf Among Us",
+    "appid": 250320,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewPct": 98,
+    "reviewTotal": 40385,
+    "metacritic": 85,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/header.jpg?t=1734104991"
+  },
+  "Owlboy": {
+    "title": "Owlboy",
+    "appid": 115800,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 83,
+    "reviewTotal": 6136,
+    "metacritic": 88,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/57dd50ebbcd0fe17b99a0c82b65961db0de14f01/header.jpg?t=1791834795"
+  },
+  "Resident Evil 9": {
+    "title": "Resident Evil 9",
+    "appid": 3764200,
+    "reviewDesc": "Overwhelmingly Positive",
+    "reviewTotal": 187834,
+    "reviewPct": 96,
+    "metacritic": 92,
+    "cover": null,
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/ce5437442768e38eb575f205ab9397d0264017b0/header.jpg?t=1779840172"
+  },
+  "Metro 2033": {
+    "title": "Metro 2033",
+    "appid": 286690,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 92,
+    "reviewTotal": 143430,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/header.jpg?t=1741110084"
+  },
+  "The Outlast Trials": {
+    "title": "The Outlast Trials",
+    "appid": 1304930,
+    "reviewDesc": "Very Positive",
+    "reviewPct": 92,
+    "reviewTotal": 121648,
+    "metacritic": null,
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/library_600x900.jpg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/e3b17cf268afa51334b63124a2fe0aef3f1d136b/header_alt_assets_4.jpg?t=1792554994"
+  },
+  "Cat Named Mojave": {
+    "title": "Cat Named Mojave",
+    "appid": 3597880,
+    "reviewDesc": "Very Positive",
+    "reviewTotal": 349,
+    "reviewPct": 95,
+    "metacritic": null,
+    "cover": null,
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3597880/23f498b1045d3b02777cb5a61cc5f43f91484494/header.jpg?t=1773945448"
+  }
+}

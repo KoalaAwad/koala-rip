@@ -1,0 +1,78 @@
+/* Editorial after dark, in deep space: midnight-navy ground, a faint nebula, a live starfield behind the magazine grid. */
+:root {
+  color-scheme: dark;
+  --bg: #070a17;           /* deep space, slightly blue rather than black */
+  --bg-raise: #0d1226;
+  --fg: #eef0f8;
+  --dim: #8990ad;
+  --line: #1b2140;
+  --line-strong: #eef0f8;
+  --star: #e3cfa6;         /* warm starlight: 10/10 scores, icons */
+  --nebula-a: #5a3fd6;
+  --nebula-b: #1aa7c4;
+  --steam-pos: #66c0f4;
+  --steam-mix: #b9a074;
+  --steam-neg: #c35a2f;
+
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --gutter: max(20px, env(safe-area-inset-left, 0px));
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-cut: cubic-bezier(.7, 0, .2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+html { background: var(--bg); }
+body {
+  background: var(--bg); /* nebula + stars live on a fixed layer in Starfield.astro */
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 80px;
+  display: grid;
+  gap: 48px;
+  position: relative;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.section-title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: .95;
+  letter-spacing: -.03em;
+  text-wrap: balance;
+}
+
+.steam.pos { color: var(--steam-pos); }
+.steam.mix { color: var(--steam-mix); }
+.steam.neg { color: var(--steam-neg); }
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

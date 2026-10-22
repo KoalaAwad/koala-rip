@@ -1,0 +1,274 @@
+<title>Pick Your Vibe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=M+PLUS+Rounded+1c:wght@500;800&family=Nunito:wght@600;800;900&display=swap">
+<style>
+/* Layout: a neutral studio shell holding self-contained site mocks stacked for comparison. Each mock commits to its own look, so the shell is single-theme dark. */
+:root{
+  color-scheme:dark;
+  --shell-bg:#0d0e12; --shell-fg:#d9dbe3; --shell-dim:#7d8194; --shell-line:#23252e; --shell-accent:#9aa4ff;
+  --ui:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--shell-bg);color:var(--shell-fg);font-family:var(--ui);font-size:13px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 80px;display:grid;gap:56px}
+header.intro{display:grid;gap:12px}
+header.intro h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(28px,5vw,48px);line-height:1;margin:0;letter-spacing:-.02em;text-wrap:balance}
+header.intro p{margin:0;max-width:66ch;color:var(--shell-dim)}
+nav.jump{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;flex-wrap:wrap;gap:8px;padding-block:10px;background:var(--shell-bg);border-bottom:1px solid var(--shell-line)}
+nav.jump a{color:var(--shell-fg);text-decoration:none;border:1px solid var(--shell-line);padding:6px 12px;border-radius:999px;font-size:12px}
+nav.jump a:hover,nav.jump a:focus-visible{border-color:var(--shell-accent);outline:none}
+section.opt{display:grid;gap:14px;scroll-margin-top:64px}
+.opt-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px}
+.opt-head h2{margin:0;font-size:15px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.opt-head h2 span{color:var(--shell-dim)}
+.opt-head p{margin:0;color:var(--shell-dim);max-width:70ch}
+.frame{border:1px solid var(--shell-line);border-radius:10px;overflow:hidden;min-width:0}
+.bar{display:flex;align-items:center;gap:6px;padding:8px 12px;background:#16171d;border-bottom:1px solid var(--shell-line);font-size:11px;color:var(--shell-dim)}
+.bar i{width:9px;height:9px;border-radius:50%;background:#2c2e38;display:block}
+.bar b{font-weight:400;margin-left:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 24px;color:var(--shell-dim);font-size:12px}
+.notes div b{display:block;color:var(--shell-fg);font-weight:500;margin-bottom:2px}
+.sample{font-size:11px;color:var(--shell-dim)}
+
+/* ============ E. CINEMATIC, PARED BACK ============
+   Kept: darkness, condensed headline, spot-lit trophy, letterbox framing.
+   Dropped: gold, italic serif, light sweep. Added: editorial grid, mono labels, hairline tables. */
+.m5{--bg:#0b0c0e;--fg:#eceae6;--dim:#7a7c81;--line:#25272b;--plat:#c9d4e0;
+  background:var(--bg);color:var(--fg);font-family:var(--ui)}
+.m5 .in{padding:clamp(18px,4vw,44px);display:grid;gap:36px}
+.m5 nav{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim)}
+.m5 nav span:first-child{color:var(--fg)}
+.m5 nav span:last-child{display:flex;gap:18px;flex-wrap:wrap}
+.m5 .hero{display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:28px}
+.m5 .label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim)}
+.m5 h3{font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:clamp(64px,12vw,156px);line-height:.8;margin:10px 0 0;text-transform:uppercase;letter-spacing:-.015em}
+.m5 h3 span{color:var(--dim)}
+.m5 .trophy{aspect-ratio:4/5;max-width:100%;position:relative;display:grid;place-items:center;
+  background:radial-gradient(55% 38% at 50% 40%,rgba(201,212,224,.22),transparent 72%),#0f1013;border:1px solid var(--line)}
+.m5 .trophy svg{width:42%;filter:drop-shadow(0 0 24px rgba(201,212,224,.3))}
+.m5 .trophy .cap{position:absolute;left:12px;right:12px;bottom:10px;display:flex;justify-content:space-between;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.m5 .trophy .cap b{color:var(--plat);font-weight:500}
+.m5 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.m5 .stats div{display:grid;gap:4px}
+.m5 .stats b{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+.m5 .stats span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.m5 .split{display:grid;grid-template-columns:1fr 2fr;gap:32px;border-top:1px solid var(--fg);padding-top:14px}
+.m5 .split h4{margin:0;font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:32px;text-transform:uppercase;line-height:.9}
+.m5 .split p{margin:8px 0 0;color:var(--dim);font-size:12px;max-width:30ch}
+.m5 table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.m5 th{text-align:left;font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);padding:0 0 8px;border-bottom:1px solid var(--line)}
+.m5 td{padding:11px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+.m5 td.n{font-family:"Big Shoulders Display",sans-serif;font-weight:500;font-size:28px;color:var(--dim);width:52px}
+.m5 td.g{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:22px;text-transform:uppercase}
+.m5 td.s{text-align:right}
+.m5 .pl{color:var(--plat)}
+.m5 .tablewrap{overflow-x:auto;min-width:0}
+
+/* ============ F. EDITORIAL AFTER DARK ============
+   Magazine structure first; cinema comes from a letterboxed 2.39:1 "feature" frame per game. */
+.m6{--bg:#121315;--fg:#f1efea;--dim:#85868a;--line:#2a2b2f;--cover-a:#33465f;--cover-b:#c9b48f;
+  background:var(--bg);color:var(--fg);font-family:var(--ui)}
+.m6 .in{padding:clamp(18px,4vw,44px);display:grid;gap:28px}
+.m6 nav{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim)}
+.m6 nav span:first-child{color:var(--fg)}
+.m6 nav span:last-child{display:flex;gap:18px;flex-wrap:wrap}
+.m6 h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(60px,13vw,176px);line-height:.82;letter-spacing:-.05em;margin:0}
+.m6 h3 sup{font-family:var(--ui);font-weight:400;font-size:12px;letter-spacing:0;vertical-align:top;color:var(--dim)}
+.m6 .feature{position:relative;aspect-ratio:2.39/1;max-width:100%;overflow:hidden;
+  background:radial-gradient(70% 90% at 75% 30%,var(--cover-b) 0%,transparent 55%),linear-gradient(160deg,var(--cover-a),#0d1218 70%)}
+.m6 .feature::before,.m6 .feature::after{content:"";position:absolute;left:0;right:0;height:9%;background:#000}
+.m6 .feature::before{top:0}.m6 .feature::after{bottom:0}
+.m6 .feature .t{position:absolute;left:clamp(14px,3vw,28px);bottom:16%;display:grid;gap:6px;max-width:80%}
+.m6 .feature .t small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(241,239,234,.75)}
+.m6 .feature .t b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(22px,4vw,44px);line-height:.95;letter-spacing:-.03em}
+.m6 .feature .tc{position:absolute;right:clamp(14px,3vw,28px);top:13%;font-size:10px;color:rgba(241,239,234,.7);font-variant-numeric:tabular-nums}
+.m6 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.m6 .col{border-top:1px solid var(--fg);padding-top:10px;display:grid;gap:6px;align-content:start;min-width:0}
+.m6 .col .k{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.m6 .col .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.m6 .col p{margin:0;color:var(--dim);font-size:12px}
+.m6 ol{list-style:none;margin:0;padding:0;display:grid}
+.m6 ol li{display:grid;grid-template-columns:36px 1fr auto;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12px}
+.m6 ol li b{font-family:"Bricolage Grotesque",sans-serif;font-weight:500;color:var(--dim)}
+.m6 ol li span{font-family:"Bricolage Grotesque",sans-serif;font-size:15px}
+
+/* ============ G. PLAYFUL CONSOLE (Nintendo-style colour) ============
+   Bright white home screen, red/blue controller colours, rounded type, square game tiles with a pulsing selection ring. */
+.m7{--bg:#f2f2f4;--card:#ffffff;--fg:#2b2b31;--dim:#8a8a94;--red:#ff3c46;--blue:#00b8e6;--yel:#ffcc1a;--grn:#38c96a;--ring:#19c6f5;
+  background:var(--bg);color:var(--fg);font-family:"Nunito","M PLUS Rounded 1c",system-ui,sans-serif}
+.m7 .in{padding:clamp(18px,4vw,40px);display:grid;gap:26px}
+.m7 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.m7 .who{display:flex;align-items:center;gap:10px;font-weight:800}
+.m7 .av{width:40px;height:40px;border-radius:50%;background:var(--red);border:3px solid var(--card);box-shadow:0 0 0 2px var(--red);display:grid;place-items:center;color:#fff;font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800}
+.m7 .clock{font-weight:800;color:var(--dim);display:flex;gap:12px;align-items:center;font-variant-numeric:tabular-nums}
+.m7 .clock i{width:26px;height:12px;border:2px solid var(--dim);border-radius:3px;position:relative;display:block}
+.m7 .clock i::after{content:"";position:absolute;inset:1px 6px 1px 1px;background:var(--grn);border-radius:1px}
+.m7 h3{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:clamp(34px,6.5vw,72px);line-height:1;margin:0;letter-spacing:-.02em}
+.m7 h3 .r{color:var(--red)}.m7 h3 .b{color:var(--blue)}
+.m7 .seltitle{font-weight:800;color:var(--blue);font-size:15px;margin-bottom:-14px;padding-left:4px}
+.m7 .tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.m7 .tile{aspect-ratio:1;max-width:100%;border-radius:6px;position:relative;display:grid;place-items:end start;padding:10px;color:#fff;font-weight:900;font-size:clamp(14px,2vw,22px);line-height:1;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.m7 .tile small{position:absolute;top:8px;left:10px;font-size:11px;font-weight:800;opacity:.9}
+.m7 .tile.sel{outline:4px solid var(--ring);outline-offset:4px;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{outline-color:#9be9ff}}
+.m7 .dock{display:flex;justify-content:center;gap:clamp(10px,3vw,22px);flex-wrap:wrap}
+.m7 .btn{display:grid;justify-items:center;gap:6px;font-weight:800;font-size:12px;color:var(--dim)}
+.m7 .btn i{width:58px;height:58px;border-radius:50%;background:var(--card);display:grid;place-items:center;box-shadow:0 4px 0 #dcdce2;font-style:normal;font-size:24px}
+.m7 .btn:hover i{transform:translateY(-3px)}
+.m7 .cards{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+.m7 .card{background:var(--card);border-radius:18px;padding:18px;box-shadow:0 4px 0 #dcdce2;display:grid;gap:12px;align-content:start;min-width:0}
+.m7 .card h4{margin:0;font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:17px}
+.m7 .stamps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.m7 .stamp{display:grid;justify-items:center;gap:4px;font-weight:800;font-size:11px;color:var(--dim);text-align:center}
+.m7 .stamp b{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:18px;font-weight:900;font-variant-numeric:tabular-nums;border:3px dashed rgba(255,255,255,.6);outline:3px solid currentColor}
+.m7 .rk{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;font-weight:800;font-size:14px}
+.m7 .rk .n{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:13px}
+.m7 .stars{color:var(--yel);letter-spacing:1px}
+
+@media (max-width:760px){
+  .m5 .hero,.m5 .split,.m6 .cols,.m7 .cards{grid-template-columns:1fr}
+  .m5 .stats{grid-template-columns:repeat(2,1fr)}
+  .m5 .trophy{max-width:240px}
+  .m7 .tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .m7 .tiles .tile:nth-child(n+4){display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <h1>Pick your vibe · round 2</h1>
+    <p>Two new takes on the cinematic look with some minimalism mixed in. Both drop the gold, the italic serif and the spotlight sweep. There's also a bright, Nintendo-style colour option.</p>
+    <p class="sample">All game titles, counts and percentages are placeholder data. Your real Steam and PSN numbers will replace them.</p>
+  </header>
+
+  <nav class="jump" aria-label="Jump to option">
+    <a href="#e">E · Cinematic, toned down</a>
+    <a href="#f">F · Editorial after dark</a>
+    <a href="#g">G · Playful console</a>
+  </nav>
+
+  <!-- E -->
+  <section class="opt" id="e">
+    <div class="opt-head"><h2>E · Cinematic, toned down <span>/ closest to A</span></h2><p>A's darkness, condensed headline and lit platinum trophy, but plain: neutral greys, the only colour is a cool silver for platinums, and stats and rankings sit in clean tables like option D.</p></div>
+    <div class="frame">
+      <div class="bar"><i></i><i></i><i></i><b>yourname.gg</b></div>
+      <div class="m5"><div class="in">
+        <nav><span>Awad</span><span><span>Trophies</span><span>Rankings</span><span>Reviews</span><span>Clips</span></span></nav>
+        <div class="hero">
+          <div>
+            <div class="label">Steam + PlayStation · synced 4 min ago</div>
+            <h3>47 Platinums<br><span>2,318 unlocks</span></h3>
+          </div>
+          <div class="trophy">
+            <svg viewBox="0 0 64 80" aria-hidden="true"><path fill="#c9d4e0" d="M14 4h36v6h10v8c0 10-7 16-14 17-3 6-7 9-10 10v10h10v6H18v-6h10V45c-3-1-7-4-10-10C11 34 4 28 4 18v-8h10zM8 14v4c0 6 4 10 8 11-1-4-2-9-2-15zm48 0h-6c0 6-1 11-2 15 4-1 8-5 8-11z"/><rect x="14" y="68" width="36" height="8" fill="#8995a5"/></svg>
+            <div class="cap"><span>Latest platinum</span><b>Astro Bot</b></div>
+          </div>
+        </div>
+        <div class="stats">
+          <div><b>47</b><span>Platinums</span></div>
+          <div><b>112</b><span>Games at 100%</span></div>
+          <div><b>18</b><span>Finished in 2026</span></div>
+          <div><b>0.8%</b><span>Rarest unlock</span></div>
+        </div>
+        <div class="split">
+          <div><h4>2026,<br>ranked</h4><p>Every game I finished this year, with a review for the ones that earned one.</p></div>
+          <div class="tablewrap"><table>
+            <thead><tr><th>No.</th><th>Game</th><th>Platform</th><th class="s">Completion</th></tr></thead>
+            <tbody>
+              <tr><td class="n">01</td><td class="g">Clair Obscur: Expedition 33</td><td>PS5</td><td class="s pl">Platinum</td></tr>
+              <tr><td class="n">02</td><td class="g">Hollow Knight: Silksong</td><td>Steam</td><td class="s">100%</td></tr>
+              <tr><td class="n">03</td><td class="g">Death Stranding 2</td><td>PS5</td><td class="s">82%</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div></div>
+    </div>
+    <div class="notes">
+      <div><b>Signature moment</b>The 3D trophy turns and catches light as you scroll. Nothing else on the page moves much.</div>
+      <div><b>Type</b>A condensed display face for headlines and a monospace for labels and data. No serif.</div>
+      <div><b>Feels like</b>A game's title screen, but tidy</div>
+    </div>
+  </section>
+
+  <!-- F -->
+  <section class="opt" id="f">
+    <div class="opt-head"><h2>F · Editorial after dark <span>/ closest to D</span></h2><p>D's magazine layout on a dark background. The cinematic touch is a widescreen, letterboxed feature frame for each game, coloured from its key art, so the page's colour changes from game to game.</p></div>
+    <div class="frame">
+      <div class="bar"><i></i><i></i><i></i><b>yourname.gg</b></div>
+      <div class="m6"><div class="in">
+        <nav><span>Awad — Played, Ranked, Reviewed</span><span><span>Trophies</span><span>2025</span><span>2026</span><span>Clips</span></span></nav>
+        <h3>Played<sup>2026</sup></h3>
+        <div class="feature" role="img" aria-label="Letterboxed feature frame for the number one game">
+          <div class="tc">01:00:00:00</div>
+          <div class="t"><small>No. 1 of 2026 · Review · 9.5</small><b>Clair Obscur:<br>Expedition 33</b></div>
+        </div>
+        <div class="cols">
+          <div class="col"><span class="k">Platinums</span><span class="v">47</span><p>Latest: Astro Bot, 14 Oct</p></div>
+          <div class="col"><span class="k">Steam achievements</span><span class="v">2,318</span><p>Rarest: 0.8% of players</p></div>
+          <div class="col"><span class="k">Also ranked</span>
+            <ol><li><b>02</b><span>Silksong</span>100%</li><li><b>03</b><span>Death Stranding 2</span>82%</li><li><b>04</b><span>Hades II</span>64%</li></ol>
+          </div>
+        </div>
+      </div></div>
+    </div>
+    <div class="notes">
+      <div><b>Signature moment</b>The letterbox bars close in as you scroll to each game, like a film cut. A WebGL ripple effect on the cover art.</div>
+      <div><b>Type</b>One big grotesque typeface and a monospace for labels and data. Very few styles.</div>
+      <div><b>Feels like</b>Edge magazine, an A24 film site, the Criterion Collection</div>
+    </div>
+  </section>
+
+  <!-- G -->
+  <section class="opt" id="g">
+    <div class="opt-head"><h2>G · Playful console <span>/ Nintendo-style colour</span></h2><p>Bright white like a console home screen, red and blue controller colours, and rounded, friendly type. The year ranking is a row of game tiles with a pulsing selection ring, and trophies are collectible stamps.</p></div>
+    <div class="frame">
+      <div class="bar"><i></i><i></i><i></i><b>yourname.gg</b></div>
+      <div class="m7"><div class="in">
+        <div class="top">
+          <div class="who"><span class="av">A</span>Awad</div>
+          <div class="clock">12:04 <i></i></div>
+        </div>
+        <h3>My <span class="r">2026</span> in <span class="b">games</span></h3>
+        <div class="seltitle">Clair Obscur: Expedition 33</div>
+        <div class="tiles">
+          <div class="tile sel" style="background:#3d5a80"><small>#1</small>E33</div>
+          <div class="tile" style="background:#7a2e3a"><small>#2</small>Silk&shy;song</div>
+          <div class="tile" style="background:#2f6f6a"><small>#3</small>DS2</div>
+          <div class="tile" style="background:#c0392b"><small>#4</small>Hades II</div>
+          <div class="tile" style="background:#e6a020"><small>#5</small>Astro Bot</div>
+        </div>
+        <div class="dock">
+          <div class="btn"><i style="color:var(--yel)">★</i>Trophies</div>
+          <div class="btn"><i style="color:var(--red)">♥</i>Rankings</div>
+          <div class="btn"><i style="color:var(--blue)">✎</i>Reviews</div>
+          <div class="btn"><i style="color:var(--grn)">▶</i>Clips</div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h4>Trophy stamps</h4>
+            <div class="stamps">
+              <div class="stamp" style="color:var(--blue)"><b style="background:var(--blue)">47</b>Platinum</div>
+              <div class="stamp" style="color:var(--yel)"><b style="background:var(--yel)">391</b>Gold</div>
+              <div class="stamp" style="color:var(--red)"><b style="background:var(--red)">112</b>100%</div>
+              <div class="stamp" style="color:var(--grn)"><b style="background:var(--grn)">18</b>2026</div>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Top 3 this year</h4>
+            <div class="rk"><span class="n" style="background:var(--yel)">1</span>Expedition 33<span class="stars">★★★★★</span></div>
+            <div class="rk"><span class="n" style="background:#b8bcc6">2</span>Silksong<span class="stars">★★★★★</span></div>
+            <div class="rk"><span class="n" style="background:#d08a52">3</span>Death Stranding 2<span class="stars">★★★★☆</span></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+    <div class="notes">
+      <div><b>Signature moment</b>Arrow keys move the selection ring between tiles, with a soft click sound, and the title above changes</div>
+      <div><b>Type</b>Rounded sans throughout. Bouncy, springy motion.</div>
+      <div><b>Risk</b>It looks like Nintendo's own UI without using their logo, so keep it as a nod and not a copy</div>
+    </div>
+  </section>
+</div>

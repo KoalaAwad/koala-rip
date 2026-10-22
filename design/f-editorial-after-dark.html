@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Awad · Editorial After Dark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: magazine grid on a dark ground. The hero is a letterboxed 2.39:1 "now showing" frame tinted from the game's key art. */
+:root{
+  color-scheme:dark;
+  --bg:#121315; --fg:#f1efea; --dim:#85868a; --line:#2a2b2f;
+  --cover-a:#33465f; --cover-b:#d8c29a; --cover-c:#7d4a52;
+  --live:#7be0a6;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--mono);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.page{max-width:1280px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-block:20px 80px;display:grid;gap:40px}
+
+/* nav */
+nav.top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px 24px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);border-bottom:1px solid var(--line);padding-bottom:14px}
+nav.top .name{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em;text-transform:none;color:var(--fg)}
+nav.top .links{display:flex;gap:22px;flex-wrap:wrap}
+nav.top a{color:inherit;text-decoration:none}
+nav.top a:hover,nav.top a:focus-visible{color:var(--fg);outline:none}
+nav.top .sync{display:flex;align-items:center;gap:6px}
+nav.top .sync::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--live)}
+
+/* hero feature */
+.feature{position:relative;aspect-ratio:2.39/1;width:100%;overflow:hidden;isolation:isolate;
+  background:linear-gradient(160deg,var(--cover-a),#0b1016 72%)}
+.feature .art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:.5;animation:kb 30s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-2%,1%)}}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.6;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),opacity .6s}
+.card:hover .thumb img{transform:scale(1.06);opacity:.8}
+.feature .glow{position:absolute;border-radius:50%;filter:blur(40px);mix-blend-mode:screen;z-index:-1;will-change:transform}
+.feature .g1{width:60%;height:120%;left:45%;top:-35%;background:radial-gradient(closest-side,var(--cover-b),transparent);opacity:.85;animation:drift1 18s ease-in-out infinite alternate}
+.feature .g2{width:45%;height:90%;left:-5%;top:30%;background:radial-gradient(closest-side,var(--cover-c),transparent);opacity:.55;animation:drift2 23s ease-in-out infinite alternate}
+.feature .flare{position:absolute;inset:-20%;z-index:-1;background:linear-gradient(105deg,transparent 42%,rgba(255,245,225,.10) 48%,rgba(255,245,225,.02) 52%,transparent 58%);animation:flare 11s ease-in-out infinite}
+.feature .grain{position:absolute;inset:0;z-index:-1;opacity:.12;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain .6s steps(3) infinite}
+@keyframes drift1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-14%,10%) scale(1.12)}100%{transform:translate(-26%,4%) scale(.95)}}
+@keyframes drift2{0%{transform:translate(0,0)}100%{transform:translate(30%,-18%) scale(1.15)}}
+@keyframes flare{0%,100%{transform:translateX(-18%)}50%{transform:translateX(18%)}}
+@keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-3%,2%)}66%{transform:translate(2%,-3%)}}
+
+.feature .bars::before,.feature .bars::after{content:"";position:absolute;left:0;right:0;height:9%;background:#000;z-index:2;animation:open 1.6s cubic-bezier(.7,0,.2,1) .2s both}
+.feature .bars::before{top:0;transform-origin:top}
+.feature .bars::after{bottom:0;transform-origin:bottom}
+@keyframes open{from{height:50%}to{height:9%}}
+
+.feature .status{position:absolute;left:clamp(16px,3vw,32px);top:calc(9% + 18px);z-index:3;display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(241,239,234,.85)}
+.feature .status svg{width:12px;height:12px;fill:var(--cover-b)}
+.feature .t h1,.feature .meta,.feature .status,.feature .tc{transition:opacity .35s ease}
+.feature.swap .t h1,.feature.swap .meta,.feature.swap .status,.feature.swap .tc{opacity:0}
+.feature .art{transition:opacity .6s ease}
+.feature.swap .art{opacity:0}
+.feature .meta a{color:var(--fg)}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(123,224,166,.6)}100%{box-shadow:0 0 0 10px rgba(123,224,166,0)}}
+.feature .tc{position:absolute;right:clamp(16px,3vw,32px);top:calc(9% + 18px);z-index:3;font-size:11px;color:rgba(241,239,234,.7);font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.feature .t{position:absolute;left:clamp(16px,3vw,32px);right:clamp(16px,3vw,32px);bottom:calc(9% + 20px);z-index:3;display:grid;gap:12px;
+  animation:rise 1.2s cubic-bezier(.2,.7,.2,1) .9s both}
+@keyframes rise{from{opacity:.001;transform:translateY(14px)}to{opacity:1;transform:none}}
+.feature .t h1{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(32px,6.4vw,92px);line-height:.88;letter-spacing:-.045em;text-wrap:balance;max-width:14ch}
+.feature .meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(241,239,234,.8)}
+.feature .meta b{color:var(--fg);font-weight:500}
+
+/* intro + stats */
+.intro{display:grid;grid-template-columns:1fr 2fr;gap:32px;align-items:start}
+.intro p{margin:0;font-family:var(--display);font-weight:300;font-size:clamp(20px,2.2vw,26px);line-height:1.2;letter-spacing:-.01em;max-width:28ch}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.col{border-top:1px solid var(--fg);padding-top:10px;display:grid;gap:4px;align-content:start;min-width:0}
+.k{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.v{font-family:var(--display);font-weight:800;font-size:clamp(36px,4vw,52px);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.col p{margin:0;color:var(--dim);font-size:12px}
+
+/* ranking */
+.rank{display:grid;grid-template-columns:1fr 2fr;gap:32px;border-top:1px solid var(--line);padding-top:24px}
+.rank h2{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(28px,3.4vw,44px);line-height:.95;letter-spacing:-.03em}
+.years{display:flex;gap:6px;margin-top:14px}
+.years button{font:inherit;font-size:11px;color:var(--dim);background:none;border:1px solid var(--line);padding:5px 12px;border-radius:999px;cursor:pointer}
+.years button[aria-pressed="true"]{color:var(--bg);background:var(--fg);border-color:var(--fg)}
+.years button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+ol.list{list-style:none;margin:0;padding:0}
+ol.list li{display:grid;grid-template-columns:40px 44px 1fr auto;gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);transition:padding .3s ease}
+ol.list li:hover{padding-left:8px}
+ol.list .n{font-family:var(--display);font-weight:500;font-size:20px;color:var(--dim);font-variant-numeric:tabular-nums}
+ol.list .cov{width:44px;height:66px;border-radius:2px;overflow:hidden;background:linear-gradient(160deg,#2a2b2f,#18191c);display:grid;place-items:center;color:var(--dim);font-size:9px;text-align:center;line-height:1.2}
+ol.list .cov img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+ol.list li:hover .cov img{transform:scale(1.08)}
+ol.list .info{display:grid;gap:4px;min-width:0}
+ol.list .g{font-family:var(--display);font-size:clamp(18px,2vw,24px);letter-spacing:-.015em;line-height:1.1}
+ol.list .sub{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11px;color:var(--dim)}
+/* Steam's own review colours: blue for positive, tan for mixed, rust for negative */
+ol.list .sent{color:var(--dim)}
+ol.list .sent.pos{color:#66c0f4}
+ol.list .sent.mix{color:#b9a074}
+ol.list .sent.neg{color:#c35a2f}
+ol.list .mc{border:1px solid var(--line);padding:0 5px;border-radius:2px;font-variant-numeric:tabular-nums}
+ol.list .mc b{color:var(--fg);font-weight:500}
+ol.list .s{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.02em;text-align:right;min-width:64px;font-variant-numeric:tabular-nums;color:var(--fg);text-decoration:none}
+ol.list .s small{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--dim);letter-spacing:0;margin-left:2px}
+ol.list li.top .s{color:var(--cover-b)}
+ol.list a.s{border-bottom:1px solid currentColor;padding-bottom:1px}
+ol.list a.s::after{content:" ↗";font-family:var(--mono);font-weight:400;font-size:12px;color:var(--dim)}
+ol.list a.s:hover,ol.list a.s:focus-visible{color:var(--cover-b);outline:none}
+.legend{margin-top:16px;color:var(--dim);font-size:11px;max-width:30ch}
+
+/* reviews */
+.reviews{display:grid;gap:16px}
+.reviews header{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:24px}
+.reviews h2{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(28px,3.4vw,44px);letter-spacing:-.03em}
+.reviews header a{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.08em;text-decoration:none}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{display:grid;gap:10px;color:inherit;text-decoration:none;min-width:0}
+.thumb{aspect-ratio:2.39/1;position:relative;overflow:hidden;background:linear-gradient(150deg,var(--a),#0b0d10 75%)}
+.thumb::before{content:"";position:absolute;inset:-30%;background:radial-gradient(closest-side,var(--b),transparent);opacity:.7;transform:translate(25%,-10%);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.thumb::after{content:"";position:absolute;inset:0;border-top:9px solid #000;border-bottom:9px solid #000;transition:border-width .5s cubic-bezier(.7,0,.2,1)}
+.card:hover .thumb::before,.card:focus-visible .thumb::before{transform:translate(-10%,5%) scale(1.1)}
+.card:hover .thumb::after,.card:focus-visible .thumb::after{border-width:0}
+.card:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+.card .score{position:absolute;right:10px;bottom:14px;z-index:1;font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:-.03em}
+.card h3{margin:0;font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-.01em}
+.card p{margin:0;color:var(--dim);font-size:12px;max-width:40ch}
+
+footer{color:var(--dim);font-size:11px;border-top:1px solid var(--line);padding-top:16px}
+
+/* mock-only control */
+.mockctl{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:50;display:flex;gap:4px;align-items:center;background:#1c1d21;border:1px solid var(--line);border-radius:999px;padding:4px;font-size:11px}
+.mockctl span{color:var(--dim);padding:0 8px}
+.mockctl button{font:inherit;color:var(--dim);background:none;border:0;padding:6px 10px;border-radius:999px;cursor:pointer}
+.mockctl button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+
+@media (max-width:820px){
+  .feature{aspect-ratio:4/5}
+  .feature .bars::before,.feature .bars::after{height:6%}
+  @keyframes open{from{height:50%}to{height:6%}}
+  .feature .status,.feature .tc{top:calc(6% + 14px)}
+  .feature .t{bottom:calc(6% + 18px)}
+  .intro,.rank{grid-template-columns:1fr}
+  .cols,.cards{grid-template-columns:1fr}
+  ol.list li{grid-template-columns:26px 40px 1fr auto;gap:12px}
+  ol.list .cov{width:40px;height:60px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="top">
+    <span class="name">Awad</span>
+    <span class="links"><a href="#trophies">Trophies</a><a href="#ranked">Rankings</a><a href="#reviews">Reviews</a><a href="#">Clips</a></span>
+    <span class="sync">Steam + PSN synced 4 min ago</span>
+  </nav>
+
+  <section class="feature" id="feature" aria-label="Featured">
+    <img class="art" id="art" alt="" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/library_hero.jpg" onerror="this.style.visibility='hidden'">
+    <div class="glow g1" aria-hidden="true"></div>
+    <div class="glow g2" aria-hidden="true"></div>
+    <div class="flare" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="bars" aria-hidden="true"></div>
+    <div class="status"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 4h36v6h10v8c0 10-7 16-14 17-3 6-7 9-10 10v7h10v8H18v-8h10v-7c-3-1-7-4-10-10C11 34 4 28 4 18v-8h10z"/></svg><span id="statusText">Latest 100% · Steam</span></div>
+    <div class="tc" id="tc">14 OCT 2026</div>
+    <div class="t">
+      <h1 id="heroTitle">Hades II</h1>
+      <div class="meta" id="meta">
+        <span><b>49 / 49</b> achievements</span><span><b>62h</b> played</span><span>Rarest: <b>2.1%</b> of players</span><span>My score <b>10/10</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro" id="trophies">
+    <p>Trophies, rankings and reviews from Steam and PlayStation, updated automatically.</p>
+    <div class="cols">
+      <div class="col"><span class="k">Platinums</span><span class="v">47</span><p>Latest: Astro Bot, 14 Oct</p></div>
+      <div class="col"><span class="k">Steam achievements</span><span class="v">2,318</span><p>Rarest: 0.8% of players</p></div>
+      <div class="col"><span class="k">Games at 100%</span><span class="v">112</span><p>17 games ranked in 2026</p></div>
+    </div>
+  </section>
+
+  <section class="rank" id="ranked">
+    <div>
+      <h2>The year,<br>ranked</h2>
+      <div class="years" role="group" aria-label="Year">
+        <button type="button" data-year="2026" aria-pressed="true">2026</button>
+        <button type="button" data-year="2025" aria-pressed="false">2025</button>
+      </div>
+      <p class="legend">Underlined scores link to a written review.</p>
+    </div>
+    <ol class="list" id="list"></ol>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <header><h2>Latest reviews</h2><a href="#">All reviews →</a></header>
+    <div class="cards">
+      <a class="card" href="#" style="--a:#2e3f5c;--b:#c9a0d8"><div class="thumb"><img alt="" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/library_hero.jpg" onerror="this.remove()"><span class="score">10</span></div><h3>Esoteric Ebb</h3><p>Example card. The first lines of your review appear here.</p></a>
+      <a class="card" href="#" style="--a:#5a3a1a;--b:#f0c060"><div class="thumb"><span class="score">10</span></div><h3>Donkey Kong Bananza</h3><p>Example card. The first lines of your review appear here.</p></a>
+      <a class="card" href="#" style="--a:#4a1a24;--b:#e07a5a"><div class="thumb"><img alt="" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/library_hero.jpg" onerror="this.remove()"><span class="score">10</span></div><h3>Hades II</h3><p>Example card. The first lines of your review appear here.</p></a>
+    </div>
+  </section>
+
+  <footer>Mock: your rankings and scores, the cover art, Steam's all-time user review ratings are real (from the Steam store, Oct 2026). Critic scores show Metacritic (from Steam) until the OpenCritic data is fetched, then switch to OpenCritic. The banner stats, trophy counts and review text are placeholders. In the 2026 list, the Esoteric Ebb score is linked only to show how a linked score looks.</footer>
+</div>
+
+<div class="mockctl" role="group" aria-label="Mock: banner option">
+  <span>Banner:</span>
+  <button type="button" data-state="unlock" aria-pressed="true">Latest 100%</button>
+  <button type="button" data-state="review" aria-pressed="false">Latest review</button>
+  <button type="button" data-state="top" aria-pressed="false">Top of 2026</button>
+</div>
+
+<script id="game-data">
+// Generated from data/rankings.json + data/games.json for the mock.
+window.RANKINGS={"2025":[{"rank":1,"title":"Disco Elysium","score":10,"review":null},{"rank":2,"title":"Kingdom Come: Deliverance II","score":10,"review":null},{"rank":3,"title":"Balatro","score":10,"review":null},{"rank":4,"title":"Deltarune: Chapters 3 & 4","score":9,"review":null},{"rank":5,"title":"Hollow Knight","score":9,"review":null},{"rank":6,"title":"Hades","score":9,"review":null},{"rank":7,"title":"Omori","score":9,"review":null},{"rank":8,"title":"Blasphemous","score":9,"review":null},{"rank":9,"title":"Celeste","score":8,"review":null},{"rank":10,"title":"Outlast","score":8,"review":null},{"rank":11,"title":"Poco","score":8,"review":null},{"rank":12,"title":"Inscryption","score":8,"review":null},{"rank":13,"title":"Dead Space (2008)","score":7,"review":null},{"rank":14,"title":"Clair Obscur: Expedition 33","score":7,"review":null},{"rank":15,"title":"Elden Ring Nightreign","score":6,"review":null},{"rank":16,"title":"MiSide","score":6,"review":null},{"rank":17,"title":"Outlast 2","score":6,"review":null}],"2026":[{"rank":1,"title":"Esoteric Ebb","score":10,"review":null},{"rank":2,"title":"Donkey Kong Bananza","score":10,"review":null},{"rank":3,"title":"Hades II","score":10,"review":null},{"rank":4,"title":"Slay the Spire 2","score":9,"review":null},{"rank":5,"title":"Sword of the Sea","score":9,"review":null},{"rank":6,"title":"Another Crab's Treasure","score":8,"review":null},{"rank":7,"title":"Dave the Diver","score":8,"review":null},{"rank":8,"title":"Cairn","score":8,"review":null},{"rank":9,"title":"Life is Strange: Double Exposure","score":8,"review":null},{"rank":10,"title":"Slay the Princess","score":8,"review":null},{"rank":11,"title":"Overlooting","score":8,"review":null},{"rank":12,"title":"The Wolf Among Us","score":7,"review":null},{"rank":13,"title":"Owlboy","score":7,"review":null},{"rank":14,"title":"Resident Evil 9","score":7,"review":null},{"rank":15,"title":"Metro 2033","score":7,"review":null},{"rank":16,"title":"Cat Named Mojave","score":6,"review":null},{"rank":17,"title":"The Outlast Trials","score":5,"review":null}]};
+window.GAMES={"Disco Elysium":{"title":"Disco Elysium","appid":632470,"reviewDesc":"Very Positive","reviewPct":93,"reviewTotal":132227,"metacritic":97,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632470/816ea59d6d8ac525f79a07c3a7afa94eddb3437c/header.jpg?t=1780913406"},"Kingdom Come: Deliverance II":{"title":"Kingdom Come: Deliverance II","appid":1771300,"reviewDesc":"Very Positive","reviewPct":94,"reviewTotal":198951,"metacritic":89,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/header.jpg?t=1777975568"},"Balatro":{"title":"Balatro","appid":2379780,"reviewDesc":"Overwhelmingly Positive","reviewPct":98,"reviewTotal":200248,"metacritic":90,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/7a85430784e4d613cdb0547414d8cf16ffa45747/header.jpg?t=1790693638"},"Deltarune: Chapters 3 & 4":{"title":"Deltarune: Chapters 3 & 4","appid":1671210,"reviewDesc":"Overwhelmingly Positive","reviewTotal":140003,"reviewPct":98,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/7ccda5b1631d2e60cc756a3271e845dbb9168821/header.jpg?t=1782314340"},"Hollow Knight":{"title":"Hollow Knight","appid":367520,"reviewDesc":"Overwhelmingly Positive","reviewPct":97,"reviewTotal":565941,"metacritic":87,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/3c3489495136b26b34f8a9543c7f5645b99d388c/header.jpg?t=1776125684"},"Hades":{"title":"Hades","appid":1145360,"reviewDesc":"Overwhelmingly Positive","reviewPct":98,"reviewTotal":310238,"metacritic":93,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg?t=1758127023"},"Omori":{"title":"Omori","appid":1150690,"reviewDesc":"Overwhelmingly Positive","reviewPct":97,"reviewTotal":89128,"metacritic":88,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1150690/header.jpg?t=1671584768"},"Blasphemous":{"title":"Blasphemous","appid":774361,"reviewDesc":"Very Positive","reviewPct":90,"reviewTotal":68020,"metacritic":77,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/header.jpg?t=1780479368"},"Celeste":{"title":"Celeste","appid":504230,"reviewDesc":"Overwhelmingly Positive","reviewPct":97,"reviewTotal":149094,"metacritic":88,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/header.jpg?t=1714089525"},"Outlast":{"title":"Outlast","appid":238320,"reviewDesc":"Overwhelmingly Positive","reviewPct":96,"reviewTotal":139880,"metacritic":80,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/header.jpg?t=1666817106"},"Poco":{"title":"Poco","appid":3454610,"reviewDesc":"Overwhelmingly Positive","reviewPct":99,"reviewTotal":10211,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3454610/header.jpg?t=1773943099"},"Inscryption":{"title":"Inscryption","appid":1092790,"reviewDesc":"Overwhelmingly Positive","reviewPct":97,"reviewTotal":149456,"metacritic":85,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/header.jpg?t=1777572925"},"Dead Space (2008)":{"title":"Dead Space (2008)","appid":17470,"reviewDesc":"Very Positive","reviewPct":92,"reviewTotal":29363,"metacritic":87,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17470/header.jpg?t=1777495169"},"Clair Obscur: Expedition 33":{"title":"Clair Obscur: Expedition 33","appid":1903340,"reviewDesc":"Overwhelmingly Positive","reviewPct":95,"reviewTotal":281335,"metacritic":91,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/be3305b02d4db0dffa3458537118423bf2792d7e/header.jpg?t=1782830877"},"Elden Ring Nightreign":{"title":"Elden Ring Nightreign","appid":2622380,"reviewDesc":"Very Positive","reviewPct":82,"reviewTotal":192586,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/header.jpg?t=1791488960"},"MiSide":{"title":"MiSide","appid":2527500,"reviewDesc":"Overwhelmingly Positive","reviewPct":98,"reviewTotal":143512,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/header.jpg?t=1792204652"},"Outlast 2":{"title":"Outlast 2","appid":414700,"reviewDesc":"Very Positive","reviewPct":91,"reviewTotal":64994,"metacritic":75,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/header.jpg?t=1618944453"},"Esoteric Ebb":{"title":"Esoteric Ebb","appid":2057760,"reviewDesc":"Overwhelmingly Positive","reviewPct":95,"reviewTotal":10093,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2057760/3fc3e737678a0d5db6816609bec2c9c6f2c11a88/header.jpg?t=1790693554"},"Donkey Kong Bananza":{"title":"Donkey Kong Bananza","appid":null,"cover":null,"header":null},"Hades II":{"title":"Hades II","appid":1145350,"reviewDesc":"Overwhelmingly Positive","reviewPct":96,"reviewTotal":124417,"metacritic":94,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/91ac334a2c137d08968ccc0bc474a02579602100/header.jpg?t=1779901265"},"Slay the Spire 2":{"title":"Slay the Spire 2","appid":2868840,"reviewDesc":"Mixed","reviewPct":61,"reviewTotal":205867,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/b0958d387dc366211e0f353443710cfcf9fdb020/header.jpg?t=1787169309"},"Sword of the Sea":{"title":"Sword of the Sea","appid":2453160,"reviewDesc":"Very Positive","reviewPct":90,"reviewTotal":1771,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453160/0970ad83a138f75b1e48e41780ff2eb5f1d21379/header.jpg?t=1789223959"},"Another Crab's Treasure":{"title":"Another Crab's Treasure","appid":1887840,"reviewDesc":"Very Positive","reviewPct":92,"reviewTotal":22119,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/header.jpg?t=1785949147"},"Dave the Diver":{"title":"Dave the Diver","appid":1868140,"reviewDesc":"Overwhelmingly Positive","reviewPct":96,"reviewTotal":164299,"metacritic":90,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/81bdb3bce15d27ca1b4554a642d91096e89be229/header.jpg?t=1791478061"},"Cairn":{"title":"Cairn","appid":1588550,"reviewDesc":"Very Positive","reviewPct":94,"reviewTotal":22426,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/header.jpg?t=1782391789"},"Life is Strange: Double Exposure":{"title":"Life is Strange: Double Exposure","appid":1874000,"reviewDesc":"Mixed","reviewPct":68,"reviewTotal":10939,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1874000/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1874000/header.jpg?t=1773408764"},"Slay the Princess":{"title":"Slay the Princess","appid":1989270,"reviewDesc":"Overwhelmingly Positive","reviewPct":97,"reviewTotal":34871,"metacritic":90,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/74a54248cfec29144de5e867a333c30e6d62801d/header.jpg?t=1791026492"},"Overlooting":{"title":"Overlooting","appid":3410180,"reviewDesc":"Mostly Positive","reviewPct":79,"reviewTotal":1820,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3410180/76a9438ab182dec76d7518602f2c05ef62957c6f/header_alt_assets_1.jpg?t=1791486348"},"The Wolf Among Us":{"title":"The Wolf Among Us","appid":250320,"reviewDesc":"Overwhelmingly Positive","reviewPct":98,"reviewTotal":40385,"metacritic":85,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250320/header.jpg?t=1734104991"},"Owlboy":{"title":"Owlboy","appid":115800,"reviewDesc":"Very Positive","reviewPct":83,"reviewTotal":6136,"metacritic":88,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/115800/57dd50ebbcd0fe17b99a0c82b65961db0de14f01/header.jpg?t=1791834795"},"Resident Evil 9":{"title":"Resident Evil 9","appid":3764200,"reviewDesc":"Overwhelmingly Positive","reviewTotal":187834,"reviewPct":96,"metacritic":92,"cover":null,"header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/ce5437442768e38eb575f205ab9397d0264017b0/header.jpg?t=1779840172"},"Metro 2033":{"title":"Metro 2033","appid":286690,"reviewDesc":"Very Positive","reviewPct":92,"reviewTotal":143430,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/header.jpg?t=1741110084"},"The Outlast Trials":{"title":"The Outlast Trials","appid":1304930,"reviewDesc":"Very Positive","reviewPct":92,"reviewTotal":121648,"metacritic":null,"cover":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/library_600x900.jpg","header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/e3b17cf268afa51334b63124a2fe0aef3f1d136b/header_alt_assets_4.jpg?t=1792554994"},"Cat Named Mojave":{"title":"Cat Named Mojave","appid":3597880,"reviewDesc":"Very Positive","reviewTotal":349,"reviewPct":95,"metacritic":null,"cover":null,"header":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3597880/23f498b1045d3b02777cb5a61cc5f43f91484494/header.jpg?t=1773945448"}};
+</script>
+<script>
+// window.RANKINGS / window.GAMES come from games-data.js (built from data/*.json).
+const lists = window.RANKINGS, games = window.GAMES;
+lists["2026"][0].review = "#review-demo"; // demo only: shows a linked score
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const sentClass = d => !d ? "" : /Positive/.test(d) ? "pos" : /Mixed/.test(d) ? "mix" : "neg";
+const listEl = document.getElementById("list");
+function renderYear(y){
+  listEl.innerHTML = lists[y].map((e,i) => {
+    const g = games[e.title] || {};
+    const art = g.cover || g.header;
+    const cov = art ? `<img loading="lazy" alt="" src="${esc(art)}">` : `<span>No<br>art</span>`;
+    const sub = g.appid
+      ? `<span class="sent ${sentClass(g.reviewDesc)}" title="${g.reviewPct}% of ${Number(g.reviewTotal).toLocaleString()} Steam reviews">${esc(g.reviewDesc || "No reviews yet")}</span>` +
+        (g.opencritic ? `<span class="mc">OpenCritic <b>${g.opencritic}</b></span>` : g.metacritic ? `<span class="mc">Metacritic <b>${g.metacritic}</b></span>` : "")
+      : `<span>Not on Steam</span>`;
+    const s = `${e.score}<small>/10</small>`;
+    const scoreEl = e.review ? `<a class="s" href="${esc(e.review)}" aria-label="${e.score} out of 10, read review">${s}</a>` : `<span class="s">${s}</span>`;
+    return `<li class="${e.score===10?"top":""}"><span class="n">${String(i+1).padStart(2,"0")}</span><span class="cov">${cov}</span><span class="info"><span class="g">${esc(e.title)}</span><span class="sub">${sub}</span></span>${scoreEl}</li>`;
+  }).join("");
+  document.querySelectorAll(".years button").forEach(b => b.setAttribute("aria-pressed", b.dataset.year == y));
+}
+document.querySelectorAll(".years button").forEach(b => b.addEventListener("click", () => renderYear(b.dataset.year)));
+renderYear(2026);
+
+// Banner options (mock only). Achievement counts, hours, rarity and dates are placeholders.
+const feature = document.getElementById("feature");
+const heroArt = id => `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${id}/library_hero.jpg`;
+const banners = {
+  unlock: { status: "Latest 100% · Steam", date: "14 OCT 2026", title: "Hades II", art: 1145350,
+    meta: '<span><b>49 / 49</b> achievements</span><span><b>62h</b> played</span><span>Rarest: <b>2.1%</b> of players</span><span>My score <b>10/10</b></span>' },
+  review: { status: "Latest review", date: "18 OCT 2026", title: "Esoteric Ebb", art: 2057760,
+    meta: '<span>My score <b>10/10</b></span><span style="color:#66c0f4">Overwhelmingly Positive on Steam</span><span><a href="#review-demo">Read the review →</a></span>' },
+  top: { status: "No. 1 of 2026 so far", date: "17 GAMES RANKED", title: "Esoteric Ebb", art: 2057760,
+    meta: '<span>My score <b>10/10</b></span><span>Ahead of Donkey Kong Bananza and Hades II</span><span><a href="#ranked">See the full ranking →</a></span>' }
+};
+document.querySelectorAll(".mockctl button").forEach(b => b.addEventListener("click", () => {
+  const s = banners[b.dataset.state];
+  document.querySelectorAll(".mockctl button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  feature.classList.add("swap");
+  setTimeout(() => {
+    document.getElementById("statusText").textContent = s.status;
+    document.getElementById("tc").textContent = s.date;
+    document.getElementById("heroTitle").textContent = s.title;
+    document.getElementById("meta").innerHTML = s.meta;
+    const art = document.getElementById("art");
+    art.style.visibility = ""; art.src = heroArt(s.art);
+    feature.classList.remove("swap");
+  }, 380);
+}));
+</script>
+</body>
+</html>

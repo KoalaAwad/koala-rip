@@ -1,0 +1,53 @@
+---
+// Still night sky behind the page: a fixed nebula layer plus stars painted once onto a canvas.
+// Nothing moves on scroll (scroll-linked redraws fought Lenis and stuttered); the page glides over a calm sky.
+---
+<div class="sky" aria-hidden="true">
+  <canvas id="starfield"></canvas>
+</div>
+
+<style>
+  .sky {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60% 50% at 85% 5%, color-mix(in srgb, var(--nebula-a) 16%, transparent), transparent 70%),
+      radial-gradient(50% 40% at 0% 60%, color-mix(in srgb, var(--nebula-b) 9%, transparent), transparent 70%);
+    transform: translateZ(0); /* own compositor layer: no repaint while scrolling */
+  }
+  canvas { width: 100%; height: 100%; display: block; }
+</style>
+
+<script>
+  const canvas = document.getElementById("starfield") as HTMLCanvasElement;
+  const ctx = canvas.getContext("2d")!;
+
+  function paint() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = window.innerWidth, h = window.innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    // Seeded random so stars stay put across resizes and reloads
+    let seed = 7536;
+    const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+
+    const count = Math.round((w * h) / 6500);
+    for (let i = 0; i < count; i++) {
+      const big = rand() < 0.08;
+      ctx.globalAlpha = big ? 0.55 + rand() * 0.3 : 0.15 + rand() * 0.35;
+      ctx.fillStyle = rand() < 0.12 ? "#f1dcb2" : "#dfe6ff";
+      ctx.beginPath();
+      ctx.arc(rand() * w, rand() * h, big ? 0.9 + rand() * 0.6 : 0.4 + rand() * 0.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  paint();
+  let t: number | undefined;
+  window.addEventListener("resize", () => { clearTimeout(t); t = window.setTimeout(paint, 150); });
+</script>
