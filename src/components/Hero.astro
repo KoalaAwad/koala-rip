@@ -1,9 +1,10 @@
 ---
 // Banner: the most recent completion across platforms (Steam 100% or PlayStation platinum),
 // in a letterboxed 2.39:1 frame over the game's key art, with drifting light.
-import { latestCompletion, heroArtFor, steamArt, scoreFor, fmtDate } from "../lib/data";
+import { latestCompletion, heroArtFor, steamArt, scoreFor, displayTitle, fmtDate } from "../lib/data";
 
-const c = latestCompletion();
+const raw = latestCompletion();
+const c = raw && { ...raw, title: displayTitle(raw.title) }; // your spelling from the rankings, not Steam's "DAVE THE DIVER"
 const isSteam = c?.platform === "Steam";
 const art = !c ? null : c.hero ?? (c.appid ? steamArt(c.appid, "hero") : heroArtFor(c.title));
 const score = c ? scoreFor(c.title) : null;
@@ -49,12 +50,19 @@ const unit = isSteam ? "achievements" : "trophies";
   }
   .art {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; z-index: -2; opacity: .5;
+    object-fit: cover; z-index: -3; opacity: .85;
     animation: kb 30s ease-in-out infinite alternate;
+  }
+  /* Darken only where the text sits (bottom-left), so the art reads at full strength elsewhere */
+  .feature::after {
+    content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none;
+    background:
+      linear-gradient(0deg, rgba(5, 7, 16, .88) 0%, rgba(5, 7, 16, .35) 45%, transparent 70%),
+      linear-gradient(90deg, rgba(5, 7, 16, .45) 0%, transparent 55%);
   }
   .glow { position: absolute; border-radius: 50%; filter: blur(40px); mix-blend-mode: screen; z-index: -1; will-change: transform; }
   .g1 { width: 60%; height: 120%; left: 45%; top: -35%; background: radial-gradient(closest-side, var(--star), transparent); opacity: .55; animation: drift1 18s ease-in-out infinite alternate; }
-  .g2 { width: 45%; height: 90%; left: -5%; top: 30%; background: radial-gradient(closest-side, var(--nebula-a), transparent); opacity: .6; animation: drift2 23s ease-in-out infinite alternate; }
+  .g2 { width: 45%; height: 90%; left: -5%; top: 30%; background: radial-gradient(closest-side, var(--nebula-a), transparent); opacity: .35; animation: drift2 23s ease-in-out infinite alternate; }
   .flare { position: absolute; inset: -20%; z-index: -1; background: linear-gradient(105deg, transparent 42%, rgba(255, 245, 225, .10) 48%, rgba(255, 245, 225, .02) 52%, transparent 58%); animation: flare 11s ease-in-out infinite; }
   .grain {
     position: absolute; inset: 0; z-index: -1; opacity: .12; mix-blend-mode: overlay;
@@ -70,7 +78,7 @@ const unit = isSteam ? "achievements" : "trophies";
 
   .status, .date {
     position: absolute; top: calc(var(--bars) + 18px); z-index: 3;
-    font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(238, 240, 248, .82);
+    font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(238, 240, 248, .9);
   }
   .status { left: clamp(16px, 3vw, 32px); display: flex; align-items: center; gap: 8px; }
   .status svg { width: 12px; height: 12px; fill: var(--gold); }
@@ -87,7 +95,7 @@ const unit = isSteam ? "achievements" : "trophies";
     font-size: clamp(32px, 6.4vw, 92px); line-height: .88; letter-spacing: -.045em;
     text-wrap: balance; max-width: 14ch;
   }
-  .meta { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: rgba(238, 240, 248, .8); }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: rgba(238, 240, 248, .88); }
   .meta b { color: var(--fg); font-weight: 500; }
 
   @keyframes kb { from { transform: scale(1.02); } to { transform: scale(1.12) translate(-2%, 1%); } }

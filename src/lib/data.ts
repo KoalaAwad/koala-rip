@@ -68,13 +68,22 @@ export function critic(g: GameInfo) {
   return null;
 }
 
-export function scoreFor(title: string) {
+// Store names vary in case and symbols ("DAVE THE DIVER", "DARK SOULS™ III"), so match loosely.
+const loose = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+/** The ranked entry for a game (any year), matched loosely by title. */
+export function rankedEntry(title: string) {
   for (const y of years) {
-    const hit = rankings[y].find((e) => e.title === title);
-    if (hit) return hit.score;
+    const hit = rankings[y].find((e) => loose(e.title) === loose(title));
+    if (hit) return hit;
   }
   return null;
 }
+
+export const scoreFor = (title: string) => rankedEntry(title)?.score ?? null;
+
+/** Prefer the title as written in the rankings over the store's spelling. */
+export const displayTitle = (title: string) => rankedEntry(title)?.title ?? title;
 
 // ---- Achievements page ----
 

@@ -77,7 +77,7 @@ const completed = rows.filter((r) => r.complete).length;
   .psn { --tint: rgba(0, 112, 209, .16); --accent: #4d9bff; }
   .ttl { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: -.01em; }
   .ttl :global(svg) { color: var(--accent); }
-  .summary { display: flex; gap: 14px; font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .06em; }
+  .summary { display: flex; gap: 14px; font-size: 12px; color: var(--dim); text-transform: uppercase; letter-spacing: .06em; }
   .summary b { color: var(--fg); font-weight: 500; }
   .summary a { text-decoration: none; }
   .summary a:hover { color: var(--fg); }
@@ -90,7 +90,7 @@ const completed = rows.filter((r) => r.complete).length;
   .main { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; min-width: 0; align-items: center; }
   .name { font-family: var(--display); font-size: 16px; letter-spacing: -.01em; line-height: 1.15; min-width: 0; overflow-wrap: anywhere; }
   .badge { margin-left: 8px; font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--bg); background: var(--gold); padding: 1px 6px; border-radius: 2px; vertical-align: 2px; }
-  .count { font-size: 11px; color: var(--dim); font-variant-numeric: tabular-nums; grid-row: 1; grid-column: 2; }
+  .count { font-size: 12px; color: var(--dim); font-variant-numeric: tabular-nums; grid-row: 1; grid-column: 2; }
   .track { grid-column: 1 / -1; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
   .fill { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
   li.complete .fill { background: var(--gold); box-shadow: 0 0 10px color-mix(in srgb, var(--gold) 60%, transparent); }
