@@ -1,0 +1,8 @@
+---
+import { siSteam, siPlaystation } from "simple-icons";
+
+interface Props { platform: "steam" | "psn"; size?: number }
+const { platform, size = 16 } = Astro.props;
+const icon = platform === "steam" ? siSteam : siPlaystation;
+---
+<svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true"><path d={icon.path} /></svg>

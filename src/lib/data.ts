@@ -76,5 +76,49 @@ export function scoreFor(title: string) {
   return null;
 }
 
-export const fmtDate = (iso: string | Date) =>
+// ---- Achievements page ----
+
+export type ProgressRow = {
+  title: string;
+  cover: string | null;
+  fallback: string | null;
+  earned: number;
+  total: number;
+  percent: number;
+  complete: boolean; // Steam 100% or PSN platinum
+};
+
+const byCompletion = (a: ProgressRow, b: ProgressRow) =>
+  Number(b.complete) - Number(a.complete) || b.percent - a.percent || b.earned - a.earned || a.title.localeCompare(b.title);
+
+/** Steam games with at least one unlocked achievement, 100% games first. Built from data/steam-cache.json. */
+export function steamProgress(): ProgressRow[] {
+  const file = path.join(process.cwd(), "data", "steam-cache.json");
+  if (!fs.existsSync(file)) return [];
+  const cache = JSON.parse(fs.readFileSync(file, "utf8")) as Record<string, { name: string; total: number; earned: number }>;
+  return Object.entries(cache)
+    .filter(([, g]) => g.total > 0 && g.earned > 0)
+    .map(([appid, g]) => ({
+      title: g.name,
+      cover: localArt(g.name) ?? steamArt(Number(appid), "cover"),
+      fallback: `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${appid}/header.jpg`,
+      earned: g.earned,
+      total: g.total,
+      percent: Math.floor((100 * g.earned) / g.total),
+      complete: g.earned === g.total,
+    }))
+    .sort(byCompletion);
+}
+
+/** PlayStation games from data/psn.json (written by the PSN sync), platinums first. Empty until that exists. */
+export function psnProgress(): ProgressRow[] {
+  const file = path.join(process.cwd(), "data", "psn.json");
+  if (!fs.existsSync(file)) return [];
+  const games = JSON.parse(fs.readFileSync(file, "utf8")) as { title: string; cover: string | null; progress: number; earned: number; total: number; platinum: boolean }[];
+  return games
+    .map((g) => ({ title: g.title, cover: localArt(g.title) ?? g.cover, fallback: null, earned: g.earned, total: g.total, percent: g.progress, complete: g.platinum }))
+    .sort(byCompletion);
+}
+
+export const fmtDate =(iso: string | Date) =>
   new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });

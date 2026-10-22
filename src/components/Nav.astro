@@ -1,25 +1,32 @@
 ---
 import { profile } from "../lib/data";
+import KoalaMark from "./KoalaMark.astro";
+import PlatformIcon from "./PlatformIcon.astro";
 
-const synced = new Date(profile.lastSynced);
-const syncedLabel = synced.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+const syncedLabel = new Date(profile.lastSynced).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 ---
 <nav class="top">
-  <a class="name" href="/">{profile.name}</a>
+  <span class="brand">
+    <KoalaMark />
+    <a class="name" href="/">{profile.name}</a>
+  </span>
   <span class="links">
-    <a href="/#trophies">Trophies</a>
+    <a href="/achievements/">Achievements</a>
     <a href="/#ranked">Rankings</a>
     <a href="/reviews/">Reviews</a>
-    <a href="/#clips">Clips</a>
   </span>
-  <span class="sync">Steam + PSN · synced {syncedLabel}</span>
+  <span class="right">
+    <span class="sync">Synced {syncedLabel}</span>
+    <a class="plat" href={profile.links.steam} target="_blank" rel="noopener" aria-label="My Steam profile"><PlatformIcon platform="steam" /></a>
+    <a class="plat" href={profile.links.psn} target="_blank" rel="noopener" aria-label="My PlayStation profile"><PlatformIcon platform="psn" /></a>
+  </span>
 </nav>
 
 <style>
   .top {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     flex-wrap: wrap;
     gap: 8px 24px;
     font-size: 11px;
@@ -27,8 +34,9 @@ const syncedLabel = synced.toLocaleDateString("en-GB", { day: "numeric", month: 
     letter-spacing: .08em;
     color: var(--dim);
     border-bottom: 1px solid var(--line);
-    padding-bottom: 14px;
+    padding-bottom: 10px;
   }
+  .brand { display: flex; align-items: center; gap: 6px; }
   .name {
     font-family: var(--display);
     font-weight: 800;
@@ -41,6 +49,9 @@ const syncedLabel = synced.toLocaleDateString("en-GB", { day: "numeric", month: 
   .links { display: flex; gap: 22px; flex-wrap: wrap; }
   .links a { text-decoration: none; transition: color .2s; }
   .links a:hover { color: var(--fg); }
+  .right { display: flex; align-items: center; gap: 14px; }
   .sync { display: flex; align-items: center; gap: 6px; }
   .sync::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--steam-pos); }
+  .plat { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; color: var(--dim); transition: color .2s, border-color .2s; }
+  .plat:hover { color: var(--fg); border-color: var(--fg); }
 </style>

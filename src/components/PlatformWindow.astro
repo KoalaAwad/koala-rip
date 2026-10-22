@@ -1,0 +1,100 @@
+---
+// A "window" for one platform: title bar with the platform icon, then a scrollable list of games with progress bars.
+import PlatformIcon from "./PlatformIcon.astro";
+import type { ProgressRow } from "../lib/data";
+
+interface Props {
+  platform: "steam" | "psn";
+  title: string;
+  profileUrl: string;
+  rows: ProgressRow[];
+  completeLabel: string; // "100%" or "Platinum"
+  emptyText: string;
+}
+const { platform, title, profileUrl, rows, completeLabel, emptyText } = Astro.props;
+const completed = rows.filter((r) => r.complete).length;
+---
+<section class:list={["window", platform]} aria-label={`${title} achievements`}>
+  <header class="bar">
+    <span class="ttl"><PlatformIcon platform={platform} size={18} /> {title}</span>
+    <span class="summary">
+      {rows.length > 0 && <span><b>{completed}</b> {completeLabel.toLowerCase() === "platinum" ? (completed === 1 ? "platinum" : "platinums") : "at 100%"} · {rows.length} games</span>}
+      <a href={profileUrl} target="_blank" rel="noopener">Profile ↗</a>
+    </span>
+  </header>
+
+  {rows.length > 0 ? (
+    <ol class="rows" data-lenis-prevent>
+      {rows.map((r) => (
+        <li class:list={[{ complete: r.complete }]}>
+          <span class="cov">
+            {r.cover && (
+              <img
+                src={r.cover}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                data-fallback={r.fallback ?? undefined}
+                onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback}else{this.remove()}"
+              />
+            )}
+          </span>
+          <span class="main">
+            <span class="name">
+              {r.title}
+              {r.complete && <span class="badge">{completeLabel}</span>}
+            </span>
+            <span class="track" role="progressbar" aria-valuenow={r.percent} aria-valuemin="0" aria-valuemax="100" aria-label={`${r.earned} of ${r.total}`}>
+              <span class="fill" style={`width:${r.percent}%`}></span>
+            </span>
+            <span class="count">{r.earned} / {r.total}</span>
+          </span>
+          <span class="pct">{r.percent}%</span>
+        </li>
+      ))}
+    </ol>
+  ) : (
+    <p class="empty">{emptyText}</p>
+  )}
+</section>
+
+<style>
+  .window {
+    border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg-raise) 80%, transparent);
+    backdrop-filter: blur(6px);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-width: 0;
+    max-height: min(78vh, 900px);
+  }
+  .bar {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px 16px; flex-wrap: wrap;
+    padding: 12px 16px; border-bottom: 1px solid var(--line);
+    background: linear-gradient(90deg, var(--tint), transparent 70%);
+  }
+  .steam { --tint: rgba(102, 192, 244, .12); --accent: var(--steam-pos); }
+  .psn { --tint: rgba(0, 112, 209, .16); --accent: #4d9bff; }
+  .ttl { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: -.01em; }
+  .ttl :global(svg) { color: var(--accent); }
+  .summary { display: flex; gap: 14px; font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .06em; }
+  .summary b { color: var(--fg); font-weight: 500; }
+  .summary a { text-decoration: none; }
+  .summary a:hover { color: var(--fg); }
+
+  .rows { list-style: none; margin: 0; padding: 4px 16px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  li { display: grid; grid-template-columns: 36px 1fr auto; gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  li:last-child { border-bottom: 0; }
+  .cov { width: 36px; height: 54px; border-radius: 2px; overflow: hidden; background: linear-gradient(160deg, var(--bg-raise), var(--line)); }
+  .cov img { width: 100%; height: 100%; object-fit: cover; }
+  .main { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; min-width: 0; align-items: center; }
+  .name { font-family: var(--display); font-size: 16px; letter-spacing: -.01em; line-height: 1.15; min-width: 0; overflow-wrap: anywhere; }
+  .badge { margin-left: 8px; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--star); border: 1px solid currentColor; padding: 1px 5px; border-radius: 2px; vertical-align: 2px; }
+  .count { font-size: 11px; color: var(--dim); font-variant-numeric: tabular-nums; grid-row: 1; grid-column: 2; }
+  .track { grid-column: 1 / -1; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .fill { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+  li.complete .fill { background: var(--star); box-shadow: 0 0 10px color-mix(in srgb, var(--star) 60%, transparent); }
+  .pct { font-family: var(--display); font-weight: 800; font-size: 18px; min-width: 52px; text-align: right; font-variant-numeric: tabular-nums; }
+  li.complete .pct { color: var(--star); }
+  .empty { margin: 0; padding: 32px 16px; color: var(--dim); }
+</style>

@@ -1,7 +1,10 @@
 {
-  "placeholder": true,
-  "_note": "Hand-written placeholder until the Steam/PSN sync script generates this file.",
+  "_note": "Steam fields are written by scripts/sync-steam.mjs. PlayStation fields are placeholders until the PSN sync exists.",
   "name": "Awad",
+  "links": {
+    "steam": "https://steamcommunity.com/profiles/76561198069229314/",
+    "psn": "https://profile.playstation.com/Hewo_7536"
+  },
   "lastSynced": "2026-10-22T07:32:25.069Z",
   "stats": {
     "platinums": 47,
