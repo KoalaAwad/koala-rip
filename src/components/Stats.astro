@@ -9,7 +9,7 @@ const s = profile.stats;
     <div class="col">
       <span class="label">PlayStation platinums</span>
       <span class="v">{s.platinums}</span>
-      <p>Latest: {s.latestPlatinum.title}, {fmtDate(s.latestPlatinum.date)}</p>
+      {s.latestPlatinum && <p>Latest: {s.latestPlatinum.title}, {fmtDate(s.latestPlatinum.date)}</p>}
     </div>
     <div class="col">
       <span class="label">Steam achievements</span>

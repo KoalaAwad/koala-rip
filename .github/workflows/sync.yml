@@ -1,0 +1,61 @@
+name: Sync game data
+
+on:
+  schedule:
+    - cron: "17 */6 * * *" # every 6 hours
+  workflow_dispatch: {}    # "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Sync Steam
+        id: steam
+        continue-on-error: true
+        run: node scripts/sync-steam.mjs
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+
+      - name: Sync PlayStation
+        id: psn
+        continue-on-error: true
+        run: node scripts/sync-psn.mjs
+        env:
+          PSN_NPSSO: ${{ secrets.PSN_NPSSO }}
+
+      - name: Commit new data
+        run: |
+          # Skip the commit (and the redeploy) when the only change is the lastSynced timestamp.
+          if git diff -U0 -- data | grep -E '^[+-][^+-]' | grep -vq '"lastSynced"'; then
+            git config user.name "koala-rip sync"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data
+            git commit -m "Sync game data"
+            git push
+          else
+            echo "No new data."
+          fi
+
+      # Fail the run (so GitHub emails you) if either sync failed, e.g. an expired PSN token.
+      - name: Report failures
+        if: steps.steam.outcome == 'failure' || steps.psn.outcome == 'failure'
+        run: |
+          [ "${{ steps.steam.outcome }}" = "failure" ] && echo "::error::Steam sync failed. Check the STEAM_API_KEY secret."
+          [ "${{ steps.psn.outcome }}" = "failure" ] && echo "::error::PlayStation sync failed. The PSN_NPSSO token has probably expired: get a new one from https://ca.account.sony.com/api/v1/ssocookie and update the repo secret."
+          exit 1

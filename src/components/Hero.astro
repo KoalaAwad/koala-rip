@@ -1,37 +1,41 @@
 ---
-// "Latest 100%" banner: a letterboxed 2.39:1 frame over the game's key art, with drifting light.
-import { profile, heroArtFor, steamArt, scoreFor, fmtDate } from "../lib/data";
+// Banner: the most recent completion across platforms (Steam 100% or PlayStation platinum),
+// in a letterboxed 2.39:1 frame over the game's key art, with drifting light.
+import { latestCompletion, heroArtFor, steamArt, scoreFor, fmtDate } from "../lib/data";
 
-const c = profile.latestCompletion as typeof profile.latestCompletion & { appid?: number; rarestPercent: number | null };
-const art = c.appid ? steamArt(c.appid, "hero") : heroArtFor(c.title);
-const score = scoreFor(c.title);
-const kind = c.platform === "Steam" ? "Latest 100%" : "Latest platinum";
-const unit = c.platform === "Steam" ? "achievements" : "trophies";
+const c = latestCompletion();
+const isSteam = c?.platform === "Steam";
+const art = !c ? null : c.hero ?? (c.appid ? steamArt(c.appid, "hero") : heroArtFor(c.title));
+const score = c ? scoreFor(c.title) : null;
+const kind = isSteam ? "Latest 100%" : "Latest platinum";
+const unit = isSteam ? "achievements" : "trophies";
 ---
-<section class="feature" aria-label={`${kind}: ${c.title}`}>
-  {art && <img class="art" src={art} alt="" fetchpriority="high" />}
-  <div class="glow g1" aria-hidden="true"></div>
-  <div class="glow g2" aria-hidden="true"></div>
-  <div class="flare" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="bars" aria-hidden="true"></div>
+{c && (
+  <section class="feature" aria-label={`${kind}: ${c.title}`}>
+    {art && <img class="art" src={art} alt="" fetchpriority="high" />}
+    <div class="glow g1" aria-hidden="true"></div>
+    <div class="glow g2" aria-hidden="true"></div>
+    <div class="flare" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="bars" aria-hidden="true"></div>
 
-  <div class="status">
-    <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 4h36v6h10v8c0 10-7 16-14 17-3 6-7 9-10 10v7h10v8H18v-8h10v-7c-3-1-7-4-10-10C11 34 4 28 4 18v-8h10z" /></svg>
-    <span>{kind} · {c.platform}</span>
-  </div>
-  <div class="date">{fmtDate(c.date)}</div>
-
-  <div class="t">
-    <h1>{c.title}</h1>
-    <div class="meta">
-      <span><b>{c.earned} / {c.total}</b> {unit}</span>
-      <span><b>{c.hours}h</b> played</span>
-      {c.rarestPercent !== null && <span>Rarest: <b>{c.rarestPercent}%</b> of players</span>}
-      {score !== null && <span>My score <b>{score}/10</b></span>}
+    <div class="status">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 4h36v6h10v8c0 10-7 16-14 17-3 6-7 9-10 10v7h10v8H18v-8h10v-7c-3-1-7-4-10-10C11 34 4 28 4 18v-8h10z" /></svg>
+      <span>{kind} · {c.platform}</span>
     </div>
-  </div>
-</section>
+    <div class="date">{fmtDate(c.date)}</div>
+
+    <div class="t">
+      <h1>{c.title}</h1>
+      <div class="meta">
+        <span><b>{c.earned} / {c.total}</b> {unit}</span>
+        {c.hours !== null && <span><b>{c.hours}h</b> played</span>}
+        {c.rarestPercent !== null && <span>Rarest: <b>{c.rarestPercent}%</b> of players</span>}
+        {score !== null && <span>My score <b>{score}/10</b></span>}
+      </div>
+    </div>
+  </section>
+)}
 
 <style>
   .feature {
@@ -69,7 +73,7 @@ const unit = c.platform === "Steam" ? "achievements" : "trophies";
     font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(238, 240, 248, .82);
   }
   .status { left: clamp(16px, 3vw, 32px); display: flex; align-items: center; gap: 8px; }
-  .status svg { width: 12px; height: 12px; fill: var(--star); }
+  .status svg { width: 12px; height: 12px; fill: var(--gold); }
   .date { right: clamp(16px, 3vw, 32px); font-variant-numeric: tabular-nums; }
 
   .t {

@@ -112,14 +112,29 @@ export function steamProgress(): ProgressRow[] {
     .sort(byCompletion);
 }
 
-/** PlayStation games from data/psn.json (written by the PSN sync), platinums first. Empty until that exists. */
+/** PlayStation games from data/psn.json (written by the PSN sync), platinums first.
+ *  Same 3-hour rule as Steam where PlayStation reports playtime (PS4/PS5); older platforms have none and are kept. */
 export function psnProgress(): ProgressRow[] {
   const file = path.join(process.cwd(), "data", "psn.json");
   if (!fs.existsSync(file)) return [];
-  const games = JSON.parse(fs.readFileSync(file, "utf8")) as { title: string; cover: string | null; progress: number; earned: number; total: number; platinum: boolean }[];
+  const games = JSON.parse(fs.readFileSync(file, "utf8")) as {
+    title: string; cover: string | null; progress: number; earned: number; total: number; platinum: boolean; minutes: number | null;
+  }[];
   return games
+    .filter((g) => g.minutes === null || g.minutes >= MIN_STEAM_MINUTES)
     .map((g) => ({ title: g.title, cover: localArt(g.title) ?? g.cover, fallback: null, earned: g.earned, total: g.total, percent: g.progress, complete: g.platinum }))
     .sort(byCompletion);
+}
+
+export type Completion = {
+  title: string; platform: string; date: string; earned: number; total: number;
+  hours: number | null; rarestPercent: number | null; appid?: number; hero?: string | null;
+};
+
+/** The newest completion across platforms: a Steam 100% or a PlayStation platinum. */
+export function latestCompletion(): Completion | null {
+  const all = Object.values((profileJson as { completions?: Record<string, Completion | null> }).completions ?? {}).filter(Boolean) as Completion[];
+  return all.sort((a, b) => b.date.localeCompare(a.date))[0] ?? null;
 }
 
 export const fmtDate =(iso: string | Date) =>

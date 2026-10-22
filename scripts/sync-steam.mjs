@@ -79,8 +79,10 @@ profile.sources = { ...(profile.sources ?? {}), steam: true };
 profile.stats.steamAchievements = steamAchievements;
 profile.stats.perfectGames = perfect.length;
 profile.stats.rarestSteam = rarestOverall ? { title: rarestOverall.name, percent: round1(rarestOverall.rarest) } : null;
+delete profile.latestCompletion; // superseded by completions.steam / completions.psn
+profile.completions = { ...(profile.completions ?? {}) };
 if (latest) {
-  profile.latestCompletion = {
+  profile.completions.steam = {
     title: latest.name,
     appid: latest.appid,
     platform: "Steam",
@@ -95,6 +97,6 @@ fs.writeFileSync(PROFILE_PATH, JSON.stringify(profile, null, 2) + "\n");
 
 console.log(`Steam achievements: ${steamAchievements}`);
 console.log(`Games at 100%: ${perfect.length}`);
-console.log(latest ? `Latest 100%: ${latest.name} on ${profile.latestCompletion.date}` : "No 100% games yet");
+console.log(latest ? `Latest 100%: ${latest.name} on ${profile.completions.steam.date}` : "No 100% games yet");
 
 function round1(n) { return n < 10 ? Math.round(n * 10) / 10 : Math.round(n); }
