@@ -4,7 +4,6 @@ import { profile } from "../lib/data";
 import KoalaMark from "./KoalaMark.astro";
 import PlatformIcon from "./PlatformIcon.astro";
 
-const syncedLabel = new Date(profile.lastSynced).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 // The Reviews link appears once the first review is published.
 const hasReviews = (await getCollection("reviews", ({ data }) => !data.draft)).length > 0;
 ---
@@ -16,7 +15,6 @@ const hasReviews = (await getCollection("reviews", ({ data }) => !data.draft)).l
     {hasReviews && <a href="/reviews/">Reviews</a>}
   </span>
   <span class="right">
-    <span class="sync">Synced {syncedLabel}</span>
     <a class="plat" href={profile.links.steam} target="_blank" rel="noopener" aria-label="My Steam profile"><PlatformIcon platform="steam" /></a>
     <a class="plat" href={profile.links.psn} target="_blank" rel="noopener" aria-label="My PlayStation profile"><PlatformIcon platform="psn" /></a>
   </span>
@@ -40,8 +38,6 @@ const hasReviews = (await getCollection("reviews", ({ data }) => !data.draft)).l
   .links a { text-decoration: none; transition: color .2s; }
   .links a:hover { color: var(--fg); }
   .right { display: flex; align-items: center; gap: 14px; }
-  .sync { display: flex; align-items: center; gap: 6px; }
-  .sync::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--steam-pos); }
   .plat { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; color: var(--dim); transition: color .2s, border-color .2s; }
   .plat:hover { color: var(--fg); border-color: var(--fg); }
 </style>

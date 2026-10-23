@@ -5,12 +5,12 @@ const s = profile.stats;
 const perfect = finishedGames().filter((f) => f.platform === "Steam").length; // same rules as the achievements page
 ---
 <section class="intro" id="trophies" data-reveal>
-  <p>Just a place to keep my achievements, rank the games I play each year, and every now and then ramble about one in a review.</p>
+  <p>This page is just a place for me to log the games I play and what I think of them, with the occasional written review.</p>
   <div class="cols">
     <div class="col">
       <span class="label">PlayStation platinums</span>
       <a class="v" href="/achievements/" aria-label={`${s.platinums} platinums, see all achievements`}>{s.platinums}</a>
-      {s.latestPlatinum && <p>Latest: {s.latestPlatinum.title}, {fmtDate(s.latestPlatinum.date)}</p>}
+      {s.latestPlatinum && <p class="gold">Latest: {s.latestPlatinum.title}, {fmtDate(s.latestPlatinum.date)}</p>}
     </div>
     <div class="col">
       <span class="label">Steam achievements</span>

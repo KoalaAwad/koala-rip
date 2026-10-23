@@ -1,13 +1,12 @@
 ---
 // Banner: the most recent completion across platforms (Steam 100% or PlayStation platinum),
 // in a letterboxed 2.39:1 frame over the game's key art, with drifting light.
-import { latestCompletion, heroArtFor, steamArt, scoreFor, displayTitle, fmtDate } from "../lib/data";
+import { latestCompletion, heroArtFor, steamArt, displayTitle, fmtDate } from "../lib/data";
 
 const raw = latestCompletion();
 const c = raw && { ...raw, title: displayTitle(raw.title) }; // your spelling from the rankings, not Steam's "DAVE THE DIVER"
 const isSteam = c?.platform === "Steam";
 const art = !c ? null : c.hero ?? (c.appid ? steamArt(c.appid, "hero") : heroArtFor(c.title));
-const score = c ? scoreFor(c.title) : null;
 const kind = isSteam ? "Latest 100%" : "Latest platinum";
 const unit = isSteam ? "achievements" : "trophies";
 ---
@@ -31,8 +30,6 @@ const unit = isSteam ? "achievements" : "trophies";
       <div class="meta">
         <span><b>{c.earned} / {c.total}</b>{" "}{unit}</span>
         {c.hours !== null && <span><b>{c.hours}h</b> played</span>}
-        {c.rarestPercent !== null && <span>Rarest: <b>{c.rarestPercent}%</b> of players</span>}
-        {score !== null && <span>My score <b>{score}/10</b></span>}
       </div>
     </div>
   </section>
@@ -53,15 +50,16 @@ const unit = isSteam ? "achievements" : "trophies";
     object-fit: cover; z-index: -3; opacity: .85;
     animation: kb 30s ease-in-out infinite alternate;
   }
-  /* Darken only where the text sits (bottom-left), so the art reads at full strength elsewhere */
+  /* Darken only where text sits (top labels, bottom-left title) so white text stays readable even on very light art */
   .feature::after {
     content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none;
     background:
+      linear-gradient(180deg, rgba(5, 7, 16, .9) 0%, rgba(5, 7, 16, .55) 18%, transparent 36%),
       linear-gradient(0deg, rgba(5, 7, 16, .88) 0%, rgba(5, 7, 16, .35) 45%, transparent 70%),
       linear-gradient(90deg, rgba(5, 7, 16, .45) 0%, transparent 55%);
   }
   .glow { position: absolute; border-radius: 50%; filter: blur(40px); mix-blend-mode: screen; z-index: -1; will-change: transform; }
-  .g1 { width: 60%; height: 120%; left: 45%; top: -35%; background: radial-gradient(closest-side, var(--star), transparent); opacity: .55; animation: drift1 18s ease-in-out infinite alternate; }
+  .g1 { z-index: -3; width: 60%; height: 120%; left: 45%; top: -35%; background: radial-gradient(closest-side, var(--star), transparent); opacity: .55; animation: drift1 18s ease-in-out infinite alternate; }
   .g2 { width: 45%; height: 90%; left: -5%; top: 30%; background: radial-gradient(closest-side, var(--nebula-a), transparent); opacity: .35; animation: drift2 23s ease-in-out infinite alternate; }
   .flare { position: absolute; inset: -20%; z-index: -1; background: linear-gradient(105deg, transparent 42%, rgba(255, 245, 225, .10) 48%, rgba(255, 245, 225, .02) 52%, transparent 58%); animation: flare 11s ease-in-out infinite; }
   .grain {
@@ -78,7 +76,8 @@ const unit = isSteam ? "achievements" : "trophies";
 
   .status, .date {
     position: absolute; top: calc(var(--bars) + 18px); z-index: 3;
-    font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(238, 240, 248, .9);
+    font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(238, 240, 248, .95);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .8), 0 0 12px rgba(0, 0, 0, .55);
   }
   .status { left: clamp(16px, 3vw, 32px); display: flex; align-items: center; gap: 8px; }
   .status svg { width: 12px; height: 12px; fill: var(--gold); }
@@ -88,6 +87,7 @@ const unit = isSteam ? "achievements" : "trophies";
     position: absolute; z-index: 3;
     left: clamp(16px, 3vw, 32px); right: clamp(16px, 3vw, 32px); bottom: calc(var(--bars) + 20px);
     display: grid; gap: 12px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .7), 0 0 18px rgba(0, 0, 0, .45);
     animation: rise 1.2s var(--ease-out) .9s both;
   }
   h1 {
