@@ -1,0 +1,32 @@
+---
+// Corner badge for a finished game: a platinum trophy (PlayStation) or a perfect-game badge (Steam).
+interface Props { platform: "PlayStation" | "Steam"; size?: number }
+const { platform, size = 44 } = Astro.props;
+
+// Steam-style badge: a 12-point blue starburst with a gold centre and two ribbon tails.
+const burst = Array.from({ length: 24 }, (_, i) => {
+  const a = (Math.PI * 2 * i) / 24 - Math.PI / 2;
+  const r = i % 2 === 0 ? 30 : 24;
+  return `${(50 + r * Math.cos(a)).toFixed(1)},${(42 + r * Math.sin(a)).toFixed(1)}`;
+}).join(" ");
+---
+{platform === "Steam" ? (
+  <svg class="badge" viewBox="0 0 100 100" width={size} height={size} role="img" aria-label="All achievements unlocked">
+    <path d="M30 60 L18 92 L30 86 L36 98 L46 66 Z" fill="#1a5fd1" />
+    <path d="M70 60 L82 92 L70 86 L64 98 L54 66 Z" fill="#1a5fd1" />
+    <polygon points={burst} fill="#2b86f5" />
+    <circle cx="50" cy="42" r="19" fill="#ff9f1a" />
+    <circle cx="50" cy="42" r="14" fill="#ffc83d" />
+  </svg>
+) : (
+  <svg class="badge" viewBox="0 0 100 100" width={size} height={size} role="img" aria-label="Platinum trophy">
+    <circle cx="50" cy="50" r="48" fill="#0b1630" />
+    <path d="M30 22h40v6h10v6c0 11-8 18-16 19-3 6-8 10-12 11v9h10v7H38v-7h10v-9c-4-1-9-5-12-11-8-1-16-8-16-19v-6h10z M26 34v1c0 6 4 11 9 12-1-4-2-8-2-13z M74 34h-7c0 5-1 9-2 13 5-1 9-6 9-12z" fill="#d9e2ef" fill-rule="evenodd" />
+    <path d="M30 22h20v59H38v-7h10v-9c-4-1-9-5-12-11-8-1-16-8-16-19v-6h10z" fill="#ffffff" opacity=".35" />
+    <rect x="34" y="80" width="32" height="5" fill="#9fb2cc" />
+  </svg>
+)}
+
+<style>
+  .badge { display: block; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .45)); }
+</style>

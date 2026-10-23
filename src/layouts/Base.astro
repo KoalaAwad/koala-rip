@@ -1,10 +1,11 @@
 ---
 import "../styles/global.css";
+import Nav from "../components/Nav.astro";
 
 interface Props { title?: string; description?: string }
 const {
-  title = "koala.rip · Awad's gaming log",
-  description = "Every trophy I've earned on Steam and PlayStation, the games I play each year ranked out of ten, and the odd review.",
+  title = "Awad · Played, Ranked, Reviewed",
+  description = "My achievements, the games I play each year ranked, and the odd review.",
 } = Astro.props;
 ---
 <!doctype html>
@@ -15,12 +16,16 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/png" href="/koala.png" />
-    <link rel="preconnect" href="https://api.fontshare.com" />
-    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
-    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=erode@400,500,600&display=swap" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" />
   </head>
   <body>
-    <slot />
+    <div class="page">
+      <Nav />
+      <slot />
+      <footer class="foot">Stats sourced from the Steam and PlayStation Network APIs.</footer>
+    </div>
 
     <script>
       import Lenis from "lenis";
@@ -36,17 +41,17 @@ const {
         gsap.ticker.add((t) => lenis.raf(t * 1000));
         gsap.ticker.lagSmoothing(0);
 
-        // Entrance for the parts of every section: heading, then text, then pictures, staggered.
-        // Content is visible without script; GSAP only animates *from* an offset once the section arrives.
-        gsap.utils.toArray<HTMLElement>("[data-enter]").forEach((section) => {
-          const parts = section.querySelectorAll("[data-part]");
-          if (!parts.length) return;
-          gsap.from(parts, {
-            y: 24, opacity: 0, duration: 0.9, ease: "power3.out", stagger: 0.075,
-            scrollTrigger: { trigger: section, start: "top 85%", once: true },
+        gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
+          gsap.from(el, {
+            y: 36, opacity: 0, duration: 1.1, ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 88%", once: true },
           });
         });
       }
     </script>
   </body>
 </html>
+
+<style>
+  .foot { color: var(--dim); font-size: 12px; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>

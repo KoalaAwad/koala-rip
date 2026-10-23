@@ -1,69 +1,53 @@
 ---
 import Base from "../layouts/Base.astro";
-import SiteNav from "../components/SiteNav.astro";
-import SiteFooter from "../components/SiteFooter.astro";
 import PlatformWindow from "../components/PlatformWindow.astro";
+import CompletionBadge from "../components/CompletionBadge.astro";
 import { profile, steamProgress, psnProgress, finishedGames } from "../lib/data";
 
 const steam = steamProgress();
 const psn = psnProgress();
 const finished = finishedGames();
 ---
-<Base title="Achievements · koala.rip" description="Every game I've finished, plus every PlayStation and Steam game I've put real time into, platinums and 100% completions first.">
-  <div class="page">
-    <SiteNav />
-    <div data-enter><h1 class="title" data-part>Achievements</h1></div>
+<Base title="Achievements · Awad">
+  <h1 class="section-title big">Achievements</h1>
 
-    {finished.length > 0 && (
-      <section class="rest" aria-labelledby="rest-h" data-enter>
-        <h2 id="rest-h" class="head" data-part>Laid to rest</h2>
-        <ol>
-          {finished.map((f) => (
-            <li data-part>
-              <figure>
-                {f.cover && <img src={f.cover} alt={f.title} width="600" height="900" decoding="async" />}
-                <figcaption>
-                  <span class="name">{f.title}</span>
-                  <span class="how">{f.platform === "PlayStation" ? "Platinum" : "100% on Steam"}</span>
-                </figcaption>
-              </figure>
-            </li>
-          ))}
-        </ol>
-      </section>
-    )}
+  {finished.length > 0 && (
+    <section class="done" data-reveal>
+      <h2 class="section-title">Completed</h2>
+      <ol>
+        {finished.map((f) => (
+          <li>
+            <figure>
+              <span class="art">
+                {f.cover && <img src={f.cover} alt={f.title} width="600" height="900" loading="lazy" decoding="async" />}
+                <span class="corner"><CompletionBadge platform={f.platform} /></span>
+              </span>
+              <figcaption>{f.title}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
 
-    <div class="windows">
-      <PlatformWindow platform="psn" title="PlayStation" profileUrl={profile.links.psn} rows={psn} completeWord="platinum" emptyText="No PlayStation trophies synced yet." />
-      <PlatformWindow platform="steam" title="Steam" profileUrl={profile.links.steam} rows={steam} completeWord="100%" emptyText="No Steam achievements synced yet." />
-    </div>
+  <div class="windows">
+    <PlatformWindow platform="psn" title="PlayStation" profileUrl={profile.links.psn} rows={psn} completeWord="platinum" emptyText="No PlayStation trophies synced yet." />
+    <PlatformWindow platform="steam" title="Steam" profileUrl={profile.links.steam} rows={steam} completeWord="100%" emptyText="No Steam achievements synced yet." />
   </div>
-  <SiteFooter />
 </Base>
 
 <style>
-  .page {
-    padding: 24px max(var(--margin), env(safe-area-inset-right, 0px)) 160px max(var(--margin), env(safe-area-inset-left, 0px));
-    display: grid; gap: clamp(64px, 10vh, 120px);
-  }
-  .title { font-size: clamp(3.5rem, 11.5vw, 12.5rem); font-weight: 500; letter-spacing: -0.04em; line-height: .85; margin-top: 24px; }
-
-  .rest { display: grid; gap: 40px; }
-  .rest ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 32px 20px; }
-  .rest li:first-child { grid-column: span 2; grid-row: span 2; }
-  .rest li { align-self: start; }
-  .rest figure { margin: 0; display: grid; gap: 12px; align-content: start; }
-  .rest img { width: 100%; height: auto; align-self: start; aspect-ratio: 2 / 3; object-fit: cover; background: var(--surface); transition: transform .6s var(--ease-out); }
-  .rest figure:hover img { transform: translateY(-4px); }
-  .rest figcaption { display: grid; gap: 2px; }
-  .rest .name { font-weight: 600; line-height: 1.2; }
-  .rest li:first-child .name { font-size: var(--step-lead); }
-  .how { color: var(--gold); }
-
+  .big { font-size: clamp(40px, 6vw, 80px); }
+  .done { display: grid; gap: 24px; }
+  .done ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 28px 18px; }
+  .done li { align-self: start; }
+  figure { margin: 0; display: grid; gap: 10px; }
+  .art { position: relative; display: block; aspect-ratio: 2 / 3; background: var(--bg-raise); }
+  .art img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease-out); }
+  figure:hover .art img { transform: translateY(-4px); }
+  .corner { position: absolute; top: -10px; right: -10px; }
+  figcaption { font-family: var(--display); font-weight: 500; font-size: 15px; line-height: 1.2; }
   .windows { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
-  @media (max-width: 1100px) { .rest ol { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   @media (max-width: 960px) { .windows { grid-template-columns: 1fr; } }
-  @media (max-width: 600px) {
-    .rest ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
-  }
+  @media (max-width: 480px) { .done ol { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>

@@ -103,6 +103,7 @@ const byCompletion = (a: ProgressRow, b: ProgressRow) =>
   Number(b.complete) - Number(a.complete) || b.percent - a.percent || b.earned - a.earned || a.title.localeCompare(b.title);
 
 const MIN_STEAM_MINUTES = 180; // games played under 3 hours are left off the achievements board
+const MIN_UNLOCKED = 5;          // ...and so are games with fewer than 5 achievements/trophies unlocked
 
 /** Steam games with 3h+ playtime and at least one unlocked achievement, 100% games first. Built from data/steam-cache.json. */
 export function steamProgress(): ProgressRow[] {
@@ -110,7 +111,7 @@ export function steamProgress(): ProgressRow[] {
   if (!fs.existsSync(file)) return [];
   const cache = JSON.parse(fs.readFileSync(file, "utf8")) as Record<string, { name: string; total: number; earned: number; minutes: number }>;
   return Object.entries(cache)
-    .filter(([, g]) => g.total > 0 && g.earned > 0 && g.minutes >= MIN_STEAM_MINUTES)
+    .filter(([, g]) => g.total > 0 && g.earned >= MIN_UNLOCKED && g.minutes >= MIN_STEAM_MINUTES)
     .map(([appid, g]) => ({
       title: g.name,
       cover: localArt(g.name) ?? steamArt(Number(appid), "cover"),
@@ -132,7 +133,7 @@ export function psnProgress(): ProgressRow[] {
     title: string; cover: string | null; progress: number; earned: number; total: number; platinum: boolean; minutes: number | null;
   }[];
   return games
-    .filter((g) => g.minutes === null || g.minutes >= MIN_STEAM_MINUTES)
+    .filter((g) => g.earned >= MIN_UNLOCKED && (g.minutes === null || g.minutes >= MIN_STEAM_MINUTES))
     .map((g) => ({ title: g.title, cover: localArt(g.title) ?? g.cover, fallback: null, earned: g.earned, total: g.total, percent: g.progress, complete: g.platinum }))
     .sort(byCompletion);
 }
@@ -155,7 +156,7 @@ export function finishedGames(): { title: string; platform: "PlayStation" | "Ste
   if (fs.existsSync(steamFile)) {
     const cache = JSON.parse(fs.readFileSync(steamFile, "utf8")) as Record<string, { name: string; total: number; earned: number; lastUnlock: number }>;
     for (const [appid, g] of Object.entries(cache)) {
-      if (g.total > 0 && g.earned === g.total) {
+      if (g.total >= MIN_UNLOCKED && g.earned === g.total) {
         const title = displayTitle(g.name);
         out.push({ title, platform: "Steam", cover: localArt(title) ?? steamArt(Number(appid), "cover2x"), when: new Date(g.lastUnlock * 1000).toISOString() });
       }
