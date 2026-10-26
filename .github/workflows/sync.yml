@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write # to open/close the "token expired" reminder issues
 
 concurrency:
   group: sync
@@ -56,10 +57,34 @@ jobs:
             echo "No new data."
           fi
 
-      # Fail the run (so GitHub emails you) if either sync failed, e.g. an expired PSN token.
-      - name: Report failures
-        if: steps.steam.outcome == 'failure' || steps.psn.outcome == 'failure'
+      # Instead of failing (and emailing) every 6 hours, keep one open issue per broken source.
+      # It is opened the first time a sync fails and closed automatically once that sync works again.
+      - name: Reminder issues
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STEAM_OUTCOME: ${{ steps.steam.outcome }}
+          PSN_OUTCOME: ${{ steps.psn.outcome }}
         run: |
-          [ "${{ steps.steam.outcome }}" = "failure" ] && echo "::error::Steam sync failed. Check the STEAM_API_KEY secret."
-          [ "${{ steps.psn.outcome }}" = "failure" ] && echo "::error::PlayStation sync failed. The PSN_NPSSO token has probably expired: get a new one from https://ca.account.sony.com/api/v1/ssocookie and update the repo secret."
-          exit 1
+          remind() {
+            local outcome="$1" title="$2" body="$3"
+            local open
+            open=$(gh issue list --state open --search "in:title \"$title\"" --json number,title --jq ".[] | select(.title == \"$title\") | .number" | head -1)
+            if [ "$outcome" = "failure" ]; then
+              [ -z "$open" ] && gh issue create --title "$title" --body "$body"
+              echo "::warning::$title"
+            elif [ -n "$open" ]; then
+              gh issue close "$open" --comment "Sync is working again, closing."
+            fi
+          }
+          remind "$PSN_OUTCOME" "PlayStation token expired" "The PlayStation sync can't log in, so PSN data on the site is frozen at the last good sync (Steam keeps updating).
+
+          To fix:
+          1. Sign in at https://www.playstation.com
+          2. Open https://ca.account.sony.com/api/v1/ssocookie in the same browser and copy the npsso value
+          3. Update the PSN_NPSSO secret: https://github.com/${{ github.repository }}/settings/secrets/actions
+
+          This issue closes itself after the next successful sync (or run the workflow from the Actions tab)."
+          remind "$STEAM_OUTCOME" "Steam sync failing" "The Steam sync failed. Check the STEAM_API_KEY secret at https://github.com/${{ github.repository }}/settings/secrets/actions (keys are managed at https://steamcommunity.com/dev/apikey).
+
+          This issue closes itself after the next successful sync."
