@@ -2,17 +2,19 @@
 // Banner: the most recent completion across platforms (Steam 100% or PlayStation platinum),
 // in a letterboxed 2.39:1 frame over the game's key art, with drifting light.
 import { latestCompletion, heroArtFor, steamArt, displayTitle, fmtDate } from "../lib/data";
+import { optimize } from "../lib/img";
 
 const raw = latestCompletion();
 const c = raw && { ...raw, title: displayTitle(raw.title) }; // your spelling from the rankings, not Steam's "DAVE THE DIVER"
 const isSteam = c?.platform === "Steam";
 const art = !c ? null : c.hero ?? (c.appid ? steamArt(c.appid, "hero") : heroArtFor(c.title));
+const artImg = await optimize(art, 1280, { widths: [640, 960, 1280, 1920] });
 const kind = isSteam ? "Latest 100%" : "Latest platinum";
 const unit = isSteam ? "achievements" : "trophies";
 ---
 {c && (
   <section class="feature" aria-label={`${kind}: ${c.title}`}>
-    {art && <img class="art" src={art} alt="" fetchpriority="high" />}
+    {artImg && <img class="art" src={artImg.src} srcset={artImg.srcset} sizes="(max-width: 1300px) 100vw, 1240px" width={artImg.width} height={artImg.height} alt="" fetchpriority="high" />}
     <div class="glow g1" aria-hidden="true"></div>
     <div class="glow g2" aria-hidden="true"></div>
     <div class="flare" aria-hidden="true"></div>

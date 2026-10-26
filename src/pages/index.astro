@@ -5,11 +5,13 @@ import Hero from "../components/Hero.astro";
 import Stats from "../components/Stats.astro";
 import Rankings from "../components/Rankings.astro";
 import { wideFor, fmtDate } from "../lib/data";
+import { optimize } from "../lib/img";
 
 // Latest reviews only appear once something has been published.
 const latest = (await getCollection("reviews", ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+const thumbs = await Promise.all(latest.map((r) => optimize(wideFor(r.data.game), 420)));
 ---
 <Base>
   <Hero />
@@ -20,9 +22,9 @@ const latest = (await getCollection("reviews", ({ data }) => !data.draft))
     <section class="reviews" data-reveal>
       <header><h2 class="section-title">Latest reviews</h2><a href="/reviews/">All reviews</a></header>
       <div class="cards">
-        {latest.map((r) => (
+        {latest.map((r, i) => (
           <a class="card" href={`/reviews/${r.id}/`}>
-            <span class="thumb">{wideFor(r.data.game) && <img src={wideFor(r.data.game)} alt="" loading="lazy" />}<span class="score">{r.data.score}</span></span>
+            <span class="thumb">{thumbs[i] && <img src={thumbs[i]!.src} srcset={thumbs[i]!.srcset} alt="" loading="lazy" decoding="async" />}<span class="score">{r.data.score}</span></span>
             <span class="label">{fmtDate(r.data.date)}</span>
             <span class="name">{r.data.game}</span>
             <span class="excerpt">{r.data.excerpt}</span>

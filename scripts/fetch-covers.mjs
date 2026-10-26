@@ -1,5 +1,5 @@
 // Downloads cover art from SteamGridDB for ranked games that Steam has no art for (e.g. Switch games).
-// Saves public/covers/<slug>.<ext> (portrait 600x900) and <slug>-hero.<ext> (wide banner); the site picks them up automatically.
+// Saves src/assets/covers/<slug>.<ext> (portrait 600x900) and <slug>-hero.<ext> (wide banner); the site picks them up automatically.
 // Usage: node --env-file=.env scripts/fetch-covers.mjs [--force]
 // Get a free key at https://www.steamgriddb.com/profile/preferences/api (sign in with Steam).
 import fs from "node:fs";
@@ -8,7 +8,7 @@ import path from "node:path";
 const KEY = process.env.SGDB_API_KEY;
 if (!KEY) { console.error("SGDB_API_KEY is not set (see .env.example)."); process.exit(1); }
 const force = process.argv.includes("--force");
-const OUT = "public/covers";
+const OUT = "src/assets/covers";
 
 // Must match slugify() in src/lib/data.ts
 const slugify = (s) =>

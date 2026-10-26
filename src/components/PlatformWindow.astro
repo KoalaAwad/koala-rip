@@ -2,6 +2,7 @@
 // One platform's list: its icon and name, then every game with a cover, a progress bar and the percentage.
 import PlatformIcon from "./PlatformIcon.astro";
 import type { ProgressRow } from "../lib/data";
+import { optimizeFirst } from "../lib/img";
 
 interface Props {
   platform: "steam" | "psn";
@@ -13,6 +14,8 @@ interface Props {
   emptyText: string;
 }
 const { platform, title, profileUrl, idLabel, rows, completeWord, emptyText } = Astro.props;
+// 40px WebP thumbnails; falls back to the Steam header, then the placeholder.
+const covers = await Promise.all(rows.map((r) => optimizeFirst([r.cover, r.fallback], 40)));
 const completed = rows.filter((r) => r.complete).length;
 const summary = platform === "psn"
   ? `${completed} ${completed === 1 ? "platinum" : "platinums"} from ${rows.length} games`
@@ -26,21 +29,10 @@ const summary = platform === "psn"
 
   {rows.length > 0 ? (
     <ol class="rows">
-      {rows.map((r) => (
+      {rows.map((r, i) => (
         <li class:list={[{ complete: r.complete }]}>
           <span class="cov art-slot">
-            {r.cover && (
-              <img
-                src={r.cover}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                width="40"
-                height="60"
-                data-fallback={r.fallback ?? undefined}
-                onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback}else{this.remove()}"
-              />
-            )}
+            {covers[i] && <img src={covers[i]!.src} srcset={covers[i]!.srcset} alt="" loading="lazy" decoding="async" width="40" height="60" />}
           </span>
           <span class="main">
             <span class="name">{r.title}</span>

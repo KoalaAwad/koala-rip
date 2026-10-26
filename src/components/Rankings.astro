@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { rankings, years, gameInfo, coverFor, portraitFor, sentiment, critic } from "../lib/data";
+import { optimize, type OptimizedImage } from "../lib/img";
 
 // An entry gets a "review" link when it has an explicit `review` URL or a published review exists for that game.
 const reviews = await getCollection("reviews", ({ data }) => !data.draft);
@@ -10,11 +11,18 @@ const reviewUrl = (title: string, explicit: string | null) => {
   return r ? `/reviews/${r.id}/` : null;
 };
 const first = rankings[years[0]][0];
+
+// Optimized art per game: a 40px thumbnail (phones) and a 600px portrait for the side cover (sharp at 300px on 2x screens).
+const art = new Map<string, { thumb: OptimizedImage | null; portrait: OptimizedImage | null }>();
+await Promise.all([...new Set(Object.values(rankings).flat().map((e) => e.title))].map(async (t) => {
+  art.set(t, { thumb: await optimize(coverFor(t), 40), portrait: await optimize(portraitFor(t), 600, { densities: [1] }) });
+}));
+const firstArt = art.get(first.title)?.portrait;
 ---
 <section class="rank" id="ranked">
   <aside class="cover" aria-hidden="true">
     <div class="frame art-slot">
-      <img class:list={["pic", { on: !!portraitFor(first.title) }]} src={portraitFor(first.title) ?? undefined} alt="" />
+      <img class:list={["pic", { on: !!firstArt }]} src={firstArt?.src} alt="" />
       <img class="pic" alt="" />
     </div>
     <p class="caption">{first.title}</p>
@@ -34,10 +42,10 @@ const first = rankings[years[0]][0];
               const c = critic(g);
               const steam = g.appid && g.reviewDesc ? g.reviewDesc : null;
               const href = reviewUrl(e.title, e.review);
-              const thumb = coverFor(e.title);
+              const thumb = art.get(e.title)?.thumb;
               return (
-                <li class:list={[{ top: e.score === 10, current: i === 0 && e === rankings[y][0] }]} data-cover={portraitFor(e.title) ?? undefined} data-title={e.title}>
-                  <span class="thumb art-slot">{thumb && <img src={thumb} alt="" loading="lazy" width="40" height="60" onerror="this.remove()" />}</span>
+                <li class:list={[{ top: e.score === 10, current: i === 0 && e === rankings[y][0] }]} data-cover={art.get(e.title)?.portrait?.src} data-title={e.title}>
+                  <span class="thumb art-slot">{thumb && <img src={thumb.src} srcset={thumb.srcset} alt="" loading="lazy" decoding="async" width="40" height="60" />}</span>
                   <span class="info">
                     <span class="name">{e.title}</span>
                     {(steam || c) && (

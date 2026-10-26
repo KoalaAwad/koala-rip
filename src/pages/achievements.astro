@@ -3,10 +3,12 @@ import Base from "../layouts/Base.astro";
 import PlatformWindow from "../components/PlatformWindow.astro";
 import CompletionBadge from "../components/CompletionBadge.astro";
 import { profile, steamProgress, psnProgress, finishedGames } from "../lib/data";
+import { optimize } from "../lib/img";
 
 const steam = steamProgress();
 const psn = psnProgress();
 const finished = finishedGames();
+const cards = await Promise.all(finished.map((f) => optimize(f.cover, 240)));
 ---
 <Base title="Achievements · Awad">
   <h1 class="section-title big">Achievements</h1>
@@ -15,11 +17,11 @@ const finished = finishedGames();
     <section class="done" data-reveal>
       <h2 class="section-title">Completed</h2>
       <ol>
-        {finished.map((f) => (
+        {finished.map((f, i) => (
           <li>
             <figure>
               <span class="art art-slot">
-                {f.cover && <img src={f.cover} alt={f.title} width="600" height="900" loading="lazy" decoding="async" onerror="this.remove()" />}
+                {cards[i] && <img src={cards[i]!.src} srcset={cards[i]!.srcset} alt={f.title} width={cards[i]!.width} height={cards[i]!.height} loading="lazy" decoding="async" />}
                 <span class="corner"><CompletionBadge platform={f.platform} /></span>
               </span>
               <figcaption>{f.title}</figcaption>

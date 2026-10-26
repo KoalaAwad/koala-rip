@@ -3,6 +3,7 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import { gameInfo, wideFor, sentiment, critic, fmtDate } from "../../lib/data";
+import { optimize } from "../../lib/img";
 
 export async function getStaticPaths() {
   const reviews = (await getCollection("reviews", ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -17,15 +18,17 @@ const { list, review } = Astro.props as { list: CollectionEntry<"reviews">[] | n
 const Content = review ? (await render(review)).Content : null;
 const g = review ? gameInfo(review.data.game) : null;
 const c = g ? critic(g) : null;
+const listPics = list ? await Promise.all(list.map((r) => optimize(wideFor(r.data.game), 720))) : [];
+const banner = review ? await optimize(wideFor(review.data.game), 1280, { widths: [640, 960, 1280, 1920] }) : null;
 ---
 {list && (
   <Base title="Reviews · Awad">
     <h1 class="section-title big">Reviews</h1>
     <ol class="list">
-      {list.map((r) => (
+      {list.map((r, i) => (
         <li>
           <a href={`/reviews/${r.id}/`}>
-            <span class="pic">{wideFor(r.data.game) && <img src={wideFor(r.data.game)} alt="" loading="lazy" />}</span>
+            <span class="pic">{listPics[i] && <img src={listPics[i]!.src} srcset={listPics[i]!.srcset} alt="" loading="lazy" decoding="async" />}</span>
             <span class="text">
               <span class="name">{r.data.game}</span>
               <span>{r.data.excerpt}</span>
@@ -42,7 +45,7 @@ const c = g ? critic(g) : null;
   <Base title={`${review.data.game} review · Awad`} description={review.data.excerpt}>
     <article>
       <header class="banner">
-        {wideFor(review.data.game) && <img src={wideFor(review.data.game)} alt="" />}
+        {banner && <img src={banner.src} srcset={banner.srcset} sizes="(max-width: 1300px) 100vw, 1240px" alt="" />}
         <div class="t">
           <span class="label">Review · {fmtDate(review.data.date)}</span>
           <h1>{review.data.game}</h1>

@@ -33,11 +33,11 @@ export const slugify = (s: string) =>
 export const steamArt = (appid: number, kind: "hero" | "cover" | "cover2x") =>
   `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${appid}/${{ hero: "library_hero.jpg", cover: "library_600x900.jpg", cover2x: "library_600x900_2x.jpg" }[kind]}`;
 
-// Manually added art: drop public/covers/<slug>.jpg|png|webp (portrait) or public/covers/<slug>-hero.* (wide).
+// Manually added art: drop src/assets/covers/<slug>.jpg|png|webp (portrait) or <slug>-hero.* (wide). Optimized by lib/img.ts.
 function localArt(title: string, suffix = "") {
   for (const ext of ["jpg", "png", "webp"]) {
     const file = `${slugify(title)}${suffix}.${ext}`;
-    if (fs.existsSync(path.join(process.cwd(), "public", "covers", file))) return `/covers/${file}`;
+    if (fs.existsSync(path.join(process.cwd(), "src", "assets", "covers", file))) return `/covers/${file}`;
   }
   return null;
 }
@@ -106,6 +106,12 @@ const byCompletion = (a: ProgressRow, b: ProgressRow) =>
 const MIN_STEAM_MINUTES = 180; // games played under 3 hours are left off the achievements board
 const MIN_UNLOCKED = 5;          // ...and so are games with fewer than 5 achievements/trophies unlocked
 
+/** Local art for a Steam app, found through the ranked game with that app ID (titles can differ, e.g. "Resident Evil 9" vs "Resident Evil Requiem"). */
+function localArtForApp(appid: number, name: string) {
+  const ranked = Object.values(games).find((g) => g.appid === appid);
+  return (ranked && localArt(ranked.title)) ?? localArt(name);
+}
+
 /** Steam games with 3h+ playtime and at least one unlocked achievement, 100% games first. Built from data/steam-cache.json. */
 export function steamProgress(): ProgressRow[] {
   const file = path.join(process.cwd(), "data", "steam-cache.json");
@@ -115,7 +121,7 @@ export function steamProgress(): ProgressRow[] {
     .filter(([, g]) => g.total > 0 && g.earned >= MIN_UNLOCKED && g.minutes >= MIN_STEAM_MINUTES)
     .map(([appid, g]) => ({
       title: g.name,
-      cover: localArt(g.name) ?? steamArt(Number(appid), "cover"),
+      cover: localArtForApp(Number(appid), g.name) ?? steamArt(Number(appid), "cover"),
       fallback: `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${appid}/header.jpg`,
       earned: g.earned,
       total: g.total,
@@ -159,7 +165,7 @@ export function finishedGames(): { title: string; platform: "PlayStation" | "Ste
     for (const [appid, g] of Object.entries(cache)) {
       if (g.total >= MIN_UNLOCKED && g.earned === g.total) {
         const title = displayTitle(g.name);
-        out.push({ title, platform: "Steam", cover: localArt(title) ?? steamArt(Number(appid), "cover2x"), when: new Date(g.lastUnlock * 1000).toISOString() });
+        out.push({ title, platform: "Steam", cover: localArtForApp(Number(appid), title) ?? steamArt(Number(appid), "cover2x"), when: new Date(g.lastUnlock * 1000).toISOString() });
       }
     }
   }

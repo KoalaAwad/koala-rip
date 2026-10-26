@@ -21,7 +21,7 @@ npm run build    # static site in dist/
 | Per-game Steam / critic data and cover URLs | `data/games.json` |
 | Profile stats and the "Latest 100%" banner | `data/profile.json` (placeholder until the sync exists) |
 | Reviews | `src/content/reviews/*.md`, copy `_template.md` to start one |
-| Manual cover art (non-Steam games) | `public/covers/<slug>.jpg` (portrait) and `<slug>-hero.jpg` (wide), e.g. `donkey-kong-bananza.jpg` |
+| Manual cover art (non-Steam games) | `src/assets/covers/<slug>.jpg` (portrait) and `<slug>-hero.jpg` (wide), e.g. `donkey-kong-bananza.jpg` |
 | Design mocks | `design/` |
 
 A ranking's score links to a review automatically when a published review's `game` matches the ranked title.
