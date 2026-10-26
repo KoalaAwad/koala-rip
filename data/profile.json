@@ -1,9 +1,8 @@
 {
-  "_note": "Written by scripts/sync-steam.mjs and scripts/sync-psn.mjs. name and links are hand-edited.",
+  "_note": "Written by scripts/sync-steam.mjs and scripts/sync-psn.mjs. name, links and psnId are hand-edited.",
   "name": "Awad",
   "links": {
-    "steam": "https://steamcommunity.com/profiles/76561198069229314/",
-    "psn": "https://profile.playstation.com/Hewo_7536"
+    "steam": "https://steamcommunity.com/profiles/76561198069229314/"
   },
   "lastSynced": "2026-10-26T09:47:08.329Z",
   "stats": {
@@ -44,5 +43,6 @@
       "rarestPercent": 1.3,
       "hero": "https://image.api.playstation.com/vulcan/img/rnd/202011/0204/uJ0hEeWKTBNI6d5zxr7f3aEx.png?w=1920"
     }
-  }
+  },
+  "psnId": "Hewo_7536"
 }

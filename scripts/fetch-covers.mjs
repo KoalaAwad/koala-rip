@@ -33,9 +33,13 @@ const exists = (base) => ["jpg", "jpeg", "png", "webp"].some((e) => fs.existsSyn
 const rankings = JSON.parse(fs.readFileSync("data/rankings.json", "utf8"));
 const games = JSON.parse(fs.readFileSync("data/games.json", "utf8"));
 const titles = [...new Set(Object.values(rankings).flat().map((e) => e.title))];
+// Titles SteamGridDB knows under another name
+const ALIASES = { "Resident Evil 9": "Resident Evil Requiem", "Deltarune: Chapters 3 & 4": "Deltarune" };
+
 // Extra titles can be passed on the command line (e.g. PlayStation games with only square art).
 const extra = process.argv.slice(2).filter((a) => !a.startsWith("--"));
-const missing = [...titles.filter((t) => !games[t]?.cover && !games[t]?.header), ...extra];
+// Any ranked game without a verified Steam portrait (newer Steam apps often have none at the standard path)
+const missing = [...new Set([...titles.filter((t) => !games[t]?.cover), ...extra])];
 
 fs.mkdirSync(OUT, { recursive: true });
 console.log(`${missing.length} game(s) without Steam art: ${missing.join(", ") || "none"}`);
@@ -44,7 +48,7 @@ for (const title of missing) {
   const slug = slugify(title);
   if (!force && exists(slug) && exists(`${slug}-hero`)) { console.log(`${title}: already has art`); continue; }
   try {
-    const [hit] = await sgdb(`/search/autocomplete/${encodeURIComponent(title)}`);
+    const [hit] = await sgdb(`/search/autocomplete/${encodeURIComponent(ALIASES[title] ?? title)}`);
     if (!hit) { console.log(`${title}: not found on SteamGridDB`); continue; }
     const [grid] = await sgdb(`/grids/game/${hit.id}?dimensions=600x900&types=static`);
     const [hero] = await sgdb(`/heroes/game/${hit.id}?types=static`);

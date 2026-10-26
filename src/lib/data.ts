@@ -48,7 +48,8 @@ export function gameInfo(title: string): GameInfo {
 
 export function coverFor(title: string) {
   const g = gameInfo(title);
-  return localArt(title) ?? g.cover ?? g.header ?? null;
+  // Only verified portrait art: Steam header images are wide and look wrong in portrait slots.
+  return localArt(title) ?? g.cover ?? null;
 }
 
 export function heroArtFor(title: string) {
@@ -194,7 +195,7 @@ export function portraitFor(title: string): string | null {
   const local = localArt(title);
   if (local) return local;
   const g = gameInfo(title);
-  if (g.appid) return steamArt(g.appid, "cover2x");
+  if (g.appid && g.cover) return steamArt(g.appid, "cover2x"); // only when Steam actually has portrait art
   const p = psnRows.find((r) => loose(r.title) === loose(title));
   return p ? resizePsn(p.cover, 1200) : null;
 }

@@ -16,7 +16,7 @@ const hasReviews = (await getCollection("reviews", ({ data }) => !data.draft)).l
   </span>
   <span class="right">
     <a class="plat" href={profile.links.steam} target="_blank" rel="noopener" aria-label="My Steam profile"><PlatformIcon platform="steam" /></a>
-    <a class="plat" href={profile.links.psn} target="_blank" rel="noopener" aria-label="My PlayStation profile"><PlatformIcon platform="psn" /></a>
+    <span class="psn" title="My PlayStation Network ID"><span class="plat" aria-hidden="true"><PlatformIcon platform="psn" /></span><span class="psn-id">{profile.psnId}</span></span>
   </span>
 </nav>
 
@@ -39,5 +39,7 @@ const hasReviews = (await getCollection("reviews", ({ data }) => !data.draft)).l
   .links a:hover { color: var(--fg); }
   .right { display: flex; align-items: center; gap: 14px; }
   .plat { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; color: var(--dim); transition: color .2s, border-color .2s; }
-  .plat:hover { color: var(--fg); border-color: var(--fg); }
+  a.plat:hover { color: var(--fg); border-color: var(--fg); }
+  .psn { display: flex; align-items: center; gap: 8px; }
+  .psn-id { color: var(--fg); text-transform: none; letter-spacing: .02em; user-select: all; }
 </style>

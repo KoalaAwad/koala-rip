@@ -13,8 +13,8 @@ const first = rankings[years[0]][0];
 ---
 <section class="rank" id="ranked">
   <aside class="cover" aria-hidden="true">
-    <div class="frame">
-      <img class="pic on" src={portraitFor(first.title) ?? ""} alt="" />
+    <div class="frame art-slot">
+      <img class:list={["pic", { on: !!portraitFor(first.title) }]} src={portraitFor(first.title) ?? undefined} alt="" />
       <img class="pic" alt="" />
     </div>
     <p class="caption">{first.title}</p>
@@ -37,7 +37,7 @@ const first = rankings[years[0]][0];
               const thumb = coverFor(e.title);
               return (
                 <li class:list={[{ top: e.score === 10, current: i === 0 && e === rankings[y][0] }]} data-cover={portraitFor(e.title) ?? undefined} data-title={e.title}>
-                  {thumb && <img class="thumb" src={thumb} alt="" loading="lazy" width="40" height="60" />}
+                  <span class="thumb art-slot">{thumb && <img src={thumb} alt="" loading="lazy" width="40" height="60" onerror="this.remove()" />}</span>
                   <span class="info">
                     <span class="name">{e.title}</span>
                     {(steam || c) && (
@@ -77,10 +77,17 @@ const first = rankings[years[0]][0];
       li.classList.add("current");
       active = li;
     };
+    // No art for this game (or it fails to load): fade both pictures out so the placeholder shows.
+    const blank = (title?: string) => {
+      pics.forEach((p) => p.classList.remove("on"));
+      caption.textContent = title ?? "";
+    };
     const show = (src?: string, title?: string, li?: HTMLElement) => {
       mark(li);
-      if (!src || src === current) return;
-      current = src;
+      const key = src ?? `none:${title}`;
+      if (key === current) return;
+      current = key;
+      if (!src) return blank(title);
       const img = new Image();
       img.onload = () => {
         if (current !== src) return;
@@ -91,9 +98,10 @@ const first = rankings[years[0]][0];
         front = 1 - front;
         caption.textContent = title ?? "";
       };
+      img.onerror = () => { if (current === src) blank(title); };
       img.src = src;
     };
-    const rows = document.querySelectorAll<HTMLElement>(".rank li[data-cover]");
+    const rows = document.querySelectorAll<HTMLElement>(".rank li[data-title]");
     rows.forEach((li) => li.addEventListener("mouseenter", () => show(li.dataset.cover, li.dataset.title, li)));
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => {
@@ -111,7 +119,7 @@ const first = rankings[years[0]][0];
 
   /* Side cover: a true 2:3 frame, so Steam/PlayStation covers are shown whole */
   .cover { position: sticky; top: 24px; display: grid; gap: 10px; }
-  .frame { position: relative; aspect-ratio: 2 / 3; background: var(--bg-raise); overflow: hidden; }
+  .frame { position: relative; aspect-ratio: 2 / 3; overflow: hidden; }
   .pic { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s var(--ease-out); }
   .pic.on { opacity: 1; }
   .caption { margin: 0; color: var(--dim); font-size: 12px; }
@@ -167,6 +175,7 @@ const first = rankings[years[0]][0];
     li.current .name { color: var(--fg); }
     ol { padding-left: 34px; padding-right: 12px; }
     li { grid-template-columns: 40px 1fr auto; gap: 12px; }
-    .thumb { display: block; width: 40px; height: 60px; object-fit: cover; }
+    .thumb { display: block; width: 40px; height: 60px; overflow: hidden; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
   }
 </style>

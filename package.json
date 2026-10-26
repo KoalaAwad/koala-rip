@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "rm -rf node_modules/.astro .astro && astro build",
     "preview": "astro preview",
     "fetch:opencritic": "node scripts/fetch-opencritic.mjs",
     "sync:steam": "node --env-file=.env scripts/sync-steam.mjs",
