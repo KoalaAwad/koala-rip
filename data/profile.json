@@ -5,15 +5,15 @@
     "steam": "https://steamcommunity.com/profiles/76561198069229314/",
     "psn": "https://profile.playstation.com/Hewo_7536"
   },
-  "lastSynced": "2026-10-22T08:24:17.134Z",
+  "lastSynced": "2026-10-26T09:47:08.329Z",
   "stats": {
     "platinums": 9,
     "latestPlatinum": {
       "title": "Enter the Gungeon",
       "date": "2022-07-31"
     },
-    "steamAchievements": 1895,
-    "perfectGames": 4,
+    "steamAchievements": 1897,
+    "perfectGames": 5,
     "rarestSteam": {
       "title": "Balatro",
       "percent": 0.9
@@ -25,14 +25,14 @@
   },
   "completions": {
     "steam": {
-      "title": "DAVE THE DIVER",
-      "appid": 1868140,
+      "title": "Overlooting",
+      "appid": 3410180,
       "platform": "Steam",
-      "date": "2026-08-08",
-      "earned": 43,
-      "total": 43,
-      "hours": 117,
-      "rarestPercent": 3.6
+      "date": "2026-10-23",
+      "earned": 33,
+      "total": 33,
+      "hours": 61,
+      "rarestPercent": 1
     },
     "psn": {
       "title": "Enter the Gungeon",
