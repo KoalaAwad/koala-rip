@@ -2,7 +2,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://koala.rip",
+  site: "https://archive.koala.rip",
   // Remote game art that Astro may download and optimize at build time
   image: {
     remotePatterns: [
