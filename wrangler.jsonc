@@ -1,17 +1,10 @@
 // Cloudflare Workers config: serves the static Astro build from dist/.
 {
   "name": "koala-rip",
-  "main": "worker/index.js",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./dist",
-    "binding": "ASSETS",
-    "not_found_handling": "404-page",
-    // The worker has to see koala.rip requests to redirect them, even ones matching a file.
-    "run_worker_first": true
+    "not_found_handling": "404-page"
   },
-  "routes": [
-    { "pattern": "archive.koala.rip", "custom_domain": true },
-    { "pattern": "koala.rip", "custom_domain": true }
-  ]
+  "routes": [{ "pattern": "archive.koala.rip", "custom_domain": true }]
 }
