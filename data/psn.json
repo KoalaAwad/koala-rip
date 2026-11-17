@@ -252,6 +252,20 @@
     "npServiceName": "trophy"
   },
   {
+    "title": "Sifu",
+    "platform": "PS4",
+    "cover": "https://image.api.playstation.com/vulcan/img/rnd/202201/1616/qWlFPP5MaE785CHqObz7NdMz.png?w=240",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202202/1010/7kMfw9oRuKC4fYFOXUbRh5ry.png?w=1920",
+    "progress": 28,
+    "earned": 22,
+    "total": 61,
+    "platinum": false,
+    "minutes": 1081,
+    "lastUpdated": "2023-01-21T12:13:33Z",
+    "npCommunicationId": "NPWR24991_00",
+    "npServiceName": "trophy"
+  },
+  {
     "title": "Sekiro™: Shadows Die Twice",
     "platform": "PS4",
     "cover": "https://image.api.playstation.com/vulcan/img/rnd/202010/1700/B66T6RbAfvIGjpEQxPq7k0Mu.png?w=240",
