@@ -1,5 +1,19 @@
 [
   {
+    "title": "Grand Theft Auto VI",
+    "platform": "PS5",
+    "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/2ebe6fa868c682fcd3d7c5bc866bc95697c02aa4c8f16dc2.jpg?w=240",
+    "hero": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/1c8e3e304f0bad2d99ffed828ad460ebe5949608cb82a5dd.png?w=1920",
+    "progress": 2,
+    "earned": 2,
+    "total": 55,
+    "platinum": false,
+    "minutes": 292,
+    "lastUpdated": "2026-11-19T20:32:43Z",
+    "npCommunicationId": "NPWR21085_00",
+    "npServiceName": "trophy2"
+  },
+  {
     "title": "Crow Country",
     "platform": "PS5",
     "cover": "https://image.api.playstation.com/vulcan/ap/rnd/202310/1119/d668f25996e0a9a7742073ac372a2cf1dc056da8c3fb19fe.png?w=240",
